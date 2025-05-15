@@ -1,14 +1,26 @@
+using System.Collections;
 using UnityEngine;
 
 public class LanternController : MonoBehaviour
 {
     LightSource lightSource;
 
-    string windTag = "Wind";
-    
+    readonly string windTag = "Wind";
+
+    [Header("Properties")]
+    [SerializeField] float lightTime = 0.5f;
+
     void Start()
     {
         lightSource = GetComponentInChildren<LightSource>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            LightLantern();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,5 +43,31 @@ public class LanternController : MonoBehaviour
         if (wind != null) {
             wind.triggerWind();
         }
+    }
+
+    void LightLantern()
+    {
+        if (lightSource == null)
+        {
+            lightSource = GetComponentInChildren<LightSource>();
+        }
+
+        if (!lightSource.isLightOn)
+        {
+            StartCoroutine(LightLanternCoroutine());
+        }
+    }
+
+    IEnumerator LightLanternCoroutine()
+    {
+        yield return new WaitForSeconds(lightTime);
+
+        if (lightSource == null)
+        {
+            lightSource = GetComponentInChildren<LightSource>();
+        }
+
+        //Turn lantern on
+        lightSource.TurnLightOn();
     }
 }

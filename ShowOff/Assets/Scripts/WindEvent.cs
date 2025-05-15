@@ -6,10 +6,10 @@ public class WindEvent : MonoBehaviour
     DebugSphere debugSphere;
 
     [Header("Debugging")]
-    public bool debugRadius = true;
+    [SerializeField] bool debugRadius = true;
 
     [Header("Properties")]
-    public bool destroyAfterTrigger = false;
+    [SerializeField] bool destroyAfterTrigger = false;
 
     void Start()
     {
