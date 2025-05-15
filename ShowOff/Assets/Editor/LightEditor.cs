@@ -1,13 +1,29 @@
 using UnityEngine;
 using UnityEditor;
 using Unity.VisualScripting;
+using static UnityEngine.Rendering.ProbeAdjustmentVolume;
 
-[CustomEditor(typeof(PointLightScaler), true)]
+[CustomEditor(typeof(LightSource), true)]
 public class LightEditor : Editor
-{ 
+{
+    public override void OnInspectorGUI()
+    {
+        LightSource targetLight = (LightSource)target;
+
+        if (GUILayout.Button("Turn On"))
+        {
+            targetLight.TurnLightOn();
+        }
+        if (GUILayout.Button("Turn Off"))
+        {
+            targetLight.TurnLightOff();
+        }
+        DrawDefaultInspector();
+    }
+
     private void OnSceneGUI()
     {
-        PointLightScaler targetLight = (PointLightScaler)target;
+        LightSource targetLight = (LightSource)target;
 
         //Get current light radius
         float colliderRadius = targetLight.GetLightRadius();
