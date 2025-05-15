@@ -18,7 +18,7 @@ public class LightSource : MonoBehaviour
         }
     }
 
-    public float GetLightRadius()
+    public float GetColliderRadius()
     {
         if (lightCollider == null)
         {

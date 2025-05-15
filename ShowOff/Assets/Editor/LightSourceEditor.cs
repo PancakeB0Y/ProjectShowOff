@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using static UnityEngine.Rendering.ProbeAdjustmentVolume;
 
 [CustomEditor(typeof(LightSource), true)]
-public class LightEditor : Editor
+public class LightSourceEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -26,7 +26,7 @@ public class LightEditor : Editor
         LightSource targetLight = (LightSource)target;
 
         //Get current light radius
-        float colliderRadius = targetLight.GetLightRadius();
+        float colliderRadius = targetLight.GetColliderRadius();
 
         //Calculate handle position
         Vector3 offset = new Vector3(-0.5f, 1f, 0);
