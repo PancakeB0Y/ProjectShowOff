@@ -42,7 +42,7 @@ public class LanternController : MonoBehaviour
             TurnLanternOff();
 
             //Inform wind object
-            onTriggerWind.Invoke();
+            onTriggerWind?.Invoke();
         }
     }
 

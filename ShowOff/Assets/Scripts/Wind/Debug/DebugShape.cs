@@ -1,7 +1,7 @@
-using System.Collections;
 using UnityEngine;
 
-public class DebugSphere : MonoBehaviour
+//Control the visibility of a GameObject
+public class DebugShape : MonoBehaviour
 {
     MeshRenderer meshRenderer;
 
@@ -12,7 +12,8 @@ public class DebugSphere : MonoBehaviour
 
     public void SetVisibility(bool visible)
     {
-        if (this == null) { 
+        if (this == null)
+        {
             return;
         }
 

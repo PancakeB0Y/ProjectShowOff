@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
+//Wind which extinguishes lantern
 public class WindSphere : MonoBehaviour
 {
     SphereCollider windCollider;
-    DebugSphere debugSphere;
-
-    [Header("Debugging")]
-    [SerializeField] bool debugRadius = true; //sphere to show radius
+    DebugSphere debugSphere; //sphere to show radius
 
     [Header("Properties")]
     [SerializeField] private float radius = 1f;
     [SerializeField] bool destroyAfterTrigger = false;
+
+    [Header("Debugging")]
+    [SerializeField] public bool debugRadius = true;
 
     LanternController lantern;
 
@@ -78,8 +79,7 @@ public class WindSphere : MonoBehaviour
             if (debugRadius)
             {
                 float sphereRadius = radius * 2;
-                Vector3 sphereScale = new Vector3(sphereRadius, sphereRadius, sphereRadius);
-                debugSphere.transform.localScale = sphereScale;
+                debugSphere.UpdateRadius(sphereRadius);
             }
         }
     }
