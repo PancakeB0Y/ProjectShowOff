@@ -5,10 +5,10 @@ public class LanternController : MonoBehaviour
 {
     LightSource lightSource;
 
-    readonly string windTag = "Wind";
-
     [Header("Properties")]
     [SerializeField] float lightTime = 0.5f;
+
+    public System.Action onTriggerWind;
 
     void Start()
     {
@@ -19,33 +19,33 @@ public class LanternController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            LightLantern();
+            TurnLanternOn();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag(windTag))
+        if (!other.TryGetComponent<WindEvent>(out WindEvent wind))
         {
             return;
         }
-
+        
         if (lightSource == null)
         {
             lightSource = GetComponentInChildren<LightSource>();
         }
 
-        //Turn lantern off
-        lightSource.TurnLightOff();
+        //Check if the lantern is turned on
+        if (lightSource.isLightOn) {
+            //Turn lantern off
+            TurnLanternOff();
 
-        //Destroy the wind object if needed
-        WindEvent wind = other.GetComponent<WindEvent>();
-        if (wind != null) {
-            wind.triggerWind();
+            //Destroy the wind object if needed
+            onTriggerWind.Invoke();
         }
     }
 
-    void LightLantern()
+    void TurnLanternOn()
     {
         if (lightSource == null)
         {
@@ -54,20 +54,27 @@ public class LanternController : MonoBehaviour
 
         if (!lightSource.isLightOn)
         {
-            StartCoroutine(LightLanternCoroutine());
+            StartCoroutine(TurnLanternOnCoroutine());
         }
     }
 
-    IEnumerator LightLanternCoroutine()
+    void TurnLanternOff()
+    {
+        if (lightSource != null)
+        {
+            lightSource.TurnLightOff();
+        }
+    }
+
+    //Light the lantern after X seconds
+    IEnumerator TurnLanternOnCoroutine()
     {
         yield return new WaitForSeconds(lightTime);
 
-        if (lightSource == null)
+        if (lightSource != null)
         {
-            lightSource = GetComponentInChildren<LightSource>();
-        }
-
-        //Turn lantern on
-        lightSource.TurnLightOn();
+            //Turn lantern on
+            lightSource.TurnLightOn();
+        }   
     }
 }

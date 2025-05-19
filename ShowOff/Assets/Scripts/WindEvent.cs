@@ -11,10 +11,32 @@ public class WindEvent : MonoBehaviour
     [Header("Properties")]
     [SerializeField] bool destroyAfterTrigger = false;
 
+    LanternController lantern;
+
+    void Awake()
+    {
+        lantern = FindAnyObjectByType<LanternController>();
+    }
+
     void Start()
     {
         windCollider = GetComponent<SphereCollider>();
         debugSphere = GetComponentInChildren<DebugSphere>();
+    }
+
+    private void OnEnable()
+    {
+        if (lantern != null) {
+            lantern.onTriggerWind += triggerWind;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (lantern != null)
+        {
+            lantern.onTriggerWind -= triggerWind;
+        }
     }
 
     private void Update()
