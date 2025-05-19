@@ -26,23 +26,29 @@ public class LightSourceEditor : Editor
         LightSource targetLight = (LightSource)target;
 
         //Get current light radius
-        float colliderRadius = targetLight.GetColliderRadius();
+        float currentRadius = targetLight.GetRadius();
 
         //Calculate handle position
         Vector3 offset = new Vector3(-0.5f, 1f, 0);
         Vector3 pos = targetLight.gameObject.transform.position + offset;
 
-        float size = HandleUtility.GetHandleSize(targetLight.transform.position) * 5f;
+        float handleSize = HandleUtility.GetHandleSize(targetLight.transform.position) * 5f;
         float snap = 0.1f;
 
         EditorGUI.BeginChangeCheck();
 
-        colliderRadius = Handles.ScaleValueHandle(colliderRadius, pos, Quaternion.identity, size, Handles.ArrowHandleCap, snap);
+        //Get new light radius
+        float newRadius = Handles.ScaleValueHandle(currentRadius, pos, Quaternion.identity, handleSize, Handles.ArrowHandleCap, snap);
 
         if (EditorGUI.EndChangeCheck())
         {
-            Undo.RecordObject(targetLight.gameObject, "Scaled Light");
-            targetLight.UpdateColliderRadius(colliderRadius);
+            //Record for undo
+            Undo.RecordObject(targetLight, "Scale Light Radius");
+
+            //Update light radius
+            targetLight.UpdateRadius(newRadius);
+
+            //Mark light as dirty
             EditorUtility.SetDirty(targetLight);
         }
     }
