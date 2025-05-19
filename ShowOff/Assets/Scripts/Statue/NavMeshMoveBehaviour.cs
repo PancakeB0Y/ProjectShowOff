@@ -17,16 +17,23 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     public void SetTargetPosition(Transform target)
     {
-        if (agent != null)
+        if(agent == null)
         {
-            StartCoroutine(FollowTarget(targetRange, target));
+            return;
         }
+
+        if (!agent.isOnNavMesh)
+        {
+            Debug.Log("No NavMesh in the scene.");
+            return;
+        }
+
+        StartCoroutine(FollowTarget(targetRange, target));
     }
 
     private IEnumerator FollowTarget(float range, Transform target)
     {
         Vector3 previousTargetPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
-
 
         while (Vector3.SqrMagnitude(transform.position - target.position) > 0.1f)
         {
@@ -45,6 +52,12 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     public bool IsTargetReached()
     {
+        if (!agent.isOnNavMesh)
+        {
+            Debug.Log("No NavMesh in the scene.");
+            return false;
+        }
+
         float dist = agent.remainingDistance;
 
         if (dist != 0 && dist != Mathf.Infinity && dist < targetRange)
