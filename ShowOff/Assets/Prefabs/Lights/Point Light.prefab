@@ -68,7 +68,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.81033003, b: 0.34509802, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -156,4 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2661c84ba83605e469f3345ee9eb6f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1
   isLightOn: 1

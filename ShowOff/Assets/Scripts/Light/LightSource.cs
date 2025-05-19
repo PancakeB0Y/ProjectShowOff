@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class LightSource : MonoBehaviour
 {
+    [SerializeField] private float radius = 1f;
+
     Light pointLight;
     SphereCollider lightCollider;
 
@@ -17,37 +19,48 @@ public class LightSource : MonoBehaviour
             TurnLightOn();
         }
     }
-
-    public float GetColliderRadius()
+    private void OnEnable()
     {
-        if (lightCollider == null)
-        {
-            lightCollider = GetComponent<SphereCollider>();
-        }
-
-        return lightCollider.radius;
+        SyncComponents();
     }
 
-    public void UpdateColliderRadius(float radius)
+    private void OnValidate()
     {
-        if (lightCollider == null)
-        {
-            lightCollider = GetComponent<SphereCollider>();
-        }
-
-        lightCollider.radius = radius;
-        UpdateLightRadius(radius);
+        SyncComponents();
     }
 
-    private void UpdateLightRadius(float radius)
+    private void SyncComponents()
     {
-        if(pointLight == null)
+        if (pointLight == null)
         {
             pointLight = GetComponent<Light>();
         }
 
-        pointLight.range = radius;
-        pointLight.intensity = radius;
+        if (lightCollider == null) { 
+            lightCollider = GetComponent<SphereCollider>();
+        }
+
+        if (pointLight != null)
+        {
+            pointLight.range = radius;
+            pointLight.intensity = radius;
+        }
+
+        if (lightCollider != null)
+        {
+            lightCollider.radius = radius;
+        }
+    }
+
+    public float GetRadius()
+    {
+        return radius;
+    }
+
+    public void UpdateRadius(float newRadius)
+    {
+        radius = newRadius;
+        SyncComponents();
     }
 
     public void TurnLightOn()
@@ -57,8 +70,11 @@ public class LightSource : MonoBehaviour
             pointLight = GetComponent<Light>();
         }
 
-        pointLight.enabled = true;
-        isLightOn = true;
+        if (pointLight != null)
+        {
+            pointLight.enabled = true;
+            isLightOn = true;
+        }
     }
 
     public void TurnLightOff()
@@ -68,7 +84,10 @@ public class LightSource : MonoBehaviour
             pointLight = GetComponent<Light>();
         }
 
-        pointLight.enabled = false;
-        isLightOn = false;
+        if (pointLight != null)
+        {
+            pointLight.enabled = false;
+            isLightOn = false;
+        }
     }
 }
