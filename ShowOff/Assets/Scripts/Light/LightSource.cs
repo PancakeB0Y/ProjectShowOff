@@ -24,11 +24,13 @@ public class LightSource : MonoBehaviour
         SyncComponents();
     }
 
+    //Called on inspector changes
     private void OnValidate()
     {
         SyncComponents();
     }
 
+    //Updates the collider and light based on radius 
     private void SyncComponents()
     {
         if (pointLight == null)
