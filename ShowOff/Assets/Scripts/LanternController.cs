@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LanternController : MonoBehaviour
 {
-    LightSource lightSource;
+    LightSourceController lightSourceController;
 
     [Header("Properties")]
     [SerializeField] float lightTime = 0.5f;
@@ -12,7 +12,7 @@ public class LanternController : MonoBehaviour
 
     void Start()
     {
-        lightSource = GetComponentInChildren<LightSource>();
+        lightSourceController = GetComponentInChildren<LightSourceController>();
     }
 
     private void Update()
@@ -30,13 +30,13 @@ public class LanternController : MonoBehaviour
             return;
         }
         
-        if (lightSource == null)
+        if (lightSourceController == null)
         {
-            lightSource = GetComponentInChildren<LightSource>();
+            lightSourceController = GetComponentInChildren<LightSourceController>();
         }
 
         //Check if the lantern is turned on
-        if (lightSource.isLightOn) {
+        if (lightSourceController.IsLightOn) {
             //Turn lantern off
             TurnLanternOff();
 
@@ -47,12 +47,12 @@ public class LanternController : MonoBehaviour
 
     void TurnLanternOn()
     {
-        if (lightSource == null)
+        if (lightSourceController == null)
         {
-            lightSource = GetComponentInChildren<LightSource>();
+            lightSourceController = GetComponentInChildren<LightSourceController>();
         }
 
-        if (!lightSource.isLightOn)
+        if (!lightSourceController.IsLightOn)
         {
             StartCoroutine(TurnLanternOnCoroutine());
         }
@@ -60,9 +60,9 @@ public class LanternController : MonoBehaviour
 
     void TurnLanternOff()
     {
-        if (lightSource != null)
+        if (lightSourceController != null)
         {
-            lightSource.TurnLightOff();
+            lightSourceController.TurnLightOff();
         }
     }
 
@@ -71,10 +71,10 @@ public class LanternController : MonoBehaviour
     {
         yield return new WaitForSeconds(lightTime);
 
-        if (lightSource != null)
+        if (lightSourceController != null)
         {
             //Turn lantern on
-            lightSource.TurnLightOn();
+            lightSourceController.TurnLightOn();
         }   
     }
 }
