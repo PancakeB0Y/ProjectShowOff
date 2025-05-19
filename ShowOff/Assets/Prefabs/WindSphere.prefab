@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 92037207099641953}
   - component: {fileID: 4215111776250389888}
   m_Layer: 0
-  m_Name: WindEvent
+  m_Name: WindSphere
   m_TagString: Wind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.6363013
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4215111776250389888
 MonoBehaviour:
@@ -64,10 +64,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5600447986787492943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe21378c08c9b44da6fb17050a61875, type: 3}
+  m_Script: {fileID: 11500000, guid: 84b7438bcc95f494b8a32319b7ec20a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debugRadius: 1
+  radius: 1
   destroyAfterTrigger: 0
 --- !u!1001 &6614721427700549507
 PrefabInstance:
@@ -79,15 +80,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1048509340093513757, guid: 65894abd53fa6994791ad027bfceae3b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1048509340093513757, guid: 65894abd53fa6994791ad027bfceae3b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1048509340093513757, guid: 65894abd53fa6994791ad027bfceae3b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1048509340093513757, guid: 65894abd53fa6994791ad027bfceae3b, type: 3}
       propertyPath: m_LocalPosition.x

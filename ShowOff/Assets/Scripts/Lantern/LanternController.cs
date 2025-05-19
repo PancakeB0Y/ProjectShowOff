@@ -25,7 +25,7 @@ public class LanternController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent<WindEvent>(out WindEvent wind))
+        if (!other.TryGetComponent<WindSphere>(out WindSphere wind))
         {
             return;
         }
@@ -36,11 +36,12 @@ public class LanternController : MonoBehaviour
         }
 
         //Check if the lantern is turned on
-        if (lightSource.isLightOn) {
+        if (lightSource.isLightOn)
+        {
             //Turn lantern off
             TurnLanternOff();
 
-            //Destroy the wind object if needed
+            //Inform wind object
             onTriggerWind.Invoke();
         }
     }
