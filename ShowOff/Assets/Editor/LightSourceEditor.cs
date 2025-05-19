@@ -30,7 +30,7 @@ public class LightSourceEditor : Editor
 
         //Calculate handle position
         Vector3 offset = new Vector3(-0.5f, 1f, 0);
-        Vector3 pos = targetLight.gameObject.transform.position + offset;
+        Vector3 handlePos = targetLight.gameObject.transform.position + offset;
 
         float handleSize = HandleUtility.GetHandleSize(targetLight.transform.position) * 5f;
         float snap = 0.1f;
@@ -38,7 +38,7 @@ public class LightSourceEditor : Editor
         EditorGUI.BeginChangeCheck();
 
         //Get new light radius
-        float newRadius = Handles.ScaleValueHandle(currentRadius, pos, Quaternion.identity, handleSize, Handles.ArrowHandleCap, snap);
+        float newRadius = Handles.ScaleValueHandle(currentRadius, handlePos, Quaternion.identity, handleSize, Handles.ArrowHandleCap, snap);
 
         if (EditorGUI.EndChangeCheck())
         {
