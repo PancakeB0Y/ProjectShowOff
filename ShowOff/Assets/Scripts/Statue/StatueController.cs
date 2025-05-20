@@ -59,54 +59,54 @@ public class StatueController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        LightSource light;
-        if (!other.TryGetComponent<LightSource>(out light))
-        {
-            return;
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    LightSource light;
+    //    if (!other.TryGetComponent<LightSource>(out light))
+    //    {
+    //        return;
+    //    }
 
-        if(light == null)
-        {
-            return;
-        }
+    //    if(light == null)
+    //    {
+    //        return;
+    //    }
 
-        if (light.isLightOn) {
-            StopMovement();
-        }
-    }
+    //    if (light.isLightOn) {
+    //        StopMovement();
+    //    }
+    //}
 
-    private void OnTriggerStay(Collider other)
-    {
-        LightSource light;
-        if (!other.TryGetComponent<LightSource>(out light))
-        {
-            return;
-        }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    LightSource light;
+    //    if (!other.TryGetComponent<LightSource>(out light))
+    //    {
+    //        return;
+    //    }
 
-        if (light == null)
-        {
-            return;
-        }
+    //    if (light == null)
+    //    {
+    //        return;
+    //    }
 
-        if (light.isLightOn)
-        {
-            StopMovement();
-        }
-        else
-        {
-            StartMovement();
-        }
-    }
+    //    if (light.isLightOn)
+    //    {
+    //        StopMovement();
+    //    }
+    //    else
+    //    {
+    //        StartMovement();
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent<LightSource>(out LightSource light))
-        {
-            StartMovement();
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.TryGetComponent<LightSource>(out LightSource light))
+    //    {
+    //        StartMovement();
+    //    }
+    //}
 
     public void StopMovement()
     {
