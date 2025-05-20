@@ -227,37 +227,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452075714}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &639551351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 639551352}
-  m_Layer: 0
-  m_Name: WindSecton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &639551352
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639551351}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.347763, y: -39.248432, z: -9.643778}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &855737164
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +445,7 @@ Transform:
   - {fileID: 855737165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2836268221481032954
+--- !u!1001 &7469067613740695463
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -484,79 +453,115 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 92037207099641953, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
-      propertyPath: m_Radius
-      value: 2
+    - target: {fileID: 966506236011711307, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: m_Size.x
+      value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 4215111776250389888, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
-      propertyPath: radius
-      value: 2
+    - target: {fileID: 966506236011711307, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: m_Size.y
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4215111776250389888, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
-      propertyPath: debugRadius
-      value: 1
+    - target: {fileID: 966506236011711307, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: m_Size.z
+      value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 5371071059382564368, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371071059382564368, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371071059382564368, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: bounds.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: bounds.z
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: windSpheres.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: 'windSpheres.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: 'windSpheres.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: 'windSpheres.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: 'windSpheres.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: 'windSpheres.Array.data[4]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886013506189206599, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
+      propertyPath: 'windSpheres.Array.data[5]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.03
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.41
+      value: 2.83
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.89
+      value: 2.12
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5155168010549062969, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 6733255875063219909, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5600447986787492943, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+    - target: {fileID: 8491484554952007110, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
       propertyPath: m_Name
-      value: WindSphere
-      objectReference: {fileID: 0}
-    - target: {fileID: 6143256955654080414, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6143256955654080414, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6143256955654080414, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4
+      value: WindSecton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d74a14ca872897f4d96e549586d6e26a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: bf93cd1d6a774a142bd62676b598cac7, type: 3}
 --- !u!1001 &7576279676427170059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -621,5 +626,4 @@ SceneRoots:
   - {fileID: 940059402}
   - {fileID: 1521260355}
   - {fileID: 7576279676427170059}
-  - {fileID: 2836268221481032954}
-  - {fileID: 639551352}
+  - {fileID: 7469067613740695463}

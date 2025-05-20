@@ -9,11 +9,11 @@ public class WindSphereEditor : Editor
         WindSphere targetWind = (WindSphere)target;
 
         //Get current wind radius
-        float colliderRadius = targetWind.GetRadius();
+        float currentRadius = targetWind.GetRadius();
 
         //Calculate handle position
         Vector3 offset = new Vector3(-0.5f, 1f, 0);
-        Vector3 pos = targetWind.gameObject.transform.position + offset;
+        Vector3 handlePos = targetWind.gameObject.transform.position + offset;
 
         float handleSize = HandleUtility.GetHandleSize(targetWind.transform.position) * 5f;
         float snap = 0.1f;
@@ -21,7 +21,7 @@ public class WindSphereEditor : Editor
         EditorGUI.BeginChangeCheck();
 
         //Get new wind radius
-        float newRadius = Handles.ScaleValueHandle(colliderRadius, pos, Quaternion.identity, handleSize, Handles.ArrowHandleCap, snap);
+        float newRadius = Handles.ScaleValueHandle(currentRadius, handlePos, Quaternion.identity, handleSize, Handles.ArrowHandleCap, snap);
 
         if (EditorGUI.EndChangeCheck())
         {
