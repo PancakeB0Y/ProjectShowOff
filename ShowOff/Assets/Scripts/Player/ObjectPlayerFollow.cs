@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class ObjectPlayerFollow : MonoBehaviour
 {
     [SerializeField]
     Transform player;
@@ -14,7 +14,6 @@ public class CameraFollow : MonoBehaviour
         offset = transform.localPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = player.position + player.rotation * offset;
