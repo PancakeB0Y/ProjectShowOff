@@ -14,7 +14,7 @@ public class ObjectPlayerFollow : MonoBehaviour
         offset = transform.localPosition;
     }
 
-    void Update()
+    void LateUpdate()
     {
         transform.position = player.position + player.rotation * offset;
     }

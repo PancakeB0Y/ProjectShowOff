@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 moveDirection = moveInput.z * transform.forward + moveInput.x * transform.right;
-        rb.linearVelocity = moveDirection * moveSpeed;
+        moveDirection = moveDirection * moveSpeed;
+        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
     }
 
     //Detect player collision with wind and inform lantern
