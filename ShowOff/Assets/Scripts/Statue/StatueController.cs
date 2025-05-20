@@ -15,8 +15,6 @@ public class StatueController : MonoBehaviour
 
     GameObject player;
 
-    string lightTag = "Light";
-
     private void Awake()
     {
         moveBehaviour = GetComponent<NavMeshMoveBehaviour>();
@@ -63,12 +61,12 @@ public class StatueController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag(lightTag))
+        LightSource light;
+        if (!other.TryGetComponent<LightSource>(out light))
         {
             return;
         }
 
-        LightSource light = other.GetComponent<LightSource>();
         if(light == null)
         {
             return;
@@ -81,12 +79,12 @@ public class StatueController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.gameObject.CompareTag(lightTag))
+        LightSource light;
+        if (!other.TryGetComponent<LightSource>(out light))
         {
             return;
         }
 
-        LightSource light = other.GetComponent<LightSource>();
         if (light == null)
         {
             return;
@@ -104,13 +102,13 @@ public class StatueController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag(lightTag))
+        if (other.TryGetComponent<LightSource>(out LightSource light))
         {
             StartMovement();
         }
     }
 
-    void StopMovement()
+    public void StopMovement()
     {
         if (moveBehaviour != null)
         {
@@ -118,7 +116,7 @@ public class StatueController : MonoBehaviour
         }
     }
 
-    void StartMovement()
+    public void StartMovement()
     {
         if (moveBehaviour != null)
         {
