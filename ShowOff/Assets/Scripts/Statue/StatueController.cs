@@ -108,7 +108,7 @@ public class StatueController : MonoBehaviour
         }
     }
 
-    void StopMovement()
+    public void StopMovement()
     {
         if (moveBehaviour != null)
         {
@@ -116,7 +116,7 @@ public class StatueController : MonoBehaviour
         }
     }
 
-    void StartMovement()
+    public void StartMovement()
     {
         if (moveBehaviour != null)
         {
