@@ -20,11 +20,17 @@ public class LightSourceChangeListener : MonoBehaviour
 
     public void OnLightValuesChanged()
     {
-        //Debug.Log($"[LightChangeListener] Light changed: Intensity = {targetLight.intensity}, Range = {targetLight.range}");
+        if (collisionTrigger == null) {
+            collisionTrigger = GetComponent<SphereCollider>();
+        }
 
-        float effectiveDistance = Mathf.Sqrt(targetLight.intensity / minVisibleIntensity);
-        effectiveDistance = Mathf.Min(effectiveDistance, targetLight.range);
+        if (collisionTrigger != null) {
+            //Debug.Log($"[LightChangeListener] Light changed: Intensity = {targetLight.intensity}, Range = {targetLight.range}");
 
-        collisionTrigger.radius = effectiveDistance;
+            float effectiveDistance = Mathf.Sqrt(targetLight.intensity / minVisibleIntensity);
+            effectiveDistance = Mathf.Min(effectiveDistance, targetLight.range);
+
+            collisionTrigger.radius = effectiveDistance;
+        }
     }
 }

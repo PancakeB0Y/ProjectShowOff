@@ -16,12 +16,22 @@ public class WindSection : MonoBehaviour
 
     [Header("Debugging")]
     [SerializeField] bool debugBounds = true;
+    [SerializeField] bool debugSpheres = true;
 
     [SerializeField] List<GameObject> windSpheres = new List<GameObject>();
 
     void Start()
     {
         debugCube = GetComponentInChildren<DebugCube>();
+
+        //Sync the debugging of the spheres with the wind section
+        SyncDebugging();
+
+        //Clean up list of spheres
+        CleanUpSpheres();
+
+        //Disable all possible wind spheres
+        DisableAllWindSpheres();
     }
 
     //Called on inspector changes
@@ -31,18 +41,60 @@ public class WindSection : MonoBehaviour
         CleanUpSpheres();
     }
 
-    private void OnEnable()
+    //private void OnEnable()
+    //{
+    //    SyncComponents();
+    //}
+
+    //Sync the debugging of the spheres
+    void SyncDebugging()
     {
-        SyncComponents();
+        foreach (GameObject wind in windSpheres)
+        {
+            WindSphere windSphere = wind.GetComponent<WindSphere>();
+            windSphere.debugRadius = debugSpheres;
+
+            windSphere.SyncComponents();
+        }
     }
 
-    private void OnDisable()
+    public void CleanUpSpheres()
     {
+        for (int i = windSpheres.Count - 1; i >= 0; i--)
+        {
+            if (windSpheres[i] == null)
+            {
+                windSpheres.RemoveAt(i);
+            }
+        }
     }
 
-    private void Update()
+    void DisableAllWindSpheres()
+    {
+        foreach (GameObject wind in windSpheres)
+        {
+            wind.SetActive(false);
+        }
+    }
+
+    //Adds a new windSphere object to the list
+    public GameObject AddWindSphere()
+    {
+        GameObject newSphere = Instantiate(windSpherePrefab, transform.position, Quaternion.identity, transform);
+
+        windSpheres.Add(newSphere);
+
+        return newSphere;
+    }
+
+    //Get a random windSphere from the list
+    GameObject GetRandomWindSphere()
     {
         CleanUpSpheres();
+
+        int randIndex = Random.Range(0, windSpheres.Count);
+
+        return windSpheres[randIndex];
     }
 
     //Updates the collider and debugCube based on bounds 
@@ -69,6 +121,7 @@ public class WindSection : MonoBehaviour
         {
             //Show collision bounds at runtime
             debugCube.SetVisibility(debugBounds);
+            SyncDebugging();
 
             //Scale cube if visible
             if (debugBounds)
@@ -89,24 +142,24 @@ public class WindSection : MonoBehaviour
         SyncComponents();
     }
 
-    //Adds a new WindSphere object to the list
-    public GameObject AddWindSphere()
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject newSphere = Instantiate(windSpherePrefab, transform.position, Quaternion.identity, transform);
+        if (!other.TryGetComponent<PlayerController>(out PlayerController player))
+        {
+            return;
+        }
 
-        windSpheres.Add(newSphere);
-
-        return newSphere;
+        //enable a random windSphere from the list
+        GetRandomWindSphere().SetActive(true);
     }
 
-    public void CleanUpSpheres()
+    private void OnTriggerExit(Collider other)
     {
-        for (int i = windSpheres.Count - 1; i >= 0; i--)
+        if (!other.TryGetComponent<PlayerController>(out PlayerController player))
         {
-            if(windSpheres[i] == null)
-            {
-                windSpheres.RemoveAt(i);
-            }
+            return;
         }
+
+        DisableAllWindSpheres();
     }
 }
