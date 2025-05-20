@@ -67,9 +67,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b7438bcc95f494b8a32319b7ec20a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugRadius: 1
   radius: 1
+  disableAfterTrigger: 1
   destroyAfterTrigger: 0
+  debugRadius: 1
 --- !u!1001 &6614721427700549507
 PrefabInstance:
   m_ObjectHideFlags: 0

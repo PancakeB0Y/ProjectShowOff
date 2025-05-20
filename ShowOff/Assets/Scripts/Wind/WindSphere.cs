@@ -9,6 +9,7 @@ public class WindSphere : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] private float radius = 1f;
+    [SerializeField] bool disableAfterTrigger = false;
     [SerializeField] bool destroyAfterTrigger = false;
 
     [Header("Debugging")]
@@ -51,7 +52,7 @@ public class WindSphere : MonoBehaviour
     }
 
     //Updates the collider and debugSphere based on radius 
-    private void SyncComponents()
+    public void SyncComponents()
     {
         //Sync collider
         if (windCollider == null)
@@ -97,6 +98,12 @@ public class WindSphere : MonoBehaviour
 
     public void triggerWind()
     {
+        if (disableAfterTrigger)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (destroyAfterTrigger)
         {
             Destroy(gameObject);
