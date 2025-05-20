@@ -21,27 +21,25 @@ public class LanternController : MonoBehaviour
         {
             TurnLanternOn();
         }
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    //Called when player collides with wind
+    public void HandleWindCollision()
     {
-        if (!other.TryGetComponent<WindEvent>(out WindEvent wind))
-        {
-            return;
-        }
-        
         if (lightSourceController == null)
         {
             lightSourceController = GetComponentInChildren<LightSourceController>();
         }
 
         //Check if the lantern is turned on
-        if (lightSourceController.IsLightOn) {
+        if (lightSourceController.IsLightOn)
+        {
             //Turn lantern off
             TurnLanternOff();
 
-            //Destroy the wind object if needed
-            onTriggerWind.Invoke();
+            //Inform wind sphere object
+            onTriggerWind?.Invoke();
         }
     }
 
