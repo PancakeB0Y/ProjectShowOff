@@ -20,8 +20,12 @@ public class LanternController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             TurnLanternOn();
+
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayLightMatchSound();
+            }
         }
-        
     }
 
     //Called when player collides with wind
@@ -40,6 +44,10 @@ public class LanternController : MonoBehaviour
 
             //Inform wind sphere object
             onTriggerWind?.Invoke();
+
+            if (SoundManager.instance != null) {
+                SoundManager.instance.PlayWindSound();
+            }
         }
     }
 
