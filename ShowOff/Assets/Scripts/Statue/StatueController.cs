@@ -35,6 +35,8 @@ public class StatueController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(statueState);
+
         switch (statueState)
         {
             case StatueState.Disabled:
@@ -53,11 +55,14 @@ public class StatueController : MonoBehaviour
         {
             case StatueState.Disabled:
                 gameObject.SetActive(false);
-                statueState = StatueState.Disabled;
+                statueState = newState;
                 break;
             case StatueState.Chasing:
                 gameObject.SetActive(true);
-                statueState = StatueState.Chasing;
+                statueState = newState;
+                break;
+            case StatueState.Freezed:
+                statueState = newState;
                 break;
             default:
                 break;
@@ -92,7 +97,8 @@ public class StatueController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player.gameObject)
+        if (collision.gameObject == player.gameObject
+            && statueState != StatueState.Freezed)
         {
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
@@ -105,6 +111,16 @@ public class StatueController : MonoBehaviour
         if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
         {
             StopMovement();
+            SetState(StatueState.Freezed);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
+        {
+            StopMovement();
+            SetState(StatueState.Disabled);
         }
     }
 
@@ -116,6 +132,7 @@ public class StatueController : MonoBehaviour
 
 public enum StatueState
 {
+    Freezed,
     Disabled,
     Chasing,
 }
