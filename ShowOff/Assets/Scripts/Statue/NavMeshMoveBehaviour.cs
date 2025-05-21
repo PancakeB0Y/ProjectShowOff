@@ -8,72 +8,56 @@ using UnityEngine.AI;
 public class NavMeshMoveBehaviour : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] protected float targetRange = 1f;
+
+    [Header("Player follow")]
+    [SerializeField] private float maxSpawnRangeFromPlayerPos = 15.0f;
+    [SerializeField] private float minSpawnRangeFromPlayerPos = 10.0f;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void SetTargetPosition(Transform target)
+    public void SetupPlayerFollow(Vector3 playerPos)
     {
-        if(agent == null)
-        {
-            return;
-        }
+        Debug.Log("Statue follow setup");
 
-        if (!agent.isOnNavMesh)
-        {
-            Debug.Log("No NavMesh in the scene.");
-            return;
-        }
-
-        StartCoroutine(FollowTarget(targetRange, target));
+        agent.Warp(NavMeshSamplePoint(playerPos));
+        SetTargetPosition(playerPos);
     }
 
-    private IEnumerator FollowTarget(float range, Transform target)
+    Vector3 NavMeshSamplePoint(Vector3 center)
     {
-        Vector3 previousTargetPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
+        int countOut = 0;
 
-        while (Vector3.SqrMagnitude(transform.position - target.position) > 0.1f)
+        Vector3 randomPoint;
+        while (true)
         {
-            float distFromPrevLocation = Vector3.SqrMagnitude(previousTargetPosition - target.position);
-            if (distFromPrevLocation > 0.1f)
+            randomPoint = center + UnityEngine.Random.insideUnitSphere * maxSpawnRangeFromPlayerPos;
+
+            countOut++;
+            if (countOut > 1000)
             {
-                agent.SetDestination(target.position);
-                previousTargetPosition = target.position;
+                throw new System.Exception("Error: infinite while loop. Cannot find point on nav mesh");
             }
 
-            //wait before checking again
-            yield return new WaitForSeconds(0.1f);
-        }
-        yield return null;
-    }
+            // If sample point is closer than the minimum range
+            if (Vector3.Distance(randomPoint, center) < minSpawnRangeFromPlayerPos)
+                continue;
 
-    public bool IsTargetReached()
-    {
-        if (!agent.isOnNavMesh)
-        {
-            Debug.Log("No NavMesh in the scene.");
-            return false;
-        }
-
-        float dist = agent.remainingDistance;
-
-        if (dist != 0 && dist != Mathf.Infinity && dist < targetRange)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
+                //or add a for loop like in the documentation
+                return hit.position;
+            }
         }
     }
 
-    public void SetSpeed(float speed)
+    public void SetTargetPosition(Vector3 targetPos)
     {
-        agent.speed = speed;
-        agent.acceleration = speed * 2;
+        agent.SetDestination(targetPos);
     }
 
     public void StopMovement()

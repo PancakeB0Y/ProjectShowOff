@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action<Vector3> OnStatueFollow;
+
+
     [SerializeField]
     float moveSpeed;
 
@@ -11,14 +16,19 @@ public class PlayerController : MonoBehaviour
 
     LanternController lantern;
 
-    // Start is called before the first frame update
+    List<Light> currentLights = new List<Light>();
+
+    void Awake()
+    {
+        LightSourceCollisionDetection.OnLightDisabled += DeregisterLight;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         lantern = transform.parent.GetComponentInChildren<LanternController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
@@ -31,9 +41,15 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
     }
 
-    //Detect player collision with wind and inform lantern
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        if (other.TryGetComponent<Light>(out Light light)
+            && !currentLights.Contains(light))
+        {
+            Debug.Log("Light Added");
+            currentLights.Add(light);
+        }
+
         if (!other.TryGetComponent<WindSphere>(out WindSphere wind))
         {
             return;
@@ -48,5 +64,32 @@ public class PlayerController : MonoBehaviour
         {
             lantern.HandleWindCollision();
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Light>(out Light light))
+        {
+            DeregisterLight(light);
+        }
+    }
+
+    void DeregisterLight(Light light)
+    {
+        if (currentLights.Contains(light))
+        {
+            Debug.Log("Light Removed");
+            currentLights.Remove(light);
+            if (currentLights.Count == 0)
+            {
+                // Send event to statue to start following
+                OnStatueFollow?.Invoke(transform.position);
+            }
+        }
+    }
+
+    void OnDestroy()
+    {
+        LightSourceCollisionDetection.OnLightDisabled -= DeregisterLight;
     }
 }

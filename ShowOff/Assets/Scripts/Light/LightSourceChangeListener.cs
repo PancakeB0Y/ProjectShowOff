@@ -43,10 +43,12 @@ public class LightSourceChangeListener : MonoBehaviour
             collisionTrigger = GetComponent<SphereCollider>();
         }
 
-        if (collisionTrigger != null) {
+        if (collisionTrigger != null)
+        {
             //Debug.Log($"[LightChangeListener] Light changed: Intensity = {targetLight.intensity}, Range = {targetLight.range}");
 
-        collisionTrigger.radius = CalculateEffectiveVisibilityDistance(targetLight.intensity, minVisibleIntensity, targetLight.range);
+            collisionTrigger.radius = CalculateEffectiveVisibilityDistance(targetLight.intensity, minVisibleIntensity, targetLight.range);
+        }
     }
 
     /// <summary>
