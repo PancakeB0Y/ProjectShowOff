@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(NavMeshMoveBehaviour))]
@@ -11,16 +10,15 @@ public class StatueController : MonoBehaviour
     [Header("Behaviours")]
     [SerializeField] NavMeshMoveBehaviour moveBehaviour;
 
-    private StatueState statueState;
+    [Header("Properties")]
+    [SerializeField] float speed = 7;
 
-    PlayerController player;
+    GameObject player;
 
     private void Awake()
     {
         moveBehaviour = GetComponent<NavMeshMoveBehaviour>();
-        player = FindFirstObjectByType<PlayerController>();
-
-        player.OnStatueFollow += SetupPlayerFollow;
+        player = FindFirstObjectByType<PlayerController>().gameObject;
     }
 
     private void Start()
@@ -30,49 +28,85 @@ public class StatueController : MonoBehaviour
             return;
         }
 
-        SetState(StatueState.Disabled);
+        moveBehaviour.SetSpeed(speed);
+        SetTargetPosition(player.transform);
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        switch (statueState)
+        if (moveBehaviour == null)
         {
-            case StatueState.Disabled:
-                break;
-            case StatueState.Chasing:
-                moveBehaviour.SetTargetPosition(player.transform.position);
-                break;
-            default:
-                break;
+            return;
+        }
+
+        if (moveBehaviour.IsTargetReached())
+        {
+            Debug.Log("reached player");
+            //Die();
         }
     }
 
-    void SetState(StatueState newState)
+    private void SetTargetPosition(Transform target)
     {
-        switch (newState)
+        if (moveBehaviour != null)
         {
-            case StatueState.Disabled:
-                gameObject.SetActive(false);
-                statueState = StatueState.Disabled;
-                break;
-            case StatueState.Chasing:
-                gameObject.SetActive(true);
-                statueState = StatueState.Chasing;
-                break;
-            default:
-                break;
+            moveBehaviour.SetTargetPosition(target);
         }
     }
 
-    private void SetupPlayerFollow(Vector3 playerPosition)
+    private void Die()
     {
-        SetState(StatueState.Chasing);
-
-        if (moveBehaviour)
-        {
-            moveBehaviour.SetupPlayerFollow(playerPosition);
-        }
+        Destroy(gameObject);
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    LightSource light;
+    //    if (!other.TryGetComponent<LightSource>(out light))
+    //    {
+    //        return;
+    //    }
+
+    //    if(light == null)
+    //    {
+    //        return;
+    //    }
+
+    //    if (light.isLightOn) {
+    //        StopMovement();
+    //    }
+    //}
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    LightSource light;
+    //    if (!other.TryGetComponent<LightSource>(out light))
+    //    {
+    //        return;
+    //    }
+
+    //    if (light == null)
+    //    {
+    //        return;
+    //    }
+
+    //    if (light.isLightOn)
+    //    {
+    //        StopMovement();
+    //    }
+    //    else
+    //    {
+    //        StartMovement();
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.TryGetComponent<LightSource>(out LightSource light))
+    //    {
+    //        StartMovement();
+    //    }
+    //}
 
     public void StopMovement()
     {
@@ -89,33 +123,4 @@ public class StatueController : MonoBehaviour
             moveBehaviour.StartMovement();
         }
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == player.gameObject)
-        {
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#endif
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
-        {
-            StopMovement();
-        }
-    }
-
-    void OnDestroy()
-    {
-        player.OnStatueFollow -= SetupPlayerFollow;
-    }
-}
-
-public enum StatueState
-{
-    Disabled,
-    Chasing,
 }
