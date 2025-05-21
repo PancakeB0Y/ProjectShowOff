@@ -164,10 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e980d82f8dc544692511a0467b60db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRange: 3
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
+  interactRange: 2
   textPopup: {fileID: 0}
 --- !u!1 &6030458443754145636
 GameObject:

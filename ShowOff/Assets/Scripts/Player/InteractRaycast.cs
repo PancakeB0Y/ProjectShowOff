@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,7 +6,7 @@ public class InteractRaycast : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] private LayerMask interactLayer; //interactable object layer
-    [SerializeField] private int interactRange = 5;
+    [SerializeField] private float interactRange = 1.5f;
 
     [Header("UI")]
     [SerializeField] private GameObject textPopup = null; //text to show interact button
@@ -18,6 +19,10 @@ public class InteractRaycast : MonoBehaviour
     private void Awake()
     {
         textPopup = GameObject.FindWithTag(interactTextTag);
+
+        if (textPopup != null) {
+            textPopup.SetActive(false);
+        }
     }
 
     void Update()
@@ -25,7 +30,7 @@ public class InteractRaycast : MonoBehaviour
         RaycastHit hit;
         Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-        if(Physics.Raycast(transform.position, forward, out hit, interactRange, interactLayer.value))
+        if(Physics.Raycast(transform.position, forward, out hit, interactRange, interactLayer.value, QueryTriggerInteraction.Ignore))
         {
             //Check for interactable in the current object
             if (!hit.collider.gameObject.TryGetComponent<IInteractable>(out interactableObject))

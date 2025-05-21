@@ -1,12 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(LockedDoorController), true)]
-public class LockedDoorEditor : Editor
+[CustomEditor(typeof(OneSideLockedDoorController), true)]
+public class OneSideLockedDoorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        LockedDoorController targetDoor = (LockedDoorController)target;
+        OneSideLockedDoorController targetDoor = (OneSideLockedDoorController)target;
         
         if (GUILayout.Button("Flip locked side"))
         {
