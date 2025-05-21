@@ -161,6 +161,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5440166323021104981, guid: 1c3d8330064a4f342a88e88100de72bf, type: 3}
+      propertyPath: minVisibleIntensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073382869667832004, guid: 1c3d8330064a4f342a88e88100de72bf, type: 3}
+      propertyPath: m_Radius
+      value: 1.5491934
+      objectReference: {fileID: 0}
     - target: {fileID: 7087847895586228575, guid: 1c3d8330064a4f342a88e88100de72bf, type: 3}
       propertyPath: m_Name
       value: LightSource

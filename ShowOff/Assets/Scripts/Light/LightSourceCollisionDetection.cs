@@ -1,12 +1,20 @@
+using System;
 using UnityEngine;
 
 public class LightSourceCollisionDetection : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    public static event Action<Light> OnLightDisabled;
+
+    private Light lightComponent;
+
+    void Start()
     {
-        if (other.TryGetComponent<StatueController>(out StatueController statue))
-        {
-            statue.StopMovement();
-        }
+        lightComponent = GetComponent<Light>();
+    }
+
+    void OnDisable()
+    {
+        // Fire event to unregister from the Player light collection
+        OnLightDisabled?.Invoke(lightComponent);
     }
 }
