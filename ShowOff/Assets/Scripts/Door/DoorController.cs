@@ -18,14 +18,25 @@ public class DoorController : MonoBehaviour, IInteractable
             return;
         }
 
-        if (!isDoorOpen) {
+        if (!isDoorOpen)
+        {
             doorAnimator.Play("DoorOpen", 0, 0.0f);
             isDoorOpen = true;
+
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayDoorOpenSound();
+            }
         }
         else
         {
             doorAnimator.Play("DoorClose", 0, 0.0f);
             isDoorOpen = false;
+
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayDoorCloseSound();
+            }
         }
     }
 }

@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
         if (other.TryGetComponent<Light>(out Light light)
             && !currentLights.Contains(light))
         {
-            Debug.Log("Light Added");
             currentLights.Add(light);
         }
 
@@ -78,7 +77,6 @@ public class PlayerController : MonoBehaviour
     {
         if (currentLights.Contains(light))
         {
-            Debug.Log("Light Removed");
             currentLights.Remove(light);
             if (currentLights.Count == 0)
             {
