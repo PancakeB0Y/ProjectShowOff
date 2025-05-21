@@ -14,7 +14,15 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveInput;
 
-    // Start is called before the first frame update
+    LanternController lantern;
+
+    List<Light> currentLights = new List<Light>();
+
+    void Awake()
+    {
+        LightSourceCollisionDetection.OnLightDisabled += DeregisterLight;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
