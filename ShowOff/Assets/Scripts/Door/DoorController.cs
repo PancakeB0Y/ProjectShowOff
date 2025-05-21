@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
-    private Animator doorAnimator;
+    Animator doorAnimator;
 
-    private bool isDoorOpen = false;
+    bool isDoorOpen = false; //is the door open or closed
 
     private void Awake()
     {
