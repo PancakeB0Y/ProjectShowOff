@@ -157,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5516349223945942666}
   - component: {fileID: 585302516254920662}
-  - component: {fileID: 3145168817275468152}
+  - component: {fileID: 6817210498120420716}
   - component: {fileID: 6014152522728046749}
   - component: {fileID: 7100990069489627336}
   - component: {fileID: 1328045109819305541}
@@ -209,10 +209,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!136 &3145168817275468152
-CapsuleCollider:
+--- !u!65 &6817210498120420716
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -229,11 +229,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.0485828
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.21292818, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1.3, y: 2.0218399, z: 1.3}
+  m_Center: {x: 0, y: 0.059458613, z: 0}
 --- !u!195 &6014152522728046749
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -269,7 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBehaviour: {fileID: 0}
-  speed: 2
 --- !u!114 &1328045109819305541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  targetRange: 1
+  maxSpawnRangeFromPlayerPos: 15
+  minSpawnRangeFromPlayerPos: 10
 --- !u!1 &3127370658514603799
 GameObject:
   m_ObjectHideFlags: 0
