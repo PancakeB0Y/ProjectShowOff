@@ -3,13 +3,11 @@ using UnityEngine;
 //Handle all player input functions
 public class PlayerInputs : MonoBehaviour
 {
-    InventoryManager inventoryManager; //inventory inputs
     InteractRaycast interactRaycast; //interacting with items inputs
     LanternController lanternController; //Lantern inputs
 
     private void Awake()
     {
-        inventoryManager = GetComponent<InventoryManager>();
         interactRaycast = transform.parent.GetComponentInChildren<InteractRaycast>();
         lanternController = transform.parent.GetComponentInChildren<LanternController>();
     }
@@ -24,6 +22,16 @@ public class PlayerInputs : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             OnInteract();
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OnHandleInventory();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            OnDropFirstItem();
         }
     }
 
@@ -47,6 +55,23 @@ public class PlayerInputs : MonoBehaviour
 
         if (interactRaycast != null) {
             interactRaycast.OnInteract();
+        }
+    }
+
+    //Open / close inventory
+    public void OnHandleInventory()
+    {
+        if (InventoryManager.instance != null)
+        {
+            InventoryManager.instance.OnHandleInventory();
+        }
+    }
+
+    public void OnDropFirstItem()
+    {
+        if (InventoryManager.instance != null)
+        {
+            InventoryManager.instance.DropFirstItem();
         }
     }
 }

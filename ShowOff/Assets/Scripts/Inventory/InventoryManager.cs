@@ -9,119 +9,137 @@ using UnityEngine.UIElements;
 
 public class InventoryManager : MonoBehaviour
 {
-    Dictionary<int, ItemController> items = new Dictionary<int, ItemController>(){
-        { 0, null},
-        { 1, null},
-        { 2, null},
-        { 3, null},
-        { 4, null}
-    };
-    List<Transform> inventorySlots = new List<Transform>();
+    public static InventoryManager instance { get; private set; }
 
-    public Transform ItemContent;
+    [Header("Prefabs")]
+    [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
+
+    [Header("Properties")]
+    [SerializeField] int inventorySize = 20;
+    List<ItemController> items = new List<ItemController>(); //list of all items in the inventory
+
+    GameObject inventoryUI; //UI inventory where all the inventory icons will be. Needs a Grid Layout Group component
+    string inventoryUITag = "Inventory";
 
     void Awake()
     {
-        if (ItemContent == null)
-        {
-            return;
-        }
+        instance = this;
 
-        foreach (Transform inventorySlot in ItemContent)
-        {
-            inventorySlots.Add(inventorySlot);
+        inventoryUI = GameObject.FindWithTag(inventoryUITag);
+
+        if (inventoryUI != null) {
+            inventoryUI.SetActive(false);
         }
     }
 
-    public void Add(ItemController item, int selectedSlot)
+    //Open / close inventory
+    public void OnHandleInventory()
     {
-        if (items[selectedSlot] == null)
+        if (inventoryUI.activeInHierarchy)
         {
-            //Add item to the first available inventory slot
-            items[selectedSlot] = item;
-
-            //Enable the inventory slot in the scene
-            inventorySlots[selectedSlot].gameObject.SetActive(true);
+            inventoryUI.SetActive(false);
         }
         else
         {
-            //Add item to first empty slot
-            foreach (int slot in items.Keys)
-            {
-                if (items[slot] == null)
-                {
-                    //Add item to the first available inventory slot
-                    items[slot] = item;
-
-                    //Enable the inventory slot in the scene
-                    inventorySlots[slot].gameObject.SetActive(true);
-                    break;
-                }
-            }
-        }    
-
-        UpdateItems();
+            inventoryUI.SetActive(true);
+        }
     }
 
-    public void PickupItem(ItemController item, int selectedSlot)
+    void Add(ItemController item)
     {
-        if (IsThereEmptySlot())
+        if (!IsInventoryFull())
+        {
+            items.Add(item);
+
+            UpdateItems();
+        }
+    }
+
+    public void PickupItem(ItemController item)
+    {
+        if (!IsInventoryFull())
         {
             //Add item to inventory
-            Add(item, selectedSlot);
+            Add(item);
 
             //Disable gameObject of the item in the scene
             item.gameObject.SetActive(false);
-            item.gameObject.transform.SetParent(null);
         }
     }
 
     public void Remove(ItemController item)
     {
-        foreach(int slot in items.Keys)
+        if (items.Contains(item))
         {
-            if(items[slot] == item)
-            {
-                items[slot] = null;
-                inventorySlots[slot].gameObject.SetActive(false);
-                break;
-            }
-        }
+            items.Remove(item);
 
-        UpdateItems();
+            UpdateItems();
+        }
     }
 
+    public void DropFirstItem()
+    {
+        if (items.Count > 0)
+        {
+            DropItem(items[0]);
+        }
+    }
+
+    public void DropItem(ItemController item)
+    {
+        if (!items.Contains(item))
+        {
+            return;
+        }
+
+        //Calculate where the item should be dropped
+        float dropDistance = 1.2f; //distance to drop from the player
+        Vector3 dropPosition = transform.position + transform.forward * dropDistance;
+
+        item.gameObject.transform.position = dropPosition;
+        item.gameObject.SetActive(true);
+
+        Remove(item);
+    }
+
+    //update inventory icons 
     public void UpdateItems()
     {
-        foreach (int slot in items.Keys)
+        if(inventoryUI == null)
         {
-            if (items[slot] != null)
-            {
-                GameObject obj = inventorySlots[slot].gameObject;
-                TextMeshProUGUI itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
-                UnityEngine.UI.Image itemIcon = obj.transform.Find("ItemIcon").GetComponent<UnityEngine.UI.Image>();
+            return;
+        }
 
-                itemName.text = items[slot].item.itemName;
-                itemIcon.sprite = items[slot].item.icon;
-            }
+        DestroyAllUIItems();
+
+        foreach(ItemController itemController in items)
+        {
+            //Create a UI object for each inventory item
+            GameObject UIItem = Instantiate(UIItemPrefab, inventoryUI.transform);
+
+            UnityEngine.UI.Image itemIcon = UIItem.GetComponent<UnityEngine.UI.Image>();
+
+            //Set its icon
+            itemIcon.sprite = itemController.item.itemIcon;
+        }
+
+    }
+
+    public void DestroyAllUIItems()
+    {
+        foreach (Transform child in inventoryUI.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
-    public ItemController GetItem(int itemSlot)
+    public ItemController GetItem(int inventorySlot)
     {
-        return items[itemSlot];
+        return items[inventorySlot];
     }
 
-    bool IsThereEmptySlot()
+    bool IsInventoryFull()
     {
-        foreach(ItemController item in items.Values)
-        {
-            if(item == null)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return items.Count >= inventorySize;
     }
 }

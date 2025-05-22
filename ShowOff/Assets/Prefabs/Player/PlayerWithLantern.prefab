@@ -168,7 +168,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactRange: 2
-  textPopup: {fileID: 0}
 --- !u!1 &6030458443754145636
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22081e817191cc4bae4fcd7304eca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemContent: {fileID: 0}
+  UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
+  inventorySize: 20
 --- !u!114 &7754539413462239560
 MonoBehaviour:
   m_ObjectHideFlags: 0

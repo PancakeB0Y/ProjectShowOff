@@ -51,6 +51,9 @@ public class InteractRaycast : MonoBehaviour
         {
             //hide the text
             DisplayText(false);
+
+            //removed the saved object
+            interactableObject = null;
         }
 
     }
@@ -65,6 +68,7 @@ public class InteractRaycast : MonoBehaviour
         }
 
         interactableObject.Interact();
+        interactableObject = null;
     }
 
     //Display text to show button input for interactions
