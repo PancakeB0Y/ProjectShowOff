@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class NavMeshMoveBehaviour : MonoBehaviour
 {
-    [SerializeField] NavMeshAgent agent;
+    NavMeshAgent agent;
 
     [Header("Player follow")]
     [SerializeField] private float maxSpawnRangeFromPlayerPos = 15.0f;

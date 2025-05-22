@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public event Action<Vector3> OnStatueFollow;
 
-
     [SerializeField]
     float moveSpeed;
 

@@ -9,7 +9,7 @@ public class InteractRaycast : MonoBehaviour
     [SerializeField] private float interactRange = 1.5f;
 
     [Header("UI")]
-    [SerializeField] private GameObject textPopup = null; //text to show interact button
+    private GameObject textPopup = null; //text to show interact button
     private string interactTextTag = "InteractText";
 
     private IInteractable interactableObject; //object the player tries to interact with

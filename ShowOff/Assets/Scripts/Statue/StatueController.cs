@@ -8,8 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(NavMeshMoveBehaviour))]
 public class StatueController : MonoBehaviour
 {
-    [Header("Behaviours")]
-    [SerializeField] NavMeshMoveBehaviour moveBehaviour;
+    NavMeshMoveBehaviour moveBehaviour;
 
     private StatueState statueState;
 
