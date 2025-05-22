@@ -7,28 +7,37 @@ using UnityEngine.Audio; // Added for AudioMixer support
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager instance { get; private set; }
 
-    public AudioMixer audioMixer;
+    // 2D Sounds that come from the sound manager
 
-    private AudioSource audioSource;
-    private AudioSource loopAudioSource;
-    private AudioSource backgroundMusicSource;
+    [Header("BG Music")]
+    [Space]
 
-    [Header("Audio Mixer Groups")]
-    public AudioMixerGroup sfxGroup;
-    public AudioMixerGroup musicGroup;
+    [SerializeField]
+    AudioSource audioSourceBG;
+    [Space]
 
-    [Header("Top Priority Sounds")]
-    [SerializeField] AudioClip backgroundMusic;
-    [SerializeField] AudioClip menuMusic;
+    [SerializeField] AudioClip bgMusic;
 
-    [Header("Priority 2 Sounds")]
+
+    [Header("SFX")]
+    [Space]
+
+    [SerializeField]
+    AudioSource audioSourceSFX;
+    [Space]
+
+    // 3D Sounds that should be played from the object itself
+
+    [Header("3D Object Sounds")]
+    [Space]
+
     [SerializeField] AudioClip doorOpen;
     [SerializeField] AudioClip doorClose;
     [SerializeField] AudioClip wind;
     [SerializeField] AudioClip lightMatch;
-
-    public static SoundManager instance { get; private set; }
+    [SerializeField] AudioClip statueFollow;
 
     void Awake()
     {
@@ -43,106 +52,67 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        loopAudioSource = gameObject.AddComponent<AudioSource>();
-        backgroundMusicSource = gameObject.AddComponent<AudioSource>();
+    // 2D Sounds
 
-        // Assign AudioMixerGroups
-        if (sfxGroup != null)
-        {
-            audioSource.outputAudioMixerGroup = sfxGroup;
-            loopAudioSource.outputAudioMixerGroup = sfxGroup;
-        }
-
-        if (musicGroup != null)
-        {
-            backgroundMusicSource.outputAudioMixerGroup = musicGroup;
-        }
-
-        loopAudioSource.loop = true;
-        backgroundMusicSource.clip = backgroundMusic;
-        backgroundMusicSource.loop = true;
-        backgroundMusicSource.volume = 0.35f;
-    }
-
-    public void SetVolume(string parameter, float volume)
-    {
-        audioMixer.SetFloat(parameter, Mathf.Log10(volume) * 20); // Convert linear to logarithmic
-    }
-
-    public void PlaySound(AudioClip clip)
+    public void PlaySFXSound(AudioClip clip)
     {
         if (clip != null)
         {
-            audioSource.PlayOneShot(clip);
-        }
-    }
-
-    public void PlayLoopingSound(AudioClip clip)
-    {
-        if (clip != null && loopAudioSource.clip != clip)
-        {
-            loopAudioSource.clip = clip;
-            loopAudioSource.Play();
-        }
-    }
-
-    public void StopLoopingSound()
-    {
-        if (loopAudioSource.isPlaying)
-        {
-            loopAudioSource.Stop();
-            loopAudioSource.clip = null;
+            audioSourceSFX.PlayOneShot(clip);
         }
     }
 
     // Top Priority Sounds
-    public void PlayBackgroundMusic()
+    //public void PlayBackgroundMusic()
+    //{
+    //    if (!backgroundMusicSource.isPlaying)
+    //    {
+    //        backgroundMusicSource.Play();
+    //    }
+    //}
+    //public void StopBackgroundMusic()
+    //{
+    //    if (backgroundMusicSource.isPlaying)
+    //    {
+    //        backgroundMusicSource.Stop();
+    //    }
+    //}
+
+    // 3D Sounds
+
+
+    // Two variations of the method depending on if the sender already has a reference to the audio source
+    private void Play3DSound(GameObject objectSoundIsComingFrom, AudioClip clip)
     {
-        if (!backgroundMusicSource.isPlaying)
+        if (objectSoundIsComingFrom.TryGetComponent<AudioSource>(out AudioSource objectAudioSource))
         {
-            backgroundMusicSource.Play();
+            Play3DSound(objectAudioSource, clip);
         }
     }
-    public void StopBackgroundMusic()
+
+    private void Play3DSound(AudioSource audioSourceOfObject, AudioClip clip)
     {
-        if (backgroundMusicSource.isPlaying)
-        {
-            backgroundMusicSource.Stop();
-        }
+        audioSourceOfObject.PlayOneShot(clip);
     }
 
-    public void PlayMenuMusic()
+
+    public void PlayDoorOpenSound(GameObject objectSoundIsComingFrom)
     {
-        PlayLoopingSound(menuMusic);
+        Play3DSound(objectSoundIsComingFrom, doorOpen);
     }
 
-    public void StopMenuMusic()
+    public void PlayDoorCloseSound(GameObject objectSoundIsComingFrom)
     {
-        StopLoopingSound();
+        Play3DSound(objectSoundIsComingFrom, doorClose);
     }
 
-    // Priority 2 Sounds
-
-    public void PlayDoorOpenSound()
+    public void PlayWindSound(GameObject objectSoundIsComingFrom)
     {
-        PlaySound(doorOpen);
+        Play3DSound(objectSoundIsComingFrom, wind);
     }
 
-    public void PlayDoorCloseSound()
+    public void PlayLightMatchSound(GameObject objectSoundIsComingFrom)
     {
-        PlaySound(doorClose);
-    }
-
-    public void PlayWindSound()
-    {
-        PlaySound(wind);
-    }
-
-    public void PlayLightMatchSound()
-    {
-        PlaySound(lightMatch);
+        Play3DSound(objectSoundIsComingFrom, lightMatch);
     }
 }
