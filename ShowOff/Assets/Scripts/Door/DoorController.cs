@@ -19,11 +19,6 @@ public class DoorController : MonoBehaviour, IInteractable
 
     protected void HandleDoor()
     {
-        if(IsAnimatorPlaying())
-        {
-            return;
-        }
-
         if (!isDoorOpen)
         {
             OpenDoor();
@@ -39,45 +34,58 @@ public class DoorController : MonoBehaviour, IInteractable
     //Play the opening animation and sound
     protected void OpenDoor()
     {
-        if (doorAnimator == null)
-        {
-            return;
-        }
-
-        doorAnimator.Play("DoorOpen", 0, 0.0f);
-
+        //Play sound
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlayDoorOpenSound();
         }
-    }
 
-    //Play the closing animation and sound
-    protected void CloseDoor() {
         if (doorAnimator == null)
         {
             return;
         }
 
-        doorAnimator.Play("DoorClose", 0, 0.0f);
+        //Handle animation
+        float startTime = 0.0f; //start time of animation
 
+        //if the closing animation is being player, start opening from the current door position
+        if (IsAnimatorPlaying())
+        {
+            startTime = 1 - doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        }
+
+        doorAnimator.Play("DoorOpen", 0, startTime);
+    }
+
+    //Play the closing animation and sound
+    protected void CloseDoor() {
+        //Play sound
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlayDoorCloseSound();
         }
+
+        if (doorAnimator == null)
+        {
+            return;
+        }
+
+        //Handle animation
+        float startTime = 0.0f; //start time of animation
+
+        //if the closing animation is being player, start opening from the current door position
+        if (IsAnimatorPlaying())
+        {
+            startTime = 1 - doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        }
+
+        doorAnimator.Play("DoorClose", 0, startTime);  
     }
 
     //Check if an animation is being played
     bool IsAnimatorPlaying()
     {
-        //ignore function if there is no animator
-        if (doorAnimator == null)
-        {
-            return true;
-        }
-
-        //Return true if the animation is 0.1 seconds away from completion
         return doorAnimator.GetCurrentAnimatorStateInfo(0).length >
-               doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime + 0.1f;
+               doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
 }
