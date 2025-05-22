@@ -95,17 +95,6 @@ public class SoundManager : MonoBehaviour
         audioSourceOfObject.PlayOneShot(clip);
     }
 
-
-    public void PlayDoorOpenSound(GameObject objectSoundIsComingFrom)
-    {
-        Play3DSound(objectSoundIsComingFrom, doorOpen);
-    }
-
-    public void PlayDoorCloseSound(GameObject objectSoundIsComingFrom)
-    {
-        Play3DSound(objectSoundIsComingFrom, doorClose);
-    }
-
     public void PlayWindSound(GameObject objectSoundIsComingFrom)
     {
         Play3DSound(objectSoundIsComingFrom, wind);
