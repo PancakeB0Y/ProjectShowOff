@@ -6,9 +6,13 @@ public class DoorController : MonoBehaviour, IInteractable
 
     protected bool isDoorOpen = false; //is the door open or closed
 
+    private DoorAudioController doorAudioController;
+
     protected void Awake()
     {
         doorAnimator = GetComponent<Animator>();
+
+        doorAudioController = GetComponent<DoorAudioController>();
     }
 
     //Open / close door
@@ -35,10 +39,7 @@ public class DoorController : MonoBehaviour, IInteractable
     protected void OpenDoor()
     {
         //Play sound
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlayDoorOpenSound();
-        }
+        doorAudioController.PlayDoorOpenSound();
 
         if (doorAnimator == null)
         {
@@ -60,10 +61,7 @@ public class DoorController : MonoBehaviour, IInteractable
     //Play the closing animation and sound
     protected void CloseDoor() {
         //Play sound
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlayDoorCloseSound();
-        }
+        doorAudioController.PlayDoorCloseSound();
 
         if (doorAnimator == null)
         {
