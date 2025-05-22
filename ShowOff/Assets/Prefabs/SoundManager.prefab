@@ -44,9 +44,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1810476741630870992, guid: b271f321c8e4fee4f9570143cfabc3b0, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 22015b8114cfcde43891d65c58717fda, type: 3}
+  m_Resource: {fileID: 8300000, guid: 22015b8114cfcde43891d65c58717fda, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourceBG: {fileID: 7564955817540799085}
-  bgMusic: {fileID: 0}
+  bgMusic: {fileID: 8300000, guid: 22015b8114cfcde43891d65c58717fda, type: 3}
   audioSourceSFX: {fileID: 324742102451448949}
   doorOpen: {fileID: 8300000, guid: 24527ea226152664f8cf9bfb1aef91fe, type: 3}
   doorClose: {fileID: 8300000, guid: fb0b5bfe838b29d4da9c14ed0cba98a3, type: 3}
