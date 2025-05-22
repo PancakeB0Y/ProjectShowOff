@@ -15,28 +15,26 @@ public class LanternController : MonoBehaviour
         lightSourceController = GetComponentInChildren<LightSourceController>();
     }
 
-    private void Update()
+    //Called when player presses button
+    public void OnLightLantern()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (lightSourceController == null)
         {
-            if (lightSourceController == null)
+            lightSourceController = GetComponentInChildren<LightSourceController>();
+        }
+
+        if (lightSourceController != null)
+        {
+            if (lightSourceController.IsLightOn)
             {
-                lightSourceController = GetComponentInChildren<LightSourceController>();
+                return;
             }
 
-            if (lightSourceController != null)
+            TurnLanternOn();
+
+            if (SoundManager.instance != null)
             {
-                if (lightSourceController.IsLightOn)
-                {
-                    return;
-                }
-
-                TurnLanternOn();
-
-                if (SoundManager.instance != null)
-                {
-                    SoundManager.instance.PlayLightMatchSound();
-                }
+                SoundManager.instance.PlayLightMatchSound();
             }
         }
     }

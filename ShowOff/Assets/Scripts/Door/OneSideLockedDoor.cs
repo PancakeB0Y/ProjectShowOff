@@ -2,30 +2,23 @@ using UnityEngine;
 
 //Door which can be unlocked only from one side
 //Once unlocked it can be opened from both sides
-public class OneSideLockedDoorController : MonoBehaviour, IInteractable
+public class OneSideLockedDoorController : DoorController
 {
-    Animator doorAnimator;
-
-    bool isDoorOpen = false; //is the door open or closed
     bool isDoorLocked = true; //is the door locked or unlocked
 
     bool isPlayerOnCorrectSide = false; //is the player on the correct side of the door
 
     BoxCollider triggerCollider;
 
-    private void Awake()
+    private new void Awake()
     {
-        doorAnimator = GetComponent<Animator>();
+        base.Awake();
         triggerCollider = GetComponent<BoxCollider>();
     }
 
     //Play the opening/closing animation
-    public void Interact()
+    public override void Interact()
     {
-        if (doorAnimator == null) {
-            return;
-        }
-
         if (isPlayerOnCorrectSide) {
             isDoorLocked = false;
         }
@@ -35,24 +28,7 @@ public class OneSideLockedDoorController : MonoBehaviour, IInteractable
             return;
         }
 
-        if (!isDoorOpen) {
-            doorAnimator.Play("DoorOpen", 0, 0.0f);
-            isDoorOpen = true;
-
-            if (SoundManager.instance != null) {
-                SoundManager.instance.PlayDoorOpenSound();
-            }
-        }
-        else
-        {
-            doorAnimator.Play("DoorClose", 0, 0.0f);
-            isDoorOpen = false;
-
-            if (SoundManager.instance != null)
-            {
-                SoundManager.instance.PlayDoorCloseSound();
-            }
-        }
+        HandleDoor();
     }
 
     //Check if player is on the correct side
