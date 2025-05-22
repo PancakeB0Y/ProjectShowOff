@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7702302192926420108}
   - component: {fileID: 3655624418934406633}
   - component: {fileID: 2333453812764277869}
+  - component: {fileID: 8631874611976985180}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -151,6 +152,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5811177106060749228}
+--- !u!114 &8631874611976985180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540257942554391417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e980d82f8dc544692511a0467b60db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  interactRange: 2
+  textPopup: {fileID: 0}
 --- !u!1 &6030458443754145636
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +218,8 @@ GameObject:
   - component: {fileID: 5595190651205430378}
   - component: {fileID: 7812125881818345364}
   - component: {fileID: 2545584948103710969}
+  - component: {fileID: 8184980477106753295}
+  - component: {fileID: 478098442940370866}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -352,6 +372,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraToRotate: {fileID: 8930792370231298448}
   mouseSens: 200
+--- !u!114 &8184980477106753295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521735381702261685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f8174099e1089479da623654a9f88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldDraw: 1
+  radius: 10
+  color: {r: 1, g: 0, b: 0, a: 1}
+  segments: 50
+--- !u!114 &478098442940370866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521735381702261685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f8174099e1089479da623654a9f88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldDraw: 1
+  radius: 15
+  color: {r: 0, g: 0.19758415, b: 1, a: 1}
+  segments: 50
 --- !u!1001 &8975059335870242731
 PrefabInstance:
   m_ObjectHideFlags: 0
