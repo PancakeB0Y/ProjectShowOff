@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager instance { get; private set; }
     Dictionary<int, ItemController> items = new Dictionary<int, ItemController>(){
         { 0, null},
         { 1, null},
@@ -23,18 +22,14 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (ItemContent == null)
         {
-            Destroy(this);
+            return;
         }
-        else
-        {
-            instance = this;
 
-            foreach (Transform inventorySlot in ItemContent)
-            {
-                inventorySlots.Add(inventorySlot);
-            }
+        foreach (Transform inventorySlot in ItemContent)
+        {
+            inventorySlots.Add(inventorySlot);
         }
     }
 
