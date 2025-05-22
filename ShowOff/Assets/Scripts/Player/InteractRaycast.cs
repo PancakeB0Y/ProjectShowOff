@@ -9,7 +9,7 @@ public class InteractRaycast : MonoBehaviour
     [SerializeField] private float interactRange = 1.5f;
 
     [Header("UI")]
-    [SerializeField] private GameObject textPopup = null; //text to show interact button
+    private GameObject textPopup = null; //text to show interact button
     private string interactTextTag = "InteractText";
 
     private IInteractable interactableObject; //object the player tries to interact with
@@ -46,11 +46,6 @@ public class InteractRaycast : MonoBehaviour
 
             //Display popup text
             DisplayText(true);
-
-            //Interact with the object
-            if (Input.GetKeyDown(KeyCode.E)) {
-                interactableObject.Interact();
-            }
         }
         else //when the player is not looking at the object
         {
@@ -58,6 +53,18 @@ public class InteractRaycast : MonoBehaviour
             DisplayText(false);
         }
 
+    }
+
+    //Interact with current object
+    //Called when player presses button
+    public void OnInteract()
+    {
+        if (interactableObject == null)
+        {
+            return;
+        }
+
+        interactableObject.Interact();
     }
 
     //Display text to show button input for interactions
