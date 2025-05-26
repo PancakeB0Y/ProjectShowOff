@@ -71,20 +71,8 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         SetState(MoveState.Chasing);
 
         agent.Warp(NavMeshSamplePoint(playerPos));
-        SetTargetPosition(playerPos);
 
-        StartCoroutine(WaitForPath());
-    }
-
-    /// <summary>
-    /// Wait for path to be done so to retrieve the correct remaining distance
-    /// and then send it for the audio controller
-    /// </summary>
-    IEnumerator WaitForPath()
-    {
-        yield return new WaitUntil(() => !agent.pathPending);
-
-        statueAudioController.SetupPlayerFollowAudio(agent.remainingDistance);
+        statueAudioController.SetupPlayerFollowAudio(minSpawnRangeFromPlayerPos);
     }
 
     Vector3 NavMeshSamplePoint(Vector3 center)
