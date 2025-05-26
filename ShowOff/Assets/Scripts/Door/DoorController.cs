@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    public string interactText { get; } = "Press [E] to interact";
+
     protected Animator doorAnimator;
 
     protected bool isDoorOpen = false; //is the door open or closed

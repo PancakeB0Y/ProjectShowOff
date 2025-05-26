@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 714277963485670033}
   - component: {fileID: 889245627784377430}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chalice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,6 +57,10 @@ PrefabInstance:
     - target: {fileID: 287481976888333869, guid: 2450990b266ca4b4fbf9b8b5e4fcd48b, type: 3}
       propertyPath: m_Name
       value: ChaliceModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 287481976888333869, guid: 2450990b266ca4b4fbf9b8b5e4fcd48b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9100485200710437324, guid: 2450990b266ca4b4fbf9b8b5e4fcd48b, type: 3}
       propertyPath: m_LocalPosition.x

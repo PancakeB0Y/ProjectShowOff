@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class InventoryManager : MonoBehaviour
@@ -33,16 +32,30 @@ public class InventoryManager : MonoBehaviour
     }
 
     //Open / close inventory
-    public void OnHandleInventory()
+    public void ToggleInventory()
     {
         if (inventoryUI.activeInHierarchy)
         {
             inventoryUI.SetActive(false);
+            DisableCursor();
         }
         else
         {
             inventoryUI.SetActive(true);
+            EnableCursor();
         }
+    }
+
+    void EnableCursor()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.visible = true;
+    }
+
+    void DisableCursor()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 
     void Add(ItemController item)

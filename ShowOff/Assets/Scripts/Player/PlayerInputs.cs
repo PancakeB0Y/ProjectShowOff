@@ -5,9 +5,12 @@ public class PlayerInputs : MonoBehaviour
 {
     InteractRaycast interactRaycast; //interacting with items inputs
     LanternController lanternController; //Lantern inputs
+    PlayerCameraController cameraController;
 
     private void Awake()
     {
+        cameraController = GetComponent<PlayerCameraController>();
+
         interactRaycast = transform.parent.GetComponentInChildren<InteractRaycast>();
         lanternController = transform.parent.GetComponentInChildren<LanternController>();
     }
@@ -26,7 +29,7 @@ public class PlayerInputs : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            OnHandleInventory();
+            OnToggleInventory();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -43,7 +46,7 @@ public class PlayerInputs : MonoBehaviour
         }
 
         if (lanternController != null) {
-            lanternController.OnLightLantern();
+            lanternController.LightLantern();
         }
     }
 
@@ -54,17 +57,32 @@ public class PlayerInputs : MonoBehaviour
         }
 
         if (interactRaycast != null) {
-            interactRaycast.OnInteract();
+            interactRaycast.Interact();
         }
     }
 
     //Open / close inventory
-    public void OnHandleInventory()
+    public void OnToggleInventory()
     {
-        if (InventoryManager.instance != null)
+        if (InventoryManager.instance == null)
         {
-            InventoryManager.instance.OnHandleInventory();
+            return;
         }
+
+        //Open / Close inventory
+        InventoryManager.instance.ToggleInventory();
+
+        if (cameraController == null)
+        {
+            cameraController = GetComponent<PlayerCameraController>();
+        }
+
+        if (cameraController != null)
+        {
+            //Enable / disable mouse
+            cameraController.ToggleCameraMovement();
+        }
+
     }
 
     public void OnDropFirstItem()

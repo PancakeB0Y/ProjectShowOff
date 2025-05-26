@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,33 +7,65 @@ using UnityEngine.UI;
 public class InteractRaycast : MonoBehaviour
 {
     [Header("Properties")]
+    [SerializeField] private LayerMask collisionLayers; //all layers the raycast can collide with (incl. interact layer)
     [SerializeField] private LayerMask interactLayer; //interactable object layer
     [SerializeField] private float interactRange = 1.5f;
 
-    [Header("UI")]
-    private GameObject textPopup = null; //text to show interact button
-    private string interactTextTag = "InteractText";
+    int interactLayerIndex; //the layer index of the interact layer
 
-    private IInteractable interactableObject; //object the player tries to interact with
+    //Interaction text pop-up
+    GameObject textPopup = null; //text to show interact button
+    TextMeshProUGUI textPopupMesh = null; //textMeshComponent of the textPopup
+    string interactTextTag = "InteractText"; //tag of the textPopup object
 
-    private bool isTextOn;
+    IInteractable interactableObject; //object the player tries to interact with
+
+    bool isTextOn;
+
+    //Raycast timer
+    float castRayDelay = 0.1f;
+    float timer = 0f;
 
     private void Awake()
     {
         textPopup = GameObject.FindWithTag(interactTextTag);
 
         if (textPopup != null) {
+
+            textPopupMesh = textPopup.GetComponent<TextMeshProUGUI>();
             textPopup.SetActive(false);
         }
+
+        interactLayerIndex = LayerMaskToIndex(interactLayer);
     }
 
     void Update()
     {
+        //Cast a ray every "castRayDelay" seconds
+        timer += Time.deltaTime;
+
+        if (timer >= castRayDelay) {
+            CastRay();
+
+            timer = 0f;
+        }
+    }
+
+    //Cast a ray to detect an interactable object
+    void CastRay()
+    {
         RaycastHit hit;
         Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-        if(Physics.Raycast(transform.position, forward, out hit, interactRange, interactLayer.value, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(transform.position, forward, out hit, interactRange, collisionLayers.value, QueryTriggerInteraction.Ignore))
         {
+            //check if the wrong layer was hit
+            if (hit.collider.gameObject.layer != interactLayerIndex)
+            {
+                ResetInteractionState();
+                return;
+            }
+
             //Check for interactable in the current object
             if (!hit.collider.gameObject.TryGetComponent<IInteractable>(out interactableObject))
             {
@@ -39,28 +73,38 @@ public class InteractRaycast : MonoBehaviour
                 interactableObject = hit.collider.gameObject.GetComponentInParent<IInteractable>();
             }
 
-            if (interactableObject == null)
+            if (interactableObject != null)
             {
-                return;
-            }
+                //Match the text with the object's
+                SetPopupText(interactableObject.interactText);
 
-            //Display popup text
-            DisplayText(true);
+                //Display popup text
+                DisplayPopupText(true);
+            }
         }
         else //when the player is not looking at the object
         {
-            //hide the text
-            DisplayText(false);
-
-            //removed the saved object
-            interactableObject = null;
+            ResetInteractionState();
         }
+    }
 
+    void ResetInteractionState()
+    {
+        //hide the text
+        DisplayPopupText(false);
+
+        //remove the saved object
+        interactableObject = null;
+    }
+
+    int LayerMaskToIndex(LayerMask layerMask)
+    {
+        return Mathf.RoundToInt(Mathf.Log(layerMask.value, 2));
     }
 
     //Interact with current object
     //Called when player presses button
-    public void OnInteract()
+    public void Interact()
     {
         if (interactableObject == null)
         {
@@ -72,7 +116,7 @@ public class InteractRaycast : MonoBehaviour
     }
 
     //Display text to show button input for interactions
-    void DisplayText(bool display)
+    void DisplayPopupText(bool displayText)
     {
         if(textPopup == null)
         {
@@ -80,15 +124,25 @@ public class InteractRaycast : MonoBehaviour
         }
 
         //Check if the text is already on
-        if(display && !isTextOn)
+        if(displayText && !isTextOn)
         {
             textPopup.SetActive(true);
             isTextOn = true;
         }
-        else if(!display && isTextOn)
+        else if(!displayText && isTextOn)
         {
             textPopup.SetActive(false);
             isTextOn = false;
         }
+    }
+
+    void SetPopupText(string text)
+    {
+        if (textPopup == null || textPopupMesh == null)
+        {
+            return;
+        }
+
+        textPopupMesh.text = text;
     }
 }

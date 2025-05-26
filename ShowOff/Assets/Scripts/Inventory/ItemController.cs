@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour, IInteractable
 {
+    public string interactText { get; } = "Press [E] to pick up";
+
     public Item item;
 
     public void Interact()
