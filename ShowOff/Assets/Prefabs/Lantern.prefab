@@ -266,8 +266,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2185229972134734461, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2895076032926685728}
   m_SourcePrefab: {fileID: 100100000, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
+--- !u!1 &1369193353853919934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2185229972134734461, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
+  m_PrefabInstance: {fileID: 960151884078336195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2895076032926685728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369193353853919934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c26ce7f423b674abbd6ebe0bf6a4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseIntensity: 1
+  flickerAmount: 1
+  flickerSpeed: 3
 --- !u!4 &4814023960229611153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5737018869686324818, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
