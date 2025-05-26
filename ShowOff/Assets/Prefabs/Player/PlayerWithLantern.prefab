@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5811177106060749228}
+  shouldRotate: 0
 --- !u!114 &8631874611976985180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +169,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactRange: 2
-  textPopup: {fileID: 0}
 --- !u!1 &6030458443754145636
 GameObject:
   m_ObjectHideFlags: 0
