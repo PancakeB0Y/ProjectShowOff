@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    public string interactText { get; } = "Press [E] to interact";
+
     protected Animator doorAnimator;
 
     protected bool isDoorOpen = false; //is the door open or closed
 
-    private DoorAudioController doorAudioController;
+    protected DoorAudioController doorAudioController;
 
     protected void Awake()
     {
@@ -20,6 +22,8 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         HandleDoor();
     }
+
+    public virtual void InteractWithInventory(ItemController inventoryItem){}
 
     protected void HandleDoor()
     {

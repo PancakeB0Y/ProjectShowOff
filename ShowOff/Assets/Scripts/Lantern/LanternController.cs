@@ -16,7 +16,7 @@ public class LanternController : MonoBehaviour
     }
 
     //Called when player presses button
-    public void OnLightLantern()
+    public void LightLantern()
     {
         if (lightSourceController == null)
         {
@@ -34,7 +34,7 @@ public class LanternController : MonoBehaviour
 
             if (SoundManager.instance != null)
             {
-                SoundManager.instance.PlayLightMatchSound(gameObject);
+                SoundManager.instance.PlayLightLanternSound(gameObject);
             }
         }
     }

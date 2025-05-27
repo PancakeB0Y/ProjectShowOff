@@ -5,13 +5,9 @@ public class StatueAudioController : MonoBehaviour
     private AudioSource audioSource;
     private float initialDistanceToTarget;
 
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
     }
 
     public void SetupPlayerFollowAudio(float initialDistanceToTarget)
@@ -23,6 +19,11 @@ public class StatueAudioController : MonoBehaviour
 
     public void AdjustAudioSourceVolume(float agentRemainingDistance)
     {
+        // If correct remaining distance is not yet calculated
+        if (agentRemainingDistance == 0f
+            || agentRemainingDistance > initialDistanceToTarget)
+            return;
+
         Debug.Log($"Remaining: {agentRemainingDistance}; Initial: {initialDistanceToTarget}");
         audioSource.volume = 1f - (Mathf.Clamp(agentRemainingDistance / initialDistanceToTarget, 0f, 1f));
     }
@@ -30,5 +31,6 @@ public class StatueAudioController : MonoBehaviour
     public void StopPlaying()
     {
         audioSource.Stop();
+        audioSource.volume = 0f;
     }
 }
