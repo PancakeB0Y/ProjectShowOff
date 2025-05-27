@@ -7,6 +7,7 @@ public class LockedDoorController : DoorController
     public override void Interact()
     {
         if (isDoorLocked) {
+            doorAudioController.PlayDoorNotOpeningSound();
             PlayerInputs.instance.OnOpenInventoryInteraction(this);
             return;
         }

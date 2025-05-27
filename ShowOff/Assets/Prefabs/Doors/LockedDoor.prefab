@@ -353,6 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829966a282a9d7e48b6e772483c836f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDoorLocked: 1
+  unlockItem: 4
 --- !u!82 &2279950078334853571
 AudioSource:
   m_ObjectHideFlags: 0
@@ -464,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorOpen: {fileID: 8300000, guid: 24527ea226152664f8cf9bfb1aef91fe, type: 3}
   doorClose: {fileID: 8300000, guid: fb0b5bfe838b29d4da9c14ed0cba98a3, type: 3}
-  isDoorLocked: 1
+  doorNotOpening: {fileID: 8300000, guid: 04022c71e06765e40a6314c4d00d63ac, type: 3}
 --- !u!1 &8003833541269028862
 GameObject:
   m_ObjectHideFlags: 0

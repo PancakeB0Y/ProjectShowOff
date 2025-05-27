@@ -6,6 +6,7 @@ public class DoorAudioController : MonoBehaviour
 
     [SerializeField] private AudioClip doorOpen;
     [SerializeField] private AudioClip doorClose;
+    [SerializeField] private AudioClip doorNotOpening;
 
     void Start()
     {
@@ -27,6 +28,15 @@ public class DoorAudioController : MonoBehaviour
             audioSource.Stop();
 
         audioSource.clip = doorClose;
+        audioSource.Play();
+    }
+
+    public void PlayDoorNotOpeningSound()
+    {
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+
+        audioSource.clip = doorNotOpening;
         audioSource.Play();
     }
 }

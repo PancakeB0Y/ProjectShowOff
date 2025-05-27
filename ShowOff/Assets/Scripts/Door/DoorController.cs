@@ -8,7 +8,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     protected bool isDoorOpen = false; //is the door open or closed
 
-    private DoorAudioController doorAudioController;
+    protected DoorAudioController doorAudioController;
 
     protected void Awake()
     {
