@@ -34,7 +34,7 @@ public class LanternController : MonoBehaviour
 
             if (SoundManager.instance != null)
             {
-                SoundManager.instance.PlayLightMatchSound(gameObject);
+                SoundManager.instance.PlayLightLanternSound(gameObject);
             }
         }
     }

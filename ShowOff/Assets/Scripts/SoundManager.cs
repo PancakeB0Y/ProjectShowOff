@@ -36,7 +36,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip doorOpen;
     [SerializeField] AudioClip doorClose;
     [SerializeField] AudioClip wind;
-    [SerializeField] AudioClip lightMatch;
+    [SerializeField] AudioClip lightLantern;
+    [SerializeField] AudioClip candleOn;
+    [SerializeField] AudioClip candleOff;
     [SerializeField] AudioClip statueFollow;
 
     void Awake()
@@ -100,8 +102,18 @@ public class SoundManager : MonoBehaviour
         Play3DSound(objectSoundIsComingFrom, wind);
     }
 
-    public void PlayLightMatchSound(GameObject objectSoundIsComingFrom)
+    public void PlayLightLanternSound(GameObject objectSoundIsComingFrom)
     {
-        Play3DSound(objectSoundIsComingFrom, lightMatch);
+        Play3DSound(objectSoundIsComingFrom, lightLantern);
+    }
+
+    public void PlayCandleOnSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, candleOn);
+    }
+
+    public void PlayCandleOffSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, candleOff);
     }
 }

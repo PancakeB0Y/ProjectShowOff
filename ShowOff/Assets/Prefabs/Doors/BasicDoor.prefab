@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorOpen: {fileID: 8300000, guid: 24527ea226152664f8cf9bfb1aef91fe, type: 3}
   doorClose: {fileID: 8300000, guid: fb0b5bfe838b29d4da9c14ed0cba98a3, type: 3}
-  doorNotOpening: {fileID: 8300000, guid: 04022c71e06765e40a6314c4d00d63ac, type: 3}
+  doorNotOpening: {fileID: 8300000, guid: b89eac5f5d5fcbe4eaa731b635bafcc5, type: 3}
 --- !u!1001 &6036924611573321524
 PrefabInstance:
   m_ObjectHideFlags: 0
