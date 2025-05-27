@@ -9,6 +9,7 @@ public class PlayerCameraController : MonoBehaviour
 
     [SerializeField]
     private float mouseSens = 500f;
+    float startSens;
 
     float xRotation;
     float yRotation;
@@ -17,6 +18,8 @@ public class PlayerCameraController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        startSens = mouseSens;
     }
 
     // Update is called once per frame
@@ -32,5 +35,26 @@ public class PlayerCameraController : MonoBehaviour
 
         cameraToRotate.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+    }
+
+    public void ToggleCameraMovement()
+    {
+        if (mouseSens != 0f) {
+            mouseSens = 0;
+        }
+        else
+        {
+            mouseSens = startSens;
+        }
+    }
+
+    public void EnableCameraMovement()
+    {
+        mouseSens = startSens;
+    }
+
+    public void DisableCameraMovement()
+    {
+        mouseSens = 0;
     }
 }
