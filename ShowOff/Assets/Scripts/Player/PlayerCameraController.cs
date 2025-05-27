@@ -47,4 +47,14 @@ public class PlayerCameraController : MonoBehaviour
             mouseSens = startSens;
         }
     }
+
+    public void EnableCameraMovement()
+    {
+        mouseSens = startSens;
+    }
+
+    public void DisableCameraMovement()
+    {
+        mouseSens = 0;
+    }
 }

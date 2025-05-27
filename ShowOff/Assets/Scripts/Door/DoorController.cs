@@ -19,6 +19,8 @@ public class DoorController : MonoBehaviour, IInteractable
         HandleDoor();
     }
 
+    public virtual void InteractWithInventory(ItemController inventoryItem){}
+
     protected void HandleDoor()
     {
         if (!isDoorOpen)

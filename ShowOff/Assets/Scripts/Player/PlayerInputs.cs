@@ -3,12 +3,16 @@ using UnityEngine;
 //Handle all player input functions
 public class PlayerInputs : MonoBehaviour
 {
+    public static PlayerInputs instance { get; private set; }
+
     InteractRaycast interactRaycast; //interacting with items inputs
     LanternController lanternController; //Lantern inputs
     PlayerCameraController cameraController;
 
     private void Awake()
     {
+        instance = this;
+
         cameraController = GetComponent<PlayerCameraController>();
 
         interactRaycast = transform.parent.GetComponentInChildren<InteractRaycast>();
@@ -52,11 +56,30 @@ public class PlayerInputs : MonoBehaviour
 
     public void OnInteract()
     {
-        if (interactRaycast == null) {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (InventoryManager.instance.isInventoryOpenForInteraction)
+        {
+            OnCloseInventoryInteraction();
+        }
+        else
+        {
+            OnItemInteract();
+        }
+    }
+
+    public void OnItemInteract()
+    {
+        if (interactRaycast == null)
+        {
             interactRaycast = transform.parent.GetComponentInChildren<InteractRaycast>();
         }
 
-        if (interactRaycast != null) {
+        if (interactRaycast != null)
+        {
             interactRaycast.Interact();
         }
     }
@@ -80,9 +103,53 @@ public class PlayerInputs : MonoBehaviour
         if (cameraController != null)
         {
             //Enable / disable mouse
-            cameraController.ToggleCameraMovement();
+            if (InventoryManager.instance.IsInventoryOpen())
+            {
+                cameraController.DisableCameraMovement();
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                cameraController.EnableCameraMovement();
+                Time.timeScale = 1f;
+            }
+        }
+    }
+
+    //Open inventory for item interactions
+    public void OnOpenInventoryInteraction(IInteractable interactableItem)
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
         }
 
+        //Open inventory
+        InventoryManager.instance.OpenInventoryInteraction(interactableItem);
+
+        if (cameraController == null)
+        {
+            cameraController = GetComponent<PlayerCameraController>();
+        }
+
+        if (cameraController != null)
+        {
+            cameraController.DisableCameraMovement();
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void OnCloseInventoryInteraction()
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (InventoryManager.instance.isInventoryOpenForInteraction)
+        {
+            OnToggleInventory();
+        }
     }
 
     public void OnDropFirstItem()

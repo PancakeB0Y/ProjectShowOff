@@ -18,4 +18,6 @@ public class ItemController : MonoBehaviour, IInteractable
 
         InventoryManager.instance.PickupItem(this);
     }
+
+    public void InteractWithInventory(ItemController inventoryItem){}
 }

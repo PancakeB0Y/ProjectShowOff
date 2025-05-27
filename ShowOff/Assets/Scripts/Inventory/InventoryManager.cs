@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -15,10 +16,18 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] int inventorySize = 20;
-    List<ItemController> items = new List<ItemController>(); //list of all items in the inventory
+    List<ItemController> items = new List<ItemController>(); //list of gameObjects for the items in the inventory
+
+    List<UIItemController> uiItems = new List<UIItemController>(); //list of all UI items in the inventory
 
     GameObject inventoryUI; //UI inventory where all the inventory icons will be. Needs a Grid Layout Group component
     string inventoryUITag = "Inventory";
+
+    public bool isInventoryOpenForInteraction = false;
+
+    //Text for using an item for an inventory interaction
+    GameObject useItemTextPopup = null; //text to show interact button
+    string useItemTextTag = "UseItemText"; //tag of the textPopup object
 
     void Awake()
     {
@@ -29,20 +38,115 @@ public class InventoryManager : MonoBehaviour
         if (inventoryUI != null) {
             inventoryUI.SetActive(false);
         }
+
+        useItemTextPopup = GameObject.FindWithTag(useItemTextTag);
+
+        if (useItemTextPopup != null) {
+            useItemTextPopup.SetActive(false);
+        }
     }
 
     //Open / close inventory
     public void ToggleInventory()
     {
-        if (inventoryUI.activeInHierarchy)
+        if (!IsInventoryOpen())
         {
-            inventoryUI.SetActive(false);
-            DisableCursor();
+            EnableInventory();
         }
         else
         {
-            inventoryUI.SetActive(true);
-            EnableCursor();
+            DisableInventory();
+        }
+    }
+
+    public bool IsInventoryOpen()
+    {
+        return inventoryUI.activeInHierarchy;
+    }
+
+    void EnableInventory()
+    {
+        inventoryUI.SetActive(true);
+        EnableCursor();
+
+        isInventoryOpenForInteraction = false;
+    }
+
+    void DisableInventory()
+    {
+        inventoryUI.SetActive(false);
+        DisableCursor();
+
+        ResetItemButtons();
+
+        isInventoryOpenForInteraction = false;
+
+        if (useItemTextPopup != null)
+        {
+            useItemTextPopup.SetActive(false);
+        }
+    }
+
+    //Open inventory for item interactions
+    public void OpenInventoryInteraction(IInteractable interactableItem)
+    {
+        if(!IsInventoryOpen())
+        {
+            EnableInventory();
+        }
+
+        AddItemInteractions(interactableItem);
+
+        isInventoryOpenForInteraction = true;
+
+        if (useItemTextPopup != null)
+        {
+            useItemTextPopup.SetActive(true);
+        }
+    }
+
+    //Make items work as buttons for specific interactions
+    void AddItemInteractions(IInteractable interactableItem)
+    {
+        foreach (UIItemController uiItem in uiItems)
+        {
+            AddItemInteraction(uiItem, interactableItem);
+        }
+    }
+
+    void AddItemInteraction(UIItemController uiItem, IInteractable interactableItem)
+    {
+        UnityEngine.UI.Button itemButton = uiItem.GetComponent<UnityEngine.UI.Button> ();
+
+        if (itemButton != null) {
+            itemButton.onClick.AddListener(() => OnClickItem(itemButton, uiItem.itemController, interactableItem));
+        }
+    }
+
+    void OnClickItem(UnityEngine.UI.Button button, ItemController itemController, IInteractable interactableItem)
+    {
+        //Close inventory and enable player movement
+        PlayerInputs.instance.OnToggleInventory();
+
+        //Disable button functionality
+        button.onClick.RemoveAllListeners();
+
+        //pass the pressed inventory item to the interactable item in the scene 
+        if (itemController != null) {
+            interactableItem.InteractWithInventory(itemController);
+        }
+    }
+
+    void ResetItemButtons()
+    {
+        foreach (UIItemController uiItem in uiItems)
+        {
+            UnityEngine.UI.Button itemButton = uiItem.GetComponent<UnityEngine.UI.Button>();
+
+            if (itemButton != null)
+            {
+                itemButton.onClick.RemoveAllListeners();
+            }
         }
     }
 
@@ -58,7 +162,7 @@ public class InventoryManager : MonoBehaviour
         UnityEngine.Cursor.visible = false;
     }
 
-    void Add(ItemController item)
+    void AddItem(ItemController item)
     {
         if (!IsInventoryFull())
         {
@@ -73,14 +177,14 @@ public class InventoryManager : MonoBehaviour
         if (!IsInventoryFull())
         {
             //Add item to inventory
-            Add(item);
+            AddItem(item);
 
             //Disable gameObject of the item in the scene
             item.gameObject.SetActive(false);
         }
     }
 
-    public void Remove(ItemController item)
+    public void RemoveItem(ItemController item)
     {
         if (items.Contains(item))
         {
@@ -112,7 +216,7 @@ public class InventoryManager : MonoBehaviour
         item.gameObject.transform.position = dropPosition;
         item.gameObject.SetActive(true);
 
-        Remove(item);
+        RemoveItem(item);
     }
 
     //update inventory icons 
@@ -132,18 +236,38 @@ public class InventoryManager : MonoBehaviour
 
             UnityEngine.UI.Image itemIcon = UIItem.GetComponent<UnityEngine.UI.Image>();
 
-            //Set its icon
-            itemIcon.sprite = itemController.item.itemIcon;
+            if (itemIcon != null) {
+                //Set its icon
+                itemIcon.sprite = itemController.item.itemIcon;
+            }
+            else
+            {
+                Debug.LogError("No Image found on UIItem");
+            }
+
+            //Reference the item controller to the inventory item
+            UIItemController uiItemController = UIItem.GetComponent<UIItemController>();
+
+            if (uiItemController != null) {
+                uiItemController.SetItemController(itemController);
+                uiItems.Add(uiItemController);
+            }
+            else
+            {
+                Debug.LogError("No UIItemController found on UIItem");
+            }
         }
 
     }
 
     public void DestroyAllUIItems()
     {
-        foreach (Transform child in inventoryUI.transform)
+        foreach (UIItemController uiItem in uiItems)
         {
-            Destroy(child.gameObject);
+            Destroy(uiItem.gameObject);
         }
+
+        uiItems.Clear();
     }
 
     public ItemController GetItem(int inventorySlot)

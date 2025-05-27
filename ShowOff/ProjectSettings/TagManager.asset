@@ -8,6 +8,7 @@ TagManager:
   - Wind
   - InteractText
   - Inventory
+  - UseItemText
   layers:
   - Default
   - TransparentFX

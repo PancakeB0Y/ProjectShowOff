@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Tracks if the player is looking at an interactable object
 public class InteractRaycast : MonoBehaviour
 {
     [Header("Properties")]
