@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,17 +14,65 @@ public class NavMeshMoveBehaviour : MonoBehaviour
     [SerializeField] private float maxSpawnRangeFromPlayerPos = 15.0f;
     [SerializeField] private float minSpawnRangeFromPlayerPos = 10.0f;
 
+    private MoveState statueState;
+
+    PlayerController player;
+
+    StatueAudioController statueAudioController;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        player = FindFirstObjectByType<PlayerController>();
+        player.OnStatueFollow += SetupPlayerFollow;
+
+        statueAudioController = GetComponent<StatueAudioController>();
+    }
+
+    void Start()
+    {
+        SetState(MoveState.Disabled);
+    }
+
+    void SetState(MoveState newState)
+    {
+        switch (newState)
+        {
+            case MoveState.Disabled:
+                gameObject.SetActive(false);
+                break;
+            case MoveState.Chasing:
+                gameObject.SetActive(true);
+                break;
+            case MoveState.Freezed:
+                break;
+            default:
+                break;
+        }
+
+        statueState = newState;
+    }
+
+    void Update()
+    {
+        switch (statueState)
+        {
+            case MoveState.Chasing:
+                SetTargetPosition(player.transform.position);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetupPlayerFollow(Vector3 playerPos)
     {
-        Debug.Log("Statue follow setup");
+        SetState(MoveState.Chasing);
 
         agent.Warp(NavMeshSamplePoint(playerPos));
-        SetTargetPosition(playerPos);
+
+        statueAudioController.SetupPlayerFollowAudio(minSpawnRangeFromPlayerPos);
     }
 
     Vector3 NavMeshSamplePoint(Vector3 center)
@@ -58,6 +107,8 @@ public class NavMeshMoveBehaviour : MonoBehaviour
     public void SetTargetPosition(Vector3 targetPos)
     {
         agent.SetDestination(targetPos);
+
+        statueAudioController.AdjustAudioSourceVolume(agent.remainingDistance);
     }
 
     public void StopMovement()
@@ -65,14 +116,48 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         if (agent != null)
         {
             agent.isStopped = true;
+            statueAudioController.StopPlaying();
         }
     }
 
-    public void StartMovement()
+    void OnCollisionEnter(Collision collision)
     {
-        if (agent != null)
+        if (collision.gameObject == player.gameObject
+            && statueState != MoveState.Freezed)
         {
-            agent.isStopped = false;
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#endif
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
+        {
+            StopMovement();
+            SetState(MoveState.Freezed);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
+        {
+            StopMovement();
+            SetState(MoveState.Disabled);
+        }
+    }
+
+    void OnDestroy()
+    {
+        player.OnStatueFollow -= SetupPlayerFollow;
+    }
+}
+
+public enum MoveState
+{
+    Freezed,
+    Disabled,
+    Chasing,
 }

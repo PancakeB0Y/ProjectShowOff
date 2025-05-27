@@ -25,6 +25,7 @@ public class OneSideLockedDoorController : DoorController
 
         if (isDoorLocked)
         {
+            doorAudioController.PlayDoorNotOpeningSound();
             return;
         }
 

@@ -34,7 +34,7 @@ public class LanternController : MonoBehaviour
 
             if (SoundManager.instance != null)
             {
-                SoundManager.instance.PlayLightMatchSound();
+                SoundManager.instance.PlayLightLanternSound(gameObject);
             }
         }
     }
@@ -57,7 +57,7 @@ public class LanternController : MonoBehaviour
             onTriggerWind?.Invoke();
 
             if (SoundManager.instance != null) {
-                SoundManager.instance.PlayWindSound();
+                SoundManager.instance.PlayWindSound(gameObject);
             }
         }
     }
