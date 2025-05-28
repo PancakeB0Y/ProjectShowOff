@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 747619659167550036}
   - component: {fileID: 1769132650342272575}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LanternFollowPlayerParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6747314068447650098}
   - component: {fileID: 3360942036305670978}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LanternSwingPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 5811177106060749228}
   swingStrength: 60
+  rotationInfluence: 2
   damping: 2.5
   maxSwingAngle: 60
 --- !u!1 &5540257942554391417
@@ -110,7 +111,7 @@ GameObject:
   - component: {fileID: 3655624418934406633}
   - component: {fileID: 2333453812764277869}
   - component: {fileID: 8631874611976985180}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,10 +262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e980d82f8dc544692511a0467b60db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 89
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
-  interactRange: 2
+  interactRange: 3
 --- !u!1 &6030458443754145636
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3965137278471420698}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerWithLanternSwing
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -318,7 +322,7 @@ GameObject:
   - component: {fileID: 478098442940370866}
   - component: {fileID: 5590912157866466143}
   - component: {fileID: 7754539413462239560}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22081e817191cc4bae4fcd7304eca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemContent: {fileID: 0}
+  UIItemPrefab: {fileID: 2241390947787058612, guid: 95bb81c401d773043b563a92aec2057f, type: 3}
+  inventorySize: 20
+  isInventoryOpenForInteraction: 0
 --- !u!114 &7754539413462239560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +541,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6747314068447650098}
     m_Modifications:
+    - target: {fileID: 613828387767295699, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 623302498143730258, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369193353853919934, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642200160426846107, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847894026779139559, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057320704937779943, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280121135286332039, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940961318844605716, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228121690942977500, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426343794999253261, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7747975904969918506, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -579,9 +625,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5811177106060749228}
+    - target: {fileID: 7885281701931749614, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8057248974460970261, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
       propertyPath: m_Name
       value: Lantern
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057248974460970261, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802029285876980174, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7801820743957735451, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
