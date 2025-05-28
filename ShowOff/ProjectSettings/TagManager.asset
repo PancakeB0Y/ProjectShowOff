@@ -9,6 +9,7 @@ TagManager:
   - InteractText
   - Inventory
   - UseItemText
+  - MatchstickCount
   layers:
   - Default
   - TransparentFX

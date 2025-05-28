@@ -20,4 +20,9 @@ public class ItemController : MonoBehaviour, IInteractable
     }
 
     public void InteractWithInventory(ItemController inventoryItem){}
+
+    public bool IsEqual(ItemController other)
+    {
+        return item == other.item;
+    }
 }

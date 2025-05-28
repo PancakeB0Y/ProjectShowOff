@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 5811177106060749228}
-  swingStrength: 60
-  rotationInfluence: 2
-  damping: 2.5
+  swingStrength: 4
+  rotationInfluence: 1
+  damping: 1
   maxSwingAngle: 60
 --- !u!1 &5540257942554391417
 GameObject:
