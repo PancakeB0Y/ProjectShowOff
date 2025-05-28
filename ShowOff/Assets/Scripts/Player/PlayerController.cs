@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     LanternController lantern;
 
+    Light lanternLight;
     List<Light> currentLights = new List<Light>();
 
     void Awake()
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         lantern = transform.parent.GetComponentInChildren<LanternController>();
+        lanternLight = lantern.GetComponentInChildren<Light>(true);
     }
 
     void Update()
@@ -66,7 +68,8 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<Light>(out Light light))
+        if (other.TryGetComponent<Light>(out Light light)
+            && light != lanternLight) // Only check exiting light trigger if not lantern light (because of flickering and swinging effects that make the light trigger get out of range quite frequently)
         {
             DeregisterLight(light);
         }
