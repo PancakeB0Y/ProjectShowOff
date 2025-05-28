@@ -21,6 +21,8 @@ public class LightSourceController : MonoBehaviour
 
         StartCoroutine(TurnLanternOffCoroutine());
         IsLightOn = true;
+
+        SoundManager.instance.PlayCandleOnSound(gameObject);
     }
 
     //Turn light off after X seconds - ONLY for testing
@@ -36,5 +38,7 @@ public class LightSourceController : MonoBehaviour
         lightSource.SetActive(false);
 
         IsLightOn = false;
+
+        SoundManager.instance.PlayCandleOffSound(gameObject);
     }
 }

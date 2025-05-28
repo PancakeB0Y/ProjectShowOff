@@ -6,8 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public itemType itemType;
-    public string itemName;
-    public Sprite icon;
+    public Sprite itemIcon;
 }
 
-public enum itemType { Knife, Gloves, Pan, Blood, DepressedSoul, Pasta, Beef, Sauce, Limbs, Wings, Spaghetti, Heart, Milk, Steak, VigorSalad, LimbBurger, Lasagna, MilkWings }
+public enum itemType { Chalice, Rosary, HolyOil, Matches, Key}

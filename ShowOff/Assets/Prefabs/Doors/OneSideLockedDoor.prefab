@@ -713,6 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorOpen: {fileID: 8300000, guid: 24527ea226152664f8cf9bfb1aef91fe, type: 3}
   doorClose: {fileID: 8300000, guid: fb0b5bfe838b29d4da9c14ed0cba98a3, type: 3}
+  doorNotOpening: {fileID: 8300000, guid: b89eac5f5d5fcbe4eaa731b635bafcc5, type: 3}
 --- !u!1 &8861919641692380892
 GameObject:
   m_ObjectHideFlags: 0
