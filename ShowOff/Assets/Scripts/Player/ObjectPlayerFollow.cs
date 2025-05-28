@@ -7,6 +7,9 @@ public class ObjectPlayerFollow : MonoBehaviour
     [SerializeField]
     Transform player;
 
+    [SerializeField]
+    bool shouldRotateWithPlayer = false;
+
     Vector3 offset;
 
     void Start()
@@ -17,5 +20,10 @@ public class ObjectPlayerFollow : MonoBehaviour
     void LateUpdate()
     {
         transform.position = player.position + player.rotation * offset;
+
+        if (shouldRotateWithPlayer)
+        {
+            transform.rotation = player.rotation;
+        }
     }
 }
