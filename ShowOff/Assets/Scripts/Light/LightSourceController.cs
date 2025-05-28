@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LightSourceController : MonoBehaviour
 {
-    public bool IsLightOn { get; private set; } = false;
+    public bool IsLightOn = false;
 
     [SerializeField]
     private float turnLightOffSeconds = 2f;

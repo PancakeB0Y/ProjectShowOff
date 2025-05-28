@@ -10,6 +10,8 @@ public class LanternController : MonoBehaviour
 
     public System.Action onTriggerWind;
 
+    [SerializeField] bool useMatchsticks = false; //if false the lantern can be lit without using matchsticks
+
     void Start()
     {
         lightSourceController = GetComponentInChildren<LightSourceController>();
@@ -30,11 +32,16 @@ public class LanternController : MonoBehaviour
                 return;
             }
 
-            TurnLanternOn();
-
-            if (SoundManager.instance != null)
+            if (useMatchsticks) {
+                //Check if the player has a matchstick
+                if (InventoryManager.instance.UseMatchstick())
+                {
+                    TurnLanternOn();
+                }
+            }
+            else
             {
-                SoundManager.instance.PlayLightLanternSound(gameObject);
+                TurnLanternOn();
             }
         }
     }
@@ -73,6 +80,12 @@ public class LanternController : MonoBehaviour
         {
             StartCoroutine(TurnLanternOnCoroutine());
         }
+
+        //Play lantern sound
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayLightLanternSound(gameObject);
+        }
     }
 
     void TurnLanternOff()
@@ -86,6 +99,8 @@ public class LanternController : MonoBehaviour
     //Light the lantern after X seconds
     IEnumerator TurnLanternOnCoroutine()
     {
+        lightSourceController.IsLightOn = true;
+
         yield return new WaitForSeconds(lightTime);
 
         if (lightSourceController != null)
