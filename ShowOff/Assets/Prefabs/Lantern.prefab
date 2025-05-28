@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  shouldRotateWithPlayer: 0
 --- !u!82 &1074069547200659771
 AudioSource:
   m_ObjectHideFlags: 0
@@ -100,7 +101,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8a0ea4811341c134081a8982d5f9a1a1, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 8a0ea4811341c134081a8982d5f9a1a1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -265,6 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6356044140220637795, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
+    - {fileID: 8601617906035815266, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

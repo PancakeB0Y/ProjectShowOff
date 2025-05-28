@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2794500807739558895, guid: 4e5ef673a96a85148b0d40c6fff8db88, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5516349223945942666, guid: 4e5ef673a96a85148b0d40c6fff8db88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -336,9 +336,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4440472817637243771, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: turnLightOffSeconds
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 6030458443754145636, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
       propertyPath: m_Name
       value: PlayerWithLanternSwing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244415785987776144, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -392,6 +400,10 @@ PrefabInstance:
     - target: {fileID: 5351453103315560047, guid: 4839146f82e74814d809beb470f1285f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564955817540799085, guid: 4839146f82e74814d809beb470f1285f, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7638310893966596399, guid: 4839146f82e74814d809beb470f1285f, type: 3}
       propertyPath: m_Name
@@ -783,6 +795,10 @@ PrefabInstance:
     - target: {fileID: 8038233689929334037, guid: 9c23bc3ea67ed7340abc3eb429023c45, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244415785987776144, guid: 9c23bc3ea67ed7340abc3eb429023c45, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
