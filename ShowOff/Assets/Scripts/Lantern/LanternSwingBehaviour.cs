@@ -18,6 +18,10 @@ public class LanternSwingBehaviour : MonoBehaviour
     private Vector3 swingVelocity;
     private Vector3 swingOffset;
 
+    void Awake()
+    {
+    }
+
     void Start()
     {
         if (playerRoot == null)
@@ -34,21 +38,22 @@ public class LanternSwingBehaviour : MonoBehaviour
     void Update()
     {
         // Movement Influence
-        Vector3 playerDelta = playerRoot.position - lastPlayerPosition;
+        Vector3 playerDelta = (playerRoot.position - lastPlayerPosition) / Time.deltaTime;
         Vector3 localDelta = playerRoot.InverseTransformDirection(playerDelta);
         Vector3 movementSwing = new Vector3(-localDelta.x, 0f, localDelta.z) * swingStrength;
 
         // Rotation Influence
         float currentYRotation = playerRoot.eulerAngles.y;
-        float rotationDelta = Mathf.DeltaAngle(lastPlayerYRotation, currentYRotation);
+        float rotationDelta = Mathf.DeltaAngle(lastPlayerYRotation, currentYRotation) / Time.deltaTime;
         Vector3 rotationSwing = new Vector3(-rotationDelta * rotationInfluence, 0f, 0f);
 
         // Combine Both
         Vector3 targetOffset = movementSwing + rotationSwing;
 
         // Spring-like Swing Smoothing
-        swingVelocity += (targetOffset - swingOffset) * Time.deltaTime * swingStrength;
-        swingVelocity -= swingVelocity * damping * Time.deltaTime;
+        Vector3 acceleration = (targetOffset - swingOffset) * swingStrength;
+        swingVelocity += acceleration * Time.deltaTime;
+        swingVelocity *= Mathf.Exp(-damping * Time.deltaTime);
         swingOffset += swingVelocity * Time.deltaTime;
 
         swingOffset = Vector3.ClampMagnitude(swingOffset, maxSwingAngle);
