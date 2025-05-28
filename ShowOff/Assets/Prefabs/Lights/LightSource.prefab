@@ -83,6 +83,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5522303631281754234, guid: 2cdbc33924066b74799826e13c3591f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8495911635324443744}
+    - targetCorrespondingSourceObject: {fileID: 5522303631281754234, guid: 2cdbc33924066b74799826e13c3591f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2610772179914555713}
   m_SourcePrefab: {fileID: 100100000, guid: 2cdbc33924066b74799826e13c3591f6, type: 3}
 --- !u!108 &6760629230855057330 stripped
 Light:
@@ -122,3 +125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c942ff00400e3248b72003b7d766e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2610772179914555713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087847895586228575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c26ce7f423b674abbd6ebe0bf6a4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseIntensity: 1.5
+  flickerAmount: 0.5
+  flickerSpeed: 2
