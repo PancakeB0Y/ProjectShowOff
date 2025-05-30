@@ -6,7 +6,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     protected Animator doorAnimator;
 
-    protected bool isDoorOpen = false; //is the door open or closed
+    public bool isDoorOpen { get; protected set; } = false; //is the door open or closed
 
     protected DoorAudioController doorAudioController;
 
