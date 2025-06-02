@@ -189,10 +189,15 @@ public class InventoryManager : MonoBehaviour
             //Add item to inventory
             AddItem(itemController);
 
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayItemPickupSound(gameObject);
+            }
+
             //Disable gameObject of the item in the scene
             itemController.gameObject.SetActive(false);
 
-            OnPickupItem?.Invoke(itemController);
+            OnPickupItem?.Invoke(itemController); 
         }
     }
 
