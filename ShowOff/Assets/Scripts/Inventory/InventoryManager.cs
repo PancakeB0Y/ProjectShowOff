@@ -23,11 +23,14 @@ public class InventoryManager : MonoBehaviour
     GameObject inventoryUI; //UI inventory where all the inventory icons will be. Needs a Grid Layout Group component
     string inventoryUITag = "Inventory";
 
-    public bool isInventoryOpenForInteraction = false;
+    [HideInInspector] public bool isInventoryOpenForInteraction = false;
 
     //Text for using an item for an inventory interaction
     GameObject useItemTextPopup = null; //text to show interact button
     string useItemTextTag = "UseItemText"; //tag of the textPopup object
+
+    public event Action<ItemController> OnPickupItem;
+    public event Action<ItemController> OnRemoveItem;
 
     void Awake()
     {
@@ -64,6 +67,7 @@ public class InventoryManager : MonoBehaviour
         return inventoryUI.activeInHierarchy;
     }
 
+    //Make inventory visible in the scene
     void EnableInventory()
     {
         inventoryUI.SetActive(true);
@@ -72,6 +76,7 @@ public class InventoryManager : MonoBehaviour
         isInventoryOpenForInteraction = false;
     }
 
+    //Hide inventory in the scene
     void DisableInventory()
     {
         inventoryUI.SetActive(false);
@@ -123,6 +128,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //Button function for the inventory items
     void OnClickItem(UnityEngine.UI.Button button, ItemController itemController, IInteractable interactableItem)
     {
         //Close inventory and enable player movement
@@ -137,6 +143,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //Clear button function from all buttons
     void ResetItemButtons()
     {
         foreach (UIItemController uiItem in uiItems)
@@ -162,35 +169,43 @@ public class InventoryManager : MonoBehaviour
         UnityEngine.Cursor.visible = false;
     }
 
-    void AddItem(ItemController item)
+    //Add item to inventory
+    void AddItem(ItemController itemController)
     {
-        if (!IsInventoryFull())
+        if (IsInventoryFull())
         {
-            items.Add(item);
-
-            UpdateItems();
+            return;
         }
+
+        items.Add(itemController);
+
+        UpdateItems();
     }
 
-    public void PickupItem(ItemController item)
+    public void PickupItem(ItemController itemController)
     {
         if (!IsInventoryFull())
         {
             //Add item to inventory
-            AddItem(item);
+            AddItem(itemController);
 
             //Disable gameObject of the item in the scene
-            item.gameObject.SetActive(false);
+            itemController.gameObject.SetActive(false);
+
+            OnPickupItem?.Invoke(itemController);
         }
     }
 
-    public void RemoveItem(ItemController item)
+    //Remove item from inventory
+    public void RemoveItem(ItemController itemController)
     {
-        if (items.Contains(item))
+        if (items.Contains(itemController))
         {
-            items.Remove(item);
+            items.Remove(itemController);
 
             UpdateItems();
+
+            OnRemoveItem?.Invoke(itemController);
         }
     }
 
@@ -198,28 +213,34 @@ public class InventoryManager : MonoBehaviour
     {
         if (items.Count > 0)
         {
-            DropItem(items[0]);
+            DropItemForward(items[0]);
         }
     }
 
-    public void DropItem(ItemController item)
+    //Drop item in front of player
+    void DropItemForward(ItemController itemController)
     {
-        if (!items.Contains(item))
+        //Calculate postition in front of player
+        float dropDistance = 1.2f; //distance to drop from the player
+        Vector3 dropPosition = transform.position + transform.forward * dropDistance;
+
+        DropItem(itemController, dropPosition);
+    }
+
+    void DropItem(ItemController itemController, Vector3 dropPosition)
+    {
+        if (!items.Contains(itemController))
         {
             return;
         }
 
-        //Calculate where the item should be dropped
-        float dropDistance = 1.2f; //distance to drop from the player
-        Vector3 dropPosition = transform.position + transform.forward * dropDistance;
+        itemController.gameObject.transform.position = dropPosition;
+        itemController.gameObject.SetActive(true);
 
-        item.gameObject.transform.position = dropPosition;
-        item.gameObject.SetActive(true);
-
-        RemoveItem(item);
+        RemoveItem(itemController);
     }
 
-    //update inventory icons 
+    //Update items in the inventory UI
     public void UpdateItems()
     {
         if(inventoryUI == null)
@@ -229,37 +250,98 @@ public class InventoryManager : MonoBehaviour
 
         DestroyAllUIItems();
 
-        foreach(ItemController itemController in items)
+        var stackableItems = new List<ItemController>();
+
+        //Create a UI object for each inventory item
+        foreach (ItemController itemController in items)
         {
-            //Create a UI object for each inventory item
-            GameObject UIItem = Instantiate(UIItemPrefab, inventoryUI.transform);
+            if (!itemController.item.stackable)
+            {
+                AddUIItem(itemController);
+            }
+            else if (!doesListContainItemController(stackableItems, itemController)) 
+            { //make sure to not add the same stackable item multiple times
+                stackableItems.Add(itemController);
+                AddUIItem(itemController);
+            }
+        }
+    }
 
-            UnityEngine.UI.Image itemIcon = UIItem.GetComponent<UnityEngine.UI.Image>();
+    bool doesListContainItemController(List<ItemController> itemList, ItemController item)
+    {
+        return itemList.Any(ic => ic.item == item.item);
+    }
 
-            if (itemIcon != null) {
-                //Set its icon
-                itemIcon.sprite = itemController.item.itemIcon;
+    //Create a UI object for item
+    void AddUIItem(ItemController itemController)
+    {
+        GameObject UIItem = Instantiate(UIItemPrefab, inventoryUI.transform);
+
+        //Add the icon of the item
+        var itemIcon = UIItem.GetComponent<UnityEngine.UI.Image>();
+        if (itemIcon != null)
+        {
+            //Set its icon
+            itemIcon.sprite = itemController.item.itemIcon;
+        }
+        else
+        {
+            Debug.LogError("No Image found on UIItem");
+        }
+
+        //Reference the item controller to the inventory item
+        UIItemController uiItemController = UIItem.GetComponent<UIItemController>();
+        if (uiItemController != null)
+        {
+            uiItemController.SetItemController(itemController);
+            uiItems.Add(uiItemController);
+        }
+        else
+        {
+            Debug.LogError("No UIItemController found on UIItem");
+        }
+
+        //Add the count of the item
+        var itemCount = UIItem.GetComponentInChildren<TextMeshProUGUI>();
+        if (itemCount != null)
+        {
+            if (itemController.item.stackable) {
+                itemCount.text = GetItemCount(itemController).ToString();
+
+                itemCount.gameObject.SetActive(true);
             }
             else
             {
-                Debug.LogError("No Image found on UIItem");
-            }
+                itemCount.gameObject.SetActive(false);
+            } 
+        }
+        else
+        {
+            Debug.LogError("No item count text found on UIItem");
+        }
+    }
 
-            //Reference the item controller to the inventory item
-            UIItemController uiItemController = UIItem.GetComponent<UIItemController>();
+    //Get the amount of this item in the inventory
+    int GetItemCount(ItemController itemController)
+    {
+        int itemCount = 0;
 
-            if (uiItemController != null) {
-                uiItemController.SetItemController(itemController);
-                uiItems.Add(uiItemController);
-            }
-            else
+        if (!items.Contains(itemController))
+        {
+            return 0;
+        }
+
+        foreach (ItemController currentItemController in items) {
+            if(currentItemController.IsEqual(itemController))
             {
-                Debug.LogError("No UIItemController found on UIItem");
+                itemCount++;
             }
         }
 
+        return itemCount;
     }
 
+    //Remove all items from the inventory UI
     public void DestroyAllUIItems()
     {
         foreach (UIItemController uiItem in uiItems)
@@ -278,5 +360,37 @@ public class InventoryManager : MonoBehaviour
     bool IsInventoryFull()
     {
         return items.Count >= inventorySize;
+    }
+
+    //Use a matchstick if there is one in inventory
+    //Returns false if there is no matchstick in inventory
+    public bool UseMatchstick()
+    {
+        foreach(ItemController itemController in items)
+        {
+            if (itemController.item.itemType == itemType.Matchstick)
+            {
+                RemoveItem(itemController);
+                Destroy(itemController.gameObject);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public int GetMatchstickCount()
+    {
+        int count = 0;
+
+        foreach (ItemController itemController in items)
+        {
+            if (itemController.item.itemType == itemType.Matchstick)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 5811177106060749228}
-  swingStrength: 60
-  rotationInfluence: 2
-  damping: 2.5
+  swingStrength: 4
+  rotationInfluence: 0.1
+  damping: 1
   maxSwingAngle: 60
 --- !u!1 &5540257942554391417
 GameObject:
@@ -314,8 +314,9 @@ GameObject:
   - component: {fileID: 5811177106060749228}
   - component: {fileID: 85433290910499491}
   - component: {fileID: 7457548417149776588}
-  - component: {fileID: 8540707284757354479}
   - component: {fileID: 5595190651205430378}
+  - component: {fileID: 8540707284757354479}
+  - component: {fileID: 9164375658222209888}
   - component: {fileID: 7812125881818345364}
   - component: {fileID: 2545584948103710969}
   - component: {fileID: 8184980477106753295}
@@ -397,29 +398,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8540707284757354479
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7521735381702261685}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5595190651205430378
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -444,9 +422,53 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!136 &8540707284757354479
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521735381702261685}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.86
+  m_Height: 2.27
+  m_Direction: 1
+  m_Center: {x: 0.23, y: 0.1, z: 0.2}
+--- !u!65 &9164375658222209888
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521735381702261685}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6, y: 2, z: 1.4}
+  m_Center: {x: 0.25, y: 0, z: 0.08}
 --- !u!114 &7812125881818345364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22081e817191cc4bae4fcd7304eca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIItemPrefab: {fileID: 2241390947787058612, guid: 95bb81c401d773043b563a92aec2057f, type: 3}
+  UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
   inventorySize: 20
   isInventoryOpenForInteraction: 0
 --- !u!114 &7754539413462239560
@@ -587,7 +609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747975904969918506, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.961
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7747975904969918506, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -643,6 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7801820743957735451, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
+    - {fileID: 980302717161981738, guid: dd67869a48f68a04c8dbf729fd7c917a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

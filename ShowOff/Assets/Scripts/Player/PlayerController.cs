@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,7 +40,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 moveDirection = moveInput.z * transform.forward + moveInput.x * transform.right;
         moveDirection = moveDirection * moveSpeed;
-        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
+
+        Vector3 finalVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
+
+        // Stop sliding when not pressing movement keys
+        if (moveInput.magnitude < 0.001f)
+        {
+            finalVelocity = Vector3.zero;
+        }
+
+        rb.linearVelocity = finalVelocity;
     }
 
     void OnTriggerEnter(Collider other)

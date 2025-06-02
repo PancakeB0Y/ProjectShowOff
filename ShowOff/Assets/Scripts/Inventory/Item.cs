@@ -7,6 +7,7 @@ public class Item : ScriptableObject
 {
     public itemType itemType;
     public Sprite itemIcon;
+    public bool stackable = false;
 }
 
-public enum itemType { Chalice, Rosary, HolyOil, Matches, Key}
+public enum itemType { Chalice, Rosary, HolyOil, Matchstick, Key}
