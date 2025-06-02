@@ -250,3 +250,8 @@ MonoBehaviour:
   candleOn: {fileID: 8300000, guid: 127a4ff4ebfcbfa4e8d9531e2aac97dc, type: 3}
   candleOff: {fileID: 8300000, guid: 922348de8b1628f45b036a515306c272, type: 3}
   statueFollow: {fileID: 8300000, guid: f7c6ea509bd6be24485169c5ee2553d4, type: 3}
+  itemPickup: {fileID: 8300000, guid: dbf6d19c205a5ef44b24a56f00213736, type: 3}
+  inventoryItemSelected: {fileID: 8300000, guid: 5e9c985c24710e746a95047beaf990c9, type: 3}
+  wrongItemChosen: {fileID: 8300000, guid: b22fe7fbc1fe2f94a9e53d8dde520092, type: 3}
+  statueSound: {fileID: 8300000, guid: f7c6ea509bd6be24485169c5ee2553d4, type: 3}
+  lockKeysClosing: {fileID: 8300000, guid: 1b415780c08d8d04a96ed55ec187b45c, type: 3}

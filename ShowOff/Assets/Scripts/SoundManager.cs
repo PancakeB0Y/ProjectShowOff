@@ -40,6 +40,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip candleOn;
     [SerializeField] AudioClip candleOff;
     [SerializeField] AudioClip statueFollow;
+    [SerializeField] AudioClip itemPickup;
+    [SerializeField] AudioClip inventoryItemSelected;
+    [SerializeField] AudioClip wrongItemChosen;
+    [SerializeField] AudioClip statueSound;
+    [SerializeField] AudioClip lockKeysClosing;
+
 
     void Awake()
     {
@@ -115,5 +121,30 @@ public class SoundManager : MonoBehaviour
     public void PlayCandleOffSound(GameObject objectSoundIsComingFrom)
     {
         Play3DSound(objectSoundIsComingFrom, candleOff);
+    }
+
+    public void PlayItemPickupSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, itemPickup);
+    }
+
+    public void PlayInventoryItemSelectedSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, inventoryItemSelected);
+    }
+
+    public void PlayWrongItemChosenSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, wrongItemChosen);
+    }
+
+    public void PlayStatueSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, statueSound);
+    } 
+
+    public void PlayLockKeysClosingSound(GameObject objectSoundIsComingFrom)
+    {
+        Play3DSound(objectSoundIsComingFrom, lockKeysClosing);
     }
 }
