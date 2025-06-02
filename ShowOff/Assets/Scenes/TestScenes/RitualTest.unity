@@ -1108,10 +1108,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1454333447707752630, guid: 3fe939da9b150804eb5f5b11ed47359d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.915
-      objectReference: {fileID: 0}
     - target: {fileID: 2287608330914551346, guid: 3fe939da9b150804eb5f5b11ed47359d, type: 3}
       propertyPath: m_Name
       value: Altar
