@@ -372,6 +372,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWithLanternSwing
       objectReference: {fileID: 0}
+    - target: {fileID: 8540707284757354479, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540707284757354479, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540707284757354479, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540707284757354479, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540707284757354479, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540707284757354479, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879484080515180750, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: useMatchsticks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164375658222209888, guid: a40546b88247e6d49ad8d33936c8a927, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -672,7 +704,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7023df54a81469943a8d9ae9628a5e31, type: 2}
   m_BuildHeightMesh: 0
@@ -1538,22 +1570,6 @@ PrefabInstance:
     - target: {fileID: 429336600226378385, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
       propertyPath: m_Name
       value: LightSourcesParent
-      objectReference: {fileID: 0}
-    - target: {fileID: 429336600226378385, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2185229972134734461, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2440092794932858000, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
-      propertyPath: m_Range
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3995041954847859831, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
-      propertyPath: lastRange
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5737018869686324818, guid: c2f90c4512aa0964aa75f80f7edd8dcb, type: 3}
       propertyPath: m_LocalPosition.x
