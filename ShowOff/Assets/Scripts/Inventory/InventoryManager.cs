@@ -227,7 +227,7 @@ public class InventoryManager : MonoBehaviour
         DropItem(itemController, dropPosition);
     }
 
-    void DropItem(ItemController itemController, Vector3 dropPosition)
+    public void DropItem(ItemController itemController, Vector3 dropPosition)
     {
         if (!items.Contains(itemController))
         {
