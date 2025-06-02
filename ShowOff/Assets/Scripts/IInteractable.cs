@@ -7,6 +7,7 @@ public interface IInteractable
 
     public void Interact();
 
+    //Is called when the interactable has interactions with an inventory item
     public void InteractWithInventory(ItemController inventoryItem);
 
 }

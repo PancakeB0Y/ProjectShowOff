@@ -13,9 +13,10 @@ public class LockedDoorController : DoorController
             return;
         }
 
-        if (isDoorLocked) {
+        if (isDoorLocked && PlayerInputs.instance != null) {
             doorAudioController.PlayDoorNotOpeningSound();
             PlayerInputs.instance.OnOpenInventoryInteraction(this);
+            
             return;
         }
 
