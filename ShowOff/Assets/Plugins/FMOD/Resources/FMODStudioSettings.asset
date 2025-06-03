@@ -755,8 +755,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../FMOD Studio/Iknow/Iknow.fspro
-  sourceBankPath: ../../../FMOD Studio/Iknow/Build
+  sourceProjectPath: Assets/Iknow/Iknow.fspro
+  sourceBankPath: Assets/Iknow/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
