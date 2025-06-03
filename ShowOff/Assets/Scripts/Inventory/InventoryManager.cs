@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
+    [SerializeField] GameObject MatchstickPrefab;
     [SerializeField] InventoryContent startInventoryContent;
 
     [Header("Properties")]
@@ -47,8 +48,11 @@ public class InventoryManager : MonoBehaviour
 
         if (useItemTextPopup != null) {
             useItemTextPopup.SetActive(false);
-        }
+        } 
+    }
 
+    private void Start()
+    {
         ParseStartingInventory();
     }
 
@@ -267,7 +271,7 @@ public class InventoryManager : MonoBehaviour
             {
                 AddUIItem(itemController);
             }
-            else if (!doesListContainItemController(stackableItems, itemController)) 
+            else if (!DoesListContainItemController(stackableItems, itemController)) 
             { //make sure to not add the same stackable item multiple times
                 stackableItems.Add(itemController);
                 AddUIItem(itemController);
@@ -275,7 +279,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    bool doesListContainItemController(List<ItemController> itemList, ItemController item)
+    bool DoesListContainItemController(List<ItemController> itemList, ItemController item)
     {
         return itemList.Any(ic => ic.item == item.item);
     }
@@ -405,15 +409,29 @@ public class InventoryManager : MonoBehaviour
     //Fill the inventory according to startInventoryContent
     void ParseStartingInventory()
     {
-        if(startInventoryContent != null)
+        if(startInventoryContent == null || MatchstickPrefab == null)
         {
-            foreach(ItemAndAmount itemAndAmount in startInventoryContent.items)
+            return;
+        }
+
+        foreach(ItemAndAmount itemAndAmount in startInventoryContent.items)
+        {
+            ItemType itemType = itemAndAmount.itemType;
+            int amount = itemAndAmount.amount;
+
+            if(itemType == ItemType.Matchstick)
             {
-                ItemType itemType = itemAndAmount.itemType;
-                int amount = itemAndAmount.amount;
+                for(int i = 0; i < amount; i++)
+                {
+                    GameObject newMatchstick = Instantiate(MatchstickPrefab);
 
+                    newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController);
 
+                    PickupItem(newMatchstickController);
+                }
+                
             }
         }
+        
     }
 }
