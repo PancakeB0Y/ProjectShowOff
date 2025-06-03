@@ -4,7 +4,8 @@ public class LockedDoorController : DoorController
 {
     [SerializeField] bool isDoorLocked = true; //is the door locked or unlocked
     [SerializeField] bool canBeUnlocked = false; //is the door locked or unlocked
-    [SerializeField] itemType unlockItem = itemType.Key;
+    [SerializeField] ItemType unlockItem = ItemType.Key;
+
     public override void Interact()
     {
         if (!canBeUnlocked)

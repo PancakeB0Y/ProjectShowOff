@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
+    [SerializeField] InventoryContent startInventoryContent;
 
     [Header("Properties")]
     [SerializeField] int inventorySize = 20;
@@ -47,6 +48,8 @@ public class InventoryManager : MonoBehaviour
         if (useItemTextPopup != null) {
             useItemTextPopup.SetActive(false);
         }
+
+        ParseStartingInventory();
     }
 
     //Open / close inventory
@@ -373,7 +376,7 @@ public class InventoryManager : MonoBehaviour
     {
         foreach(ItemController itemController in items)
         {
-            if (itemController.item.itemType == itemType.Matchstick)
+            if (itemController.item.itemType == ItemType.Matchstick)
             {
                 RemoveItem(itemController);
                 Destroy(itemController.gameObject);
@@ -390,12 +393,27 @@ public class InventoryManager : MonoBehaviour
 
         foreach (ItemController itemController in items)
         {
-            if (itemController.item.itemType == itemType.Matchstick)
+            if (itemController.item.itemType == ItemType.Matchstick)
             {
                 count++;
             }
         }
 
         return count;
+    }
+
+    //Fill the inventory according to startInventoryContent
+    void ParseStartingInventory()
+    {
+        if(startInventoryContent != null)
+        {
+            foreach(ItemAndAmount itemAndAmount in startInventoryContent.items)
+            {
+                ItemType itemType = itemAndAmount.itemType;
+                int amount = itemAndAmount.amount;
+
+
+            }
+        }
     }
 }

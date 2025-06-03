@@ -542,6 +542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
+  startInventoryContent:
+    items:
+    - itemType: 3
+      amount: 3
   inventorySize: 20
   isInventoryOpenForInteraction: 0
 --- !u!114 &7754539413462239560

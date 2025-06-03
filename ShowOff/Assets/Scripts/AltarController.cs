@@ -6,11 +6,11 @@ public class AltarController : MonoBehaviour, IInteractable
     public string interactText { get; } = "Press [E] to interact";
 
     [SerializeField] Transform[] itemSlots = new Transform[3]; //positions where the items will be placed
-    Dictionary<itemType, bool> isItemTypePlaced = new Dictionary<itemType, bool>()
+    Dictionary<ItemType, bool> isItemTypePlaced = new Dictionary<ItemType, bool>()
     {
-        {itemType.Chalice, false},
-        {itemType.HolyOil, false},
-        {itemType.Rosary, false}
+        {ItemType.Chalice, false},
+        {ItemType.HolyOil, false},
+        {ItemType.Rosary, false}
     };
 
     //Open / close door
@@ -26,7 +26,7 @@ public class AltarController : MonoBehaviour, IInteractable
             return;
         }
 
-        if (inventoryItem.item.itemType == itemType.Chalice || inventoryItem.item.itemType == itemType.HolyOil || inventoryItem.item.itemType == itemType.Rosary)
+        if (inventoryItem.item.itemType == ItemType.Chalice || inventoryItem.item.itemType == ItemType.HolyOil || inventoryItem.item.itemType == ItemType.Rosary)
         {
             PlaceItem(inventoryItem);
             
@@ -38,20 +38,20 @@ public class AltarController : MonoBehaviour, IInteractable
     }
 
     void PlaceItem(ItemController itemController) {
-        itemType currentItemType = itemController.item.itemType;
+        ItemType currentItemType = itemController.item.itemType;
         if (!isItemTypePlaced[currentItemType])
         {
             Vector3 dropPosition;
 
             switch (currentItemType)
             {
-                case itemType.Chalice:
+                case ItemType.Chalice:
                     dropPosition = itemSlots[0].position;
                     break;
-                case itemType.HolyOil:
+                case ItemType.HolyOil:
                     dropPosition = itemSlots[1].position;
                     break;
-                case itemType.Rosary:
+                case ItemType.Rosary:
                     dropPosition = itemSlots[2].position;
                     break;
                 default:
