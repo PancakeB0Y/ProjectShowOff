@@ -1,150 +1,153 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio; // Added for AudioMixer support
-
-
+using FMODUnity;
+using FMOD.Studio;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance { get; private set; }
 
-    // 2D Sounds that come from the sound manager
-
-    [Header("BG Music")]
-    [Space]
-
-    [SerializeField]
-    AudioSource audioSourceBG;
-    [Space]
-
-    [SerializeField] AudioClip bgMusic;
-
-
-    [Header("SFX")]
-    [Space]
-
-    [SerializeField]
-    AudioSource audioSourceSFX;
-    [Space]
-
-    // 3D Sounds that should be played from the object itself
+    [Header("2D Sounds (UI, Global SFX, etc.)")]
+    [SerializeField] EventReference bgMusicEvent;
+    [SerializeField] EventReference inventoryItemSelectedEvent;
+    [SerializeField] EventReference wrongItemChosenEvent;
 
     [Header("3D Object Sounds")]
-    [Space]
+    [SerializeField] EventReference doorOpenEvent;
+    [SerializeField] EventReference doorCloseEvent;
+    [SerializeField] EventReference windEvent;
+    [SerializeField] EventReference lightLanternEvent;
+    [SerializeField] EventReference candleOnEvent;
+    [SerializeField] EventReference candleOffEvent;
+    [SerializeField] EventReference statueFollowEvent;
+    [SerializeField] EventReference itemPickupEvent;
+    [SerializeField] EventReference statueSoundEvent;
+    [SerializeField] EventReference lockKeysClosingEvent;
 
-    [SerializeField] AudioClip doorOpen;
-    [SerializeField] AudioClip doorClose;
-    [SerializeField] AudioClip wind;
-    [SerializeField] AudioClip lightLantern;
-    [SerializeField] AudioClip candleOn;
-    [SerializeField] AudioClip candleOff;
-    [SerializeField] AudioClip statueFollow;
-    [SerializeField] AudioClip itemPickup;
-    [SerializeField] AudioClip inventoryItemSelected;
-    [SerializeField] AudioClip wrongItemChosen;
-    [SerializeField] AudioClip statueSound;
-    [SerializeField] AudioClip lockKeysClosing;
-
+    private EventInstance bgMusicInstance;
 
     void Awake()
     {
         if (instance != null && instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
+            return;
         }
-        else
+        instance = this;
+        // Uncomment if you want the sound manager to persist across scenes:
+        // DontDestroyOnLoad(this.gameObject);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 2D SOUNDS (One-shot, fire and forget)
+    // ─────────────────────────────────────────────────────────────
+    public void PlaySFX2D(EventReference eventRef)
+    {
+        if (eventRef.IsNull) return;
+        RuntimeManager.PlayOneShot(eventRef);
+
+    }
+    void Start()
+    {
+        PlayBackgroundMusic();
+    }
+
+    public void PlayInventoryItemSelected()
+    {
+        PlaySFX2D(inventoryItemSelectedEvent);
+    }
+
+    public void PlayWrongItemChosen()
+    {
+        PlaySFX2D(wrongItemChosenEvent);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // BACKGROUND MUSIC (Persistent, looped event instance)
+    // ─────────────────────────────────────────────────────────────
+    public void PlayBackgroundMusic()
+    {
+        if (bgMusicInstance.isValid())
         {
-            instance = this;
-            //DontDestroyOnLoad(this);
+            bgMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            bgMusicInstance.release();
         }
+
+        bgMusicInstance = RuntimeManager.CreateInstance(bgMusicEvent);
+        bgMusicInstance.start();
     }
 
-    // 2D Sounds
-
-    public void PlaySFXSound(AudioClip clip)
+    public void StopBackgroundMusic()
     {
-        if (clip != null)
+        if (bgMusicInstance.isValid())
         {
-            audioSourceSFX.PlayOneShot(clip);
+            bgMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            bgMusicInstance.release();
         }
     }
 
-    // Top Priority Sounds
-    //public void PlayBackgroundMusic()
-    //{
-    //    if (!backgroundMusicSource.isPlaying)
-    //    {
-    //        backgroundMusicSource.Play();
-    //    }
-    //}
-    //public void StopBackgroundMusic()
-    //{
-    //    if (backgroundMusicSource.isPlaying)
-    //    {
-    //        backgroundMusicSource.Stop();
-    //    }
-    //}
-
-    // 3D Sounds
-
-
-    // Two variations of the method depending on if the sender already has a reference to the audio source
-    private void Play3DSound(GameObject objectSoundIsComingFrom, AudioClip clip)
+    private void OnDestroy()
     {
-        if (objectSoundIsComingFrom.TryGetComponent<AudioSource>(out AudioSource objectAudioSource))
-        {
-            Play3DSound(objectAudioSource, clip);
-        }
+        StopBackgroundMusic();
     }
 
-    private void Play3DSound(AudioSource audioSourceOfObject, AudioClip clip)
+    // ─────────────────────────────────────────────────────────────
+    // 3D SOUNDS (Play at position of source GameObject)
+    // ─────────────────────────────────────────────────────────────
+    public void Play3DSound(EventReference eventRef, GameObject source)
     {
-        audioSourceOfObject.PlayOneShot(clip);
+        if (eventRef.IsNull || source == null) return;
+        RuntimeManager.PlayOneShot(eventRef, source.transform.position);
     }
 
-    public void PlayWindSound(GameObject objectSoundIsComingFrom)
+    public void PlayDoorOpenSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, wind);
+        Play3DSound(doorOpenEvent, source);
     }
 
-    public void PlayLightLanternSound(GameObject objectSoundIsComingFrom)
+    public void PlayDoorCloseSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, lightLantern);
+        Play3DSound(doorCloseEvent, source);
     }
 
-    public void PlayCandleOnSound(GameObject objectSoundIsComingFrom)
+    public void PlayWindSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, candleOn);
+        Play3DSound(windEvent, source);
     }
 
-    public void PlayCandleOffSound(GameObject objectSoundIsComingFrom)
+    public void PlayLightLanternSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, candleOff);
+        Play3DSound(lightLanternEvent, source);
     }
 
-    public void PlayItemPickupSound(GameObject objectSoundIsComingFrom)
+    public void PlayCandleOnSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, itemPickup);
+        Play3DSound(candleOnEvent, source);
     }
 
-    public void PlayInventoryItemSelectedSound(GameObject objectSoundIsComingFrom)
+    public void PlayCandleOffSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, inventoryItemSelected);
+        Play3DSound(candleOffEvent, source);
     }
 
-    public void PlayWrongItemChosenSound(GameObject objectSoundIsComingFrom)
+    public void PlayStatueFollowSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, wrongItemChosen);
+        Play3DSound(statueFollowEvent, source);
     }
 
-    public void PlayStatueSound(GameObject objectSoundIsComingFrom)
+    public void PlayItemPickupSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, statueSound);
-    } 
+        Play3DSound(itemPickupEvent, source);
+    }
 
-    public void PlayLockKeysClosingSound(GameObject objectSoundIsComingFrom)
+    public void PlayStatueSound(GameObject source)
     {
-        Play3DSound(objectSoundIsComingFrom, lockKeysClosing);
+        Play3DSound(statueSoundEvent, source);
+    }
+
+    public void PlayLockKeysClosingSound(GameObject source)
+    {
+        Play3DSound(lockKeysClosingEvent, source);
     }
 }
