@@ -62,8 +62,12 @@ public class AltarController : MonoBehaviour, IInteractable
             InventoryManager.instance.DropItem(itemController, dropPosition);
 
             isItemTypePlaced[currentItemType] = true;
+
+            //Disable the item so the player cannot interact with the object
+            itemController.DisableInteractions();
         }
     }
+
 
     bool areAllRitualItemsPlaced()
     {
