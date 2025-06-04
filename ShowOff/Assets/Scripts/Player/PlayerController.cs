@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
+
+        //if (moveInput.magnitude > 0 && SoundManager.instance != null) {
+        //    SoundManager.instance.PlayPlayerWalkSound(gameObject);
+        //}
     }
 
     void FixedUpdate()

@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] EventReference itemPickupEvent;
     [SerializeField] EventReference statueSoundEvent;
     [SerializeField] EventReference lockKeysClosingEvent;
+    [SerializeField] EventReference playerWalkEvent;
 
     private EventInstance bgMusicInstance;
 
@@ -149,5 +150,10 @@ public class SoundManager : MonoBehaviour
     public void PlayLockKeysClosingSound(GameObject source)
     {
         Play3DSound(lockKeysClosingEvent, source);
+    }
+
+    public void PlayPlayerWalkSound(GameObject source)
+    {
+        Play3DSound(playerWalkEvent, source);
     }
 }
