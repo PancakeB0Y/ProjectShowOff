@@ -25,4 +25,20 @@ public class ItemController : MonoBehaviour, IInteractable
     {
         return item == other.item;
     }
+
+    public void DisableInteractions()
+    {
+        DisableColliders();
+    }
+
+    //Disable colliders so the player cannot pick up the objects again
+    void DisableColliders()
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
+    }
 }
