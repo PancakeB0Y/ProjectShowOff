@@ -96,6 +96,6 @@ public class MatchstickCountPresenter : MonoBehaviour
 
     bool IsItemControllerMatchstick(ItemController itemController)
     {
-        return itemController.item.itemType == itemType.Matchstick;
+        return itemController.item.itemType == ItemType.Matchstick;
     }
 }
