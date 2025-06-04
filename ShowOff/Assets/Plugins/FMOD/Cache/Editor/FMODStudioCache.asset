@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Item_pickup
+  m_Name: event:/item_pickup
   m_EditorClassIdentifier: 
-  Path: event:/Item_pickup
+  Path: event:/item_pickup
   Guid:
     Data1: 1480348131
     Data2: 1307910283
@@ -27,6 +27,114 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 522
+--- !u!114 &-5972004779089891501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/long_candle
+  m_EditorClassIdentifier: 
+  Path: event:/long_candle
+  Guid:
+    Data1: 1988673336
+    Data2: 1138919859
+    Data3: 2057977266
+    Data4: 7825570
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5015
+--- !u!114 &-4651259368520760332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Wind_Sound
+  m_EditorClassIdentifier: 
+  Path: event:/Wind_Sound
+  Guid:
+    Data1: -1576931527
+    Data2: 1306621603
+    Data3: -1958357341
+    Data4: -1522100362
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2795
+--- !u!114 &-3991049730701799508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorLocked
+  m_EditorClassIdentifier: 
+  Path: event:/DoorLocked
+  Guid:
+    Data1: -1520463546
+    Data2: 1291442340
+    Data3: 1659695543
+    Data4: 1593518721
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1071
+--- !u!114 &-3856480503690706095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Wrong item chosen
+  m_EditorClassIdentifier: 
+  Path: event:/Wrong item chosen
+  Guid:
+    Data1: 1441408063
+    Data2: 1119320254
+    Data3: 444555918
+    Data4: 1979768399
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 313
 --- !u!114 &-3853865835776766406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,11 +150,119 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638845650228305263
+  lastModified: 638846393364087408
   FileSizes:
   - Name: Desktop
-    Value: 1254400
+    Value: 1673568
   Exists: 1
+--- !u!114 &-2162843106869272598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorOpenSound
+  m_EditorClassIdentifier: 
+  Path: event:/DoorOpenSound
+  Guid:
+    Data1: -537750797
+    Data2: 1300295128
+    Data3: 2064656286
+    Data4: -574918930
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 757
+--- !u!114 &-1887211297004031911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/lock-keys-closing-45423
+  m_EditorClassIdentifier: 
+  Path: event:/lock-keys-closing-45423
+  Guid:
+    Data1: -1620327256
+    Data2: 1102020777
+    Data3: -1212883580
+    Data4: -2032116385
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9432
+--- !u!114 &-1651493824686843649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/lightLantern
+  m_EditorClassIdentifier: 
+  Path: event:/lightLantern
+  Guid:
+    Data1: 1770956086
+    Data2: 1286991045
+    Data3: -1793513063
+    Data4: 149867638
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2638
+--- !u!114 &-1304591376274384410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/inventory item selected
+  m_EditorClassIdentifier: 
+  Path: event:/inventory item selected
+  Guid:
+    Data1: 1653118014
+    Data2: 1335424111
+    Data3: 1233902488
+    Data4: 900214983
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 835
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,20 +282,50 @@ MonoBehaviour:
   - {fileID: -7163338572255170163}
   - {fileID: 7449242741935629291}
   - {fileID: 1193721955290409918}
+  - {fileID: -1651493824686843649}
+  - {fileID: -5972004779089891501}
+  - {fileID: -4651259368520760332}
+  - {fileID: -1304591376274384410}
+  - {fileID: -3856480503690706095}
+  - {fileID: -3991049730701799508}
+  - {fileID: 8031357768398636413}
+  - {fileID: -1887211297004031911}
+  - {fileID: 8733565073952172298}
+  - {fileID: -2162843106869272598}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3853865835776766406}
   StringsBanks:
   - {fileID: 5564311582572970835}
   cacheVersion: 131847
-  cacheTime: 638845650228315182
+  cacheTime: 638846393364097271
   SerializableEventsDict:
-  - key: event:/Item_pickup
+  - key: event:/item_pickup
     index: 0
   - key: event:/Background_Always
     index: 1
   - key: event:/steps
     index: 2
+  - key: event:/lightLantern
+    index: 3
+  - key: event:/long_candle
+    index: 4
+  - key: event:/Wind_Sound
+    index: 5
+  - key: event:/inventory item selected
+    index: 6
+  - key: event:/Wrong item chosen
+    index: 7
+  - key: event:/DoorLocked
+    index: 8
+  - key: event:/DoorCloseSound
+    index: 9
+  - key: event:/lock-keys-closing-45423
+    index: 10
+  - key: event:/statue_Sound
+    index: 11
+  - key: event:/DoorOpenSound
+    index: 12
 --- !u!114 &1193721955290409918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,10 +368,10 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638845650228315182
+  lastModified: 638846393364097271
   FileSizes:
   - Name: Desktop
-    Value: 868
+    Value: 1380
   Exists: 1
 --- !u!114 &7449242741935629291
 MonoBehaviour:
@@ -154,3 +400,57 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 109635
+--- !u!114 &8031357768398636413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorCloseSound
+  m_EditorClassIdentifier: 
+  Path: event:/DoorCloseSound
+  Guid:
+    Data1: 63601534
+    Data2: 1110163342
+    Data3: 2001781162
+    Data4: -217175502
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 574
+--- !u!114 &8733565073952172298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/statue_Sound
+  m_EditorClassIdentifier: 
+  Path: event:/statue_Sound
+  Guid:
+    Data1: 1670907354
+    Data2: 1268942848
+    Data3: -701528448
+    Data4: 2139165329
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8829

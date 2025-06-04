@@ -1,42 +1,48 @@
-using UnityEngine;
+﻿using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class DoorAudioController : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [Header("FMOD Event References")]
+    [SerializeField] private EventReference doorOpenEvent;
+    [SerializeField] private EventReference doorCloseEvent;
+    [SerializeField] private EventReference doorNotOpeningEvent;
 
-    [SerializeField] private AudioClip doorOpen;
-    [SerializeField] private AudioClip doorClose;
-    [SerializeField] private AudioClip doorNotOpening;
+    private EventInstance currentInstance;
 
-    void Start()
+    private void StopCurrentSound()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (currentInstance.isValid())
+        {
+            currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); // 👈 Fully qualified
+            currentInstance.release();
+        }
+    }
+
+    private void PlaySound(EventReference soundEvent)
+    {
+        StopCurrentSound();
+        currentInstance = RuntimeManager.CreateInstance(soundEvent);
+        RuntimeManager.AttachInstanceToGameObject(currentInstance, gameObject); // ✅ Modern syntax
+        currentInstance.start();
     }
 
     public void PlayDoorOpenSound()
     {
-        if (audioSource.isPlaying)
-            audioSource.Stop();
 
-        audioSource.clip = doorOpen;
-        audioSource.Play();
+            PlaySound(doorOpenEvent);
+        
+        
     }
 
     public void PlayDoorCloseSound()
     {
-        if (audioSource.isPlaying)
-            audioSource.Stop();
-
-        audioSource.clip = doorClose;
-        audioSource.Play();
+        PlaySound(doorCloseEvent);
     }
 
     public void PlayDoorNotOpeningSound()
     {
-        if (audioSource.isPlaying)
-            audioSource.Stop();
-
-        audioSource.clip = doorNotOpening;
-        audioSource.Play();
+        PlaySound(doorNotOpeningEvent);
     }
 }

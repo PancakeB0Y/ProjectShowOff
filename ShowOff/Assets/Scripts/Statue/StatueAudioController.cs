@@ -1,36 +1,41 @@
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class StatueAudioController : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [SerializeField] private EventReference statueFollowEvent;
+
+    private EventInstance statueAudioInstance;
     private float initialDistanceToTarget;
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        // Create FMOD instance and attach to the GameObject
+        statueAudioInstance = RuntimeManager.CreateInstance(statueFollowEvent);
+        RuntimeManager.AttachInstanceToGameObject(statueAudioInstance, gameObject);
     }
 
     public void SetupPlayerFollowAudio(float initialDistanceToTarget)
     {
         this.initialDistanceToTarget = initialDistanceToTarget;
-        
-        audioSource.Play();
+        statueAudioInstance.start();
     }
 
     public void AdjustAudioSourceVolume(float agentRemainingDistance)
     {
-        // If correct remaining distance is not yet calculated
-        if (agentRemainingDistance == 0f
-            || agentRemainingDistance > initialDistanceToTarget)
+        if (agentRemainingDistance == 0f || agentRemainingDistance > initialDistanceToTarget)
             return;
 
-        Debug.Log($"Remaining: {agentRemainingDistance}; Initial: {initialDistanceToTarget}");
-        audioSource.volume = 1f - (Mathf.Clamp(agentRemainingDistance / initialDistanceToTarget, 0f, 1f));
+        float normalizedVolume = 1f - Mathf.Clamp(agentRemainingDistance / initialDistanceToTarget, 0f, 1f);
+        statueAudioInstance.setVolume(normalizedVolume);
+
+        Debug.Log($"Remaining: {agentRemainingDistance}; Initial: {initialDistanceToTarget}; Volume: {normalizedVolume}");
     }
 
     public void StopPlaying()
     {
-        audioSource.Stop();
-        audioSource.volume = 0f;
+        statueAudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        statueAudioInstance.release();
     }
 }
