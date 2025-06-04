@@ -68,7 +68,6 @@ public class AltarController : MonoBehaviour, IInteractable
         }
     }
 
-
     bool areAllRitualItemsPlaced()
     {
         foreach(bool value in isItemTypePlaced.Values)
@@ -85,5 +84,11 @@ public class AltarController : MonoBehaviour, IInteractable
     void PerformRitual()
     {
         Debug.Log("Perform Ritual");
+
+        LightSourceController[] lights = FindObjectsByType<LightSourceController>(FindObjectsSortMode.None);
+
+        foreach (LightSourceController light in lights) {
+            light.TurnLightOff();
+        }
     }
 }
