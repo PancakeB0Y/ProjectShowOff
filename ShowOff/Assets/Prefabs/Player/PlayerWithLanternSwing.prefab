@@ -543,10 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
   MatchstickPrefab: {fileID: 7567259067091355523, guid: e4c4eda37bfad464296611be18a00e4e, type: 3}
-  startInventoryContent:
-    items:
-    - itemType: 3
-      amount: 3
+  startInventoryContent: 030000000300000003000000
   inventorySize: 20
   isInventoryOpenForInteraction: 0
 --- !u!114 &7754539413462239560

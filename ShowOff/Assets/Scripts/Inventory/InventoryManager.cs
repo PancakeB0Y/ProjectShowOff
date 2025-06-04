@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
     [SerializeField] GameObject MatchstickPrefab;
-    [SerializeField] InventoryContent startInventoryContent;
+    [SerializeField] ItemType[] startInventoryContent;
 
     [Header("Properties")]
     [SerializeField] int inventorySize = 20;
@@ -409,27 +409,20 @@ public class InventoryManager : MonoBehaviour
     //Fill the inventory according to startInventoryContent
     void ParseStartingInventory()
     {
-        if(startInventoryContent == null || MatchstickPrefab == null)
+        if(startInventoryContent == null || startInventoryContent.Length == 0|| MatchstickPrefab == null)
         {
             return;
         }
 
-        foreach(ItemAndAmount itemAndAmount in startInventoryContent.items)
+        foreach(ItemType itemType in startInventoryContent)
         {
-            ItemType itemType = itemAndAmount.itemType;
-            int amount = itemAndAmount.amount;
-
             if(itemType == ItemType.Matchstick)
             {
-                for(int i = 0; i < amount; i++)
-                {
-                    GameObject newMatchstick = Instantiate(MatchstickPrefab);
+                GameObject newMatchstick = Instantiate(MatchstickPrefab);
 
-                    newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController);
+                newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController);
 
-                    PickupItem(newMatchstickController);
-                }
-                
+                PickupItem(newMatchstickController);
             }
         }
         
