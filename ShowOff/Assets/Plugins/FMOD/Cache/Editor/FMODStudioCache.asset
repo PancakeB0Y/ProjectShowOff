@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7560304629029951466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Unlocking with key
+  m_EditorClassIdentifier: 
+  Path: event:/Unlocking with key
+  Guid:
+    Data1: -1884475893
+    Data2: 1282750212
+    Data3: -401149028
+    Data4: 1150910138
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &-7163338572255170163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +177,10 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638846393364087408
+  lastModified: 638847182534136347
   FileSizes:
   - Name: Desktop
-    Value: 1673568
+    Value: 1575424
   Exists: 1
 --- !u!114 &-2162843106869272598
 MonoBehaviour:
@@ -182,33 +209,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 757
---- !u!114 &-1887211297004031911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/lock-keys-closing-45423
-  m_EditorClassIdentifier: 
-  Path: event:/lock-keys-closing-45423
-  Guid:
-    Data1: -1620327256
-    Data2: 1102020777
-    Data3: -1212883580
-    Data4: -2032116385
-  Banks:
-  - {fileID: -3853865835776766406}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 9432
 --- !u!114 &-1651493824686843649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2638
+  Length: 2550
 --- !u!114 &-1304591376274384410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,16 +289,16 @@ MonoBehaviour:
   - {fileID: -3856480503690706095}
   - {fileID: -3991049730701799508}
   - {fileID: 8031357768398636413}
-  - {fileID: -1887211297004031911}
   - {fileID: 8733565073952172298}
   - {fileID: -2162843106869272598}
+  - {fileID: -7560304629029951466}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3853865835776766406}
   StringsBanks:
   - {fileID: 5564311582572970835}
   cacheVersion: 131847
-  cacheTime: 638846393364097271
+  cacheTime: 638847182534146313
   SerializableEventsDict:
   - key: event:/item_pickup
     index: 0
@@ -320,11 +320,11 @@ MonoBehaviour:
     index: 8
   - key: event:/DoorCloseSound
     index: 9
-  - key: event:/lock-keys-closing-45423
-    index: 10
   - key: event:/statue_Sound
-    index: 11
+    index: 10
   - key: event:/DoorOpenSound
+    index: 11
+  - key: event:/Unlocking with key
     index: 12
 --- !u!114 &1193721955290409918
 MonoBehaviour:
@@ -368,10 +368,10 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638846393364097271
+  lastModified: 638847182534146313
   FileSizes:
   - Name: Desktop
-    Value: 1380
+    Value: 1366
   Exists: 1
 --- !u!114 &7449242741935629291
 MonoBehaviour:
@@ -399,7 +399,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 109635
+  Length: 109500
 --- !u!114 &8031357768398636413
 MonoBehaviour:
   m_ObjectHideFlags: 0
