@@ -15,14 +15,17 @@ public class LightSourceController : MonoBehaviour
         lightSource = GetComponentInChildren<Light>(true).gameObject;
     }
 
-    public void TurnLightOn()
+    public void TurnLightOn(bool playSound = true)
     {
         lightSource.SetActive(true);
 
         StartCoroutine(TurnLanternOffCoroutine());
         IsLightOn = true;
 
-        SoundManager.instance.PlayCandleOnSound(gameObject);
+        if (playSound)
+        {
+            SoundManager.instance.PlayCandleOnSound(gameObject);
+        }
     }
 
     //Turn light off after X seconds - ONLY for testing

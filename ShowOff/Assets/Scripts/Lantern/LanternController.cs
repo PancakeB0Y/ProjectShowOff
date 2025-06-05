@@ -106,7 +106,7 @@ public class LanternController : MonoBehaviour
         if (lightSourceController != null)
         {
             //Turn lantern on
-            lightSourceController.TurnLightOn();
+            lightSourceController.TurnLightOn(false);
         }   
     }
 }
