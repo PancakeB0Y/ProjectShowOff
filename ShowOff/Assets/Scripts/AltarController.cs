@@ -29,10 +29,22 @@ public class AltarController : MonoBehaviour, IInteractable
         if (inventoryItem.item.itemType == ItemType.Chalice || inventoryItem.item.itemType == ItemType.HolyOil || inventoryItem.item.itemType == ItemType.Rosary)
         {
             PlaceItem(inventoryItem);
-            
+
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayInventoryItemSelected();
+            }
+
             if (areAllRitualItemsPlaced())
             {
                 PerformRitual();
+            }
+        }
+        else
+        {
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayWrongItemChosen();
             }
         }
     }
@@ -85,10 +97,13 @@ public class AltarController : MonoBehaviour, IInteractable
     {
         Debug.Log("Perform Ritual");
 
+        //TURN ALL LIGHTS OFF
         LightSourceController[] lights = FindObjectsByType<LightSourceController>(FindObjectsSortMode.None);
 
         foreach (LightSourceController light in lights) {
             light.TurnLightOff();
         }
+
+
     }
 }

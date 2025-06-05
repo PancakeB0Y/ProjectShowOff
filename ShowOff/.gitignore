@@ -94,6 +94,9 @@ crashlytics-build.properties
 /[Aa]ssets/**/FMODStudioCache.asset.meta
 /[Aa]ssets/Plugins/FMOD/Cache.meta
 /[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
+/[Aa]ssets/Plugins/FMOD/Cache/
+/[Aa]ssets/Plugins/FMOD/Cache/Editor/
+/[Aa]ssets/Plugins/FMOD/platforms/mac/lib/
 
 # Log-files
 fmod.log
