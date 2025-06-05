@@ -201,10 +201,10 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638847229464340741
+  lastModified: 638847272636854337
   FileSizes:
   - Name: Desktop
-    Value: 3384448
+    Value: 3384320
   Exists: 1
 --- !u!114 &-2162843106869272598
 MonoBehaviour:
@@ -351,7 +351,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 5564311582572970835}
   cacheVersion: 131847
-  cacheTime: 638847229464350712
+  cacheTime: 638847272636864304
   SerializableEventsDict:
   - key: event:/item_pickup
     index: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   - {fileID: -3853865835776766406}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -423,7 +423,7 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638847229464350712
+  lastModified: 638847272636864304
   FileSizes:
   - Name: Desktop
     Value: 1468
