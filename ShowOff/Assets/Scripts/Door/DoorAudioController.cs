@@ -15,7 +15,7 @@ public class DoorAudioController : MonoBehaviour
     {
         if (currentInstance.isValid())
         {
-            currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); // 👈 Fully qualified
+            currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); 
             currentInstance.release();
         }
     }
@@ -24,16 +24,13 @@ public class DoorAudioController : MonoBehaviour
     {
         StopCurrentSound();
         currentInstance = RuntimeManager.CreateInstance(soundEvent);
-        RuntimeManager.AttachInstanceToGameObject(currentInstance, gameObject); // ✅ Modern syntax
+        RuntimeManager.AttachInstanceToGameObject(currentInstance, gameObject);
         currentInstance.start();
     }
 
     public void PlayDoorOpenSound()
     {
-
-            PlaySound(doorOpenEvent);
-        
-        
+        PlaySound(doorOpenEvent);
     }
 
     public void PlayDoorCloseSound()

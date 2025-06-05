@@ -19,9 +19,14 @@ public class PlayerController : MonoBehaviour
     Light lanternLight;
     List<Light> currentLights = new List<Light>();
 
+    PlayerAudioController playerAudioController;
+
+    bool playOnce = false;
     void Awake()
     {
         LightSourceCollisionDetection.OnLightDisabled += DeregisterLight;
+
+        playerAudioController = GetComponent<PlayerAudioController>();
     }
 
     void Start()
@@ -35,9 +40,22 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
 
-        //if (moveInput.magnitude > 0 && SoundManager.instance != null) {
-        //    SoundManager.instance.PlayPlayerWalkSound(gameObject);
-        //}
+        if(moveInput.magnitude <= 0)
+        {
+            return;
+        }
+
+        if(playerAudioController == null)
+        {
+            playerAudioController = GetComponent<PlayerAudioController>();
+        }
+
+        if (playerAudioController != null && !playOnce) {
+            playerAudioController.PlayWalkSound();
+
+            playOnce = true;
+        }
+        
     }
 
     void FixedUpdate()

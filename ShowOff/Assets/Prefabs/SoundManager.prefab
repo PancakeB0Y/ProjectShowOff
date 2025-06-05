@@ -44,8 +44,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1810476741630870992, guid: b271f321c8e4fee4f9570143cfabc3b0, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 22015b8114cfcde43891d65c58717fda, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 01038cb7ab29e07468b55cd2dad34c35, type: 3}
+  m_Resource: {fileID: 8300000, guid: 01038cb7ab29e07468b55cd2dad34c35, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -240,18 +240,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e44c9199bb66ee44a93a141f018e6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSourceBG: {fileID: 7564955817540799085}
-  bgMusic: {fileID: 8300000, guid: 22015b8114cfcde43891d65c58717fda, type: 3}
-  audioSourceSFX: {fileID: 324742102451448949}
-  doorOpen: {fileID: 8300000, guid: 24527ea226152664f8cf9bfb1aef91fe, type: 3}
-  doorClose: {fileID: 8300000, guid: fb0b5bfe838b29d4da9c14ed0cba98a3, type: 3}
-  wind: {fileID: 8300000, guid: a6f110634f188c845906ed187ccbb207, type: 3}
-  lightLantern: {fileID: 8300000, guid: b32b823a0f9a36c439d532643557bb80, type: 3}
-  candleOn: {fileID: 8300000, guid: 127a4ff4ebfcbfa4e8d9531e2aac97dc, type: 3}
-  candleOff: {fileID: 8300000, guid: 922348de8b1628f45b036a515306c272, type: 3}
-  statueFollow: {fileID: 8300000, guid: f7c6ea509bd6be24485169c5ee2553d4, type: 3}
-  itemPickup: {fileID: 8300000, guid: dbf6d19c205a5ef44b24a56f00213736, type: 3}
-  inventoryItemSelected: {fileID: 8300000, guid: 5e9c985c24710e746a95047beaf990c9, type: 3}
-  wrongItemChosen: {fileID: 8300000, guid: b22fe7fbc1fe2f94a9e53d8dde520092, type: 3}
-  statueSound: {fileID: 8300000, guid: f7c6ea509bd6be24485169c5ee2553d4, type: 3}
-  lockKeysClosing: {fileID: 8300000, guid: 1b415780c08d8d04a96ed55ec187b45c, type: 3}
+  bgMusicEvent:
+    Guid:
+      Data1: 1277785833
+      Data2: 1156862461
+      Data3: 2012770740
+      Data4: 2132633191
+    Path: event:/Background_Always
+  inventoryItemSelectedEvent:
+    Guid:
+      Data1: 1653118014
+      Data2: 1335424111
+      Data3: 1233902488
+      Data4: 900214983
+    Path: event:/inventory item selected
+  wrongItemChosenEvent:
+    Guid:
+      Data1: 1441408063
+      Data2: 1119320254
+      Data3: 444555918
+      Data4: 1979768399
+    Path: event:/Wrong item chosen
+  doorOpenEvent:
+    Guid:
+      Data1: -537750797
+      Data2: 1300295128
+      Data3: 2064656286
+      Data4: -574918930
+    Path: event:/DoorOpenSound
+  doorCloseEvent:
+    Guid:
+      Data1: 63601534
+      Data2: 1110163342
+      Data3: 2001781162
+      Data4: -217175502
+    Path: event:/DoorCloseSound
+  windEvent:
+    Guid:
+      Data1: -1576931527
+      Data2: 1306621603
+      Data3: -1958357341
+      Data4: -1522100362
+    Path: event:/Wind_Sound
+  lightLanternEvent:
+    Guid:
+      Data1: 1770956086
+      Data2: 1286991045
+      Data3: -1793513063
+      Data4: 149867638
+    Path: event:/lightLantern
+  candleOnEvent:
+    Guid:
+      Data1: 1988673336
+      Data2: 1138919859
+      Data3: 2057977266
+      Data4: 7825570
+    Path: event:/long_candle
+  candleOffEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  statueFollowEvent:
+    Guid:
+      Data1: 1670907354
+      Data2: 1268942848
+      Data3: -701528448
+      Data4: 2139165329
+    Path: event:/statue_Sound
+  itemPickupEvent:
+    Guid:
+      Data1: 1480348131
+      Data2: 1307910283
+      Data3: 1378821807
+      Data4: 559706733
+    Path: event:/Item_pickup
+  statueSoundEvent:
+    Guid:
+      Data1: 1670907354
+      Data2: 1268942848
+      Data3: -701528448
+      Data4: 2139165329
+    Path: event:/statue_Sound
+  lockKeysClosingEvent:
+    Guid:
+      Data1: -1884475893
+      Data2: 1282750212
+      Data3: -401149028
+      Data4: 1150910138
+    Path: event:/Unlocking with key
+  playerWalkEvent:
+    Guid:
+      Data1: -452254251
+      Data2: 1212449469
+      Data3: -711354971
+      Data4: 1605890313
+    Path: event:/steps
