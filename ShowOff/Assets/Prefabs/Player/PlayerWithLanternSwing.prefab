@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18073318908df604c93a9f9456a72ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: 0
   playerRoot: {fileID: 5811177106060749228}
   swingStrength: 4
   rotationInfluence: 0.1
@@ -583,7 +584,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7521735381702261685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc917000c6df3e4b91644121c4ca476, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce311ee88a362943ac83df3f725f8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerWalkEvent:
