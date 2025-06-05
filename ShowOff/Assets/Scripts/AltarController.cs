@@ -85,10 +85,13 @@ public class AltarController : MonoBehaviour, IInteractable
     {
         Debug.Log("Perform Ritual");
 
+        //TURN ALL LIGHTS OFF
         LightSourceController[] lights = FindObjectsByType<LightSourceController>(FindObjectsSortMode.None);
 
         foreach (LightSourceController light in lights) {
             light.TurnLightOff();
         }
+
+
     }
 }
