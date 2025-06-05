@@ -81,6 +81,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5015
+--- !u!114 &-5533118921688558759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Church_Background/ZoneIntensity
+  m_EditorClassIdentifier: 
+  Name: ZoneIntensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3793728972
+    data2: 2328466613
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-4651259368520760332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,10 +201,10 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638847182534136347
+  lastModified: 638847229464340741
   FileSizes:
   - Name: Desktop
-    Value: 1575424
+    Value: 3384448
   Exists: 1
 --- !u!114 &-2162843106869272598
 MonoBehaviour:
@@ -263,6 +287,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 835
+--- !u!114 &-161905126274016290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Church_Background
+  m_EditorClassIdentifier: 
+  Path: event:/Church_Background
+  Guid:
+    Data1: 748081765
+    Data2: 1097235403
+    Data3: 723265665
+    Data4: -407303077
+  Banks:
+  - {fileID: -3853865835776766406}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5533118921688558759}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 121688
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,13 +344,14 @@ MonoBehaviour:
   - {fileID: 8733565073952172298}
   - {fileID: -2162843106869272598}
   - {fileID: -7560304629029951466}
+  - {fileID: -161905126274016290}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3853865835776766406}
   StringsBanks:
   - {fileID: 5564311582572970835}
   cacheVersion: 131847
-  cacheTime: 638847182534146313
+  cacheTime: 638847229464350712
   SerializableEventsDict:
   - key: event:/item_pickup
     index: 0
@@ -326,6 +379,8 @@ MonoBehaviour:
     index: 11
   - key: event:/Unlocking with key
     index: 12
+  - key: event:/Church_Background
+    index: 13
 --- !u!114 &1193721955290409918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,10 +423,10 @@ MonoBehaviour:
   Path: Assets/Iknow/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638847182534146313
+  lastModified: 638847229464350712
   FileSizes:
   - Name: Desktop
-    Value: 1366
+    Value: 1468
   Exists: 1
 --- !u!114 &7449242741935629291
 MonoBehaviour:
