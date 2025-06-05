@@ -32,7 +32,19 @@ public class LockedDoorController : DoorController
 
             isDoorLocked = false;
 
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayInventoryItemSelected();
+            }
+
             Interact();
+        }
+        else
+        {
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayWrongItemChosen();
+            }
         }
     }
 }
