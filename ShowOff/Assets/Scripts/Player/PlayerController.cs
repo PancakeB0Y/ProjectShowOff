@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
 
     PlayerAudioController playerAudioController;
 
-    bool playOnce = false;
     void Awake()
     {
         LightSourceCollisionDetection.OnLightDisabled += DeregisterLight;
@@ -50,10 +49,8 @@ public class PlayerController : MonoBehaviour
             playerAudioController = GetComponent<PlayerAudioController>();
         }
 
-        if (playerAudioController != null && !playOnce) {
+        if (playerAudioController != null) {
             playerAudioController.PlayWalkSound();
-
-            playOnce = true;
         }
         
     }
