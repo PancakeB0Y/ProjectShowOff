@@ -41,7 +41,5 @@ public class LightSourceController : MonoBehaviour
         lightSource.SetActive(false);
 
         IsLightOn = false;
-
-        SoundManager.instance.PlayCandleOffSound(gameObject);
     }
 }
