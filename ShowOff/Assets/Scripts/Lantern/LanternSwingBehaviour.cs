@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class LanternSwingBehaviour : MonoBehaviour
 {
+    [SerializeField] private LanternSwingingSettings settings;
+
     [Header("References")]
     [SerializeField] private Transform playerRoot; // Assign the Player or PlayerWithLanternSwing
 
@@ -47,6 +49,24 @@ public class LanternSwingBehaviour : MonoBehaviour
             deltaTime = Time.unscaledDeltaTime;
         }
 
+        switch (settings)
+        {
+            case LanternSwingingSettings.RotateBoth:
+                RotateBoth(deltaTime);
+                break;
+            case LanternSwingingSettings.RotateSide:
+                RotateSide(deltaTime);
+                break;
+            case LanternSwingingSettings.RotateFrontBack:
+                RotateFrontBack(deltaTime);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void RotateBoth(float deltaTime)
+    {
         // Movement Influence
         Vector3 playerDelta = (playerRoot.position - lastPlayerPosition) / deltaTime;
         Vector3 localDelta = playerRoot.InverseTransformDirection(playerDelta);
@@ -75,4 +95,64 @@ public class LanternSwingBehaviour : MonoBehaviour
         lastPlayerPosition = playerRoot.position;
         lastPlayerYRotation = currentYRotation;
     }
+
+    private void RotateSide(float deltaTime)
+    {
+        // Movement Influence
+        Vector3 playerDelta = (playerRoot.position - lastPlayerPosition) / deltaTime;
+        Vector3 localDelta = playerRoot.InverseTransformDirection(playerDelta);
+        Vector3 movementSwing = new Vector3(-localDelta.x, 0f, 0f) * swingStrength; // Only sideways movement
+
+        // Rotation Influence
+        float currentYRotation = playerRoot.eulerAngles.y;
+        float rotationDelta = Mathf.DeltaAngle(lastPlayerYRotation, currentYRotation) / deltaTime;
+        Vector3 rotationSwing = new Vector3(-rotationDelta * rotationInfluence, 0f, 0f);
+
+        // Combine Both
+        Vector3 targetOffset = movementSwing + rotationSwing;
+
+        // Spring-like Swing Smoothing
+        Vector3 acceleration = (targetOffset - swingOffset) * swingStrength;
+        swingVelocity += acceleration * deltaTime;
+        swingVelocity *= Mathf.Exp(-damping * deltaTime);
+        swingOffset += swingVelocity * deltaTime;
+
+        swingOffset = Vector3.ClampMagnitude(swingOffset, maxSwingAngle);
+
+        // Apply Rotation to Lantern
+        transform.localRotation = Quaternion.Euler(0f, 0f, swingOffset.x);
+
+        // Store Previous Frame
+        lastPlayerPosition = playerRoot.position;
+        lastPlayerYRotation = currentYRotation;
+    }
+
+    private void RotateFrontBack(float deltaTime)
+    {
+        // Movement Influence
+        Vector3 playerDelta = (playerRoot.position - lastPlayerPosition) / deltaTime;
+        Vector3 localDelta = playerRoot.InverseTransformDirection(playerDelta);
+        Vector3 movementSwing = new Vector3(-localDelta.x, 0f, localDelta.z) * swingStrength;
+
+        // Spring-like Swing Smoothing
+        Vector3 acceleration = (movementSwing - swingOffset) * swingStrength;
+        swingVelocity += acceleration * deltaTime;
+        swingVelocity *= Mathf.Exp(-damping * deltaTime);
+        swingOffset += swingVelocity * deltaTime;
+
+        swingOffset = Vector3.ClampMagnitude(swingOffset, maxSwingAngle);
+
+        // Apply Rotation to Lantern
+        transform.localRotation = Quaternion.Euler(swingOffset.z, 0f, 0f);
+
+        // Store Previous Frame
+        lastPlayerPosition = playerRoot.position;
+    }
+}
+
+public enum LanternSwingingSettings
+{
+    RotateBoth,
+    RotateSide,
+    RotateFrontBack
 }
