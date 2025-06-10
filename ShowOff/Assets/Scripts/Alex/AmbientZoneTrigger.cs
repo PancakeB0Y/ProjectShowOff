@@ -10,7 +10,7 @@ public class AmbientZoneTrigger : MonoBehaviour
 
     private EventInstance ambientInstance;
     private Coroutine fadeCoroutine;
-    private int playerInsideCount = 0; // Track how many zones the player is in
+    private int playerInsideCount = 0; 
 
     private void Start()
     {
@@ -28,10 +28,10 @@ public class AmbientZoneTrigger : MonoBehaviour
         {
             playerInsideCount++;
 
-            if (playerInsideCount == 1 && ambientInstance.isValid()) // First zone entered
+            if (playerInsideCount == 1 && ambientInstance.isValid()) 
             {
                 if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-                fadeCoroutine = StartCoroutine(FadeParameter("ZoneIntensity", 1f, 2f)); // Fade in
+                fadeCoroutine = StartCoroutine(FadeParameter("ZoneIntensity", 1f, 2f)); 
             }
         }
     }
@@ -40,12 +40,12 @@ public class AmbientZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInsideCount = Mathf.Max(0, playerInsideCount - 1); // Prevent negative count
+            playerInsideCount = Mathf.Max(0, playerInsideCount - 1); 
 
-            if (playerInsideCount == 0 && ambientInstance.isValid()) // Last zone exited
+            if (playerInsideCount == 0 && ambientInstance.isValid()) 
             {
                 if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-                fadeCoroutine = StartCoroutine(FadeParameter("ZoneIntensity", 0f, 4f)); // Fade out
+                fadeCoroutine = StartCoroutine(FadeParameter("ZoneIntensity", 0f, 4f)); 
             }
         }
     }
