@@ -584,16 +584,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7521735381702261685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8281c46a82f9143b3f87b854466d4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 59765993a982455409c999f16b246717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerWalkEvent:
     Guid:
-      Data1: -452254251
-      Data2: 1212449469
-      Data3: -711354971
-      Data4: 1605890313
-    Path: event:/steps
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!82 &2420344819087947165
 AudioSource:
   m_ObjectHideFlags: 0
