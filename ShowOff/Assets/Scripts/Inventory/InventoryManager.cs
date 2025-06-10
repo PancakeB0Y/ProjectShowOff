@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
+using System.Runtime.CompilerServices;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -107,7 +108,7 @@ public class InventoryManager : MonoBehaviour
             EnableInventory();
         }
 
-        AddItemInteractions(interactableItem);
+        AddItemInteractions(interactableItem, OnClickItem);
 
         isInventoryOpenForInteraction = true;
 
@@ -118,20 +119,20 @@ public class InventoryManager : MonoBehaviour
     }
 
     //Make items work as buttons for specific interactions
-    void AddItemInteractions(IInteractable interactableItem)
+    void AddItemInteractions(IInteractable interactableItem, UnityEngine.Events.UnityAction<UnityEngine.UI.Button, ItemController, IInteractable> ButtonFunction)
     {
         foreach (UIItemController uiItem in uiItems)
         {
-            AddItemInteraction(uiItem, interactableItem);
+            AddItemInteraction(uiItem, interactableItem, ButtonFunction);
         }
     }
 
-    void AddItemInteraction(UIItemController uiItem, IInteractable interactableItem)
+    void AddItemInteraction(UIItemController uiItem, IInteractable interactableItem, UnityEngine.Events.UnityAction<UnityEngine.UI.Button, ItemController, IInteractable> ButtonFunction)
     {
         UnityEngine.UI.Button itemButton = uiItem.GetComponent<UnityEngine.UI.Button> ();
 
         if (itemButton != null) {
-            itemButton.onClick.AddListener(() => OnClickItem(itemButton, uiItem.itemController, interactableItem));
+            itemButton.onClick.AddListener(() => ButtonFunction(itemButton, uiItem.itemController, interactableItem));
         }
     }
 
@@ -146,6 +147,22 @@ public class InventoryManager : MonoBehaviour
 
         //pass the pressed inventory item to the interactable item in the scene 
         if (itemController != null) {
+            interactableItem.InteractWithInventory(itemController);
+        }
+    }
+
+    //Button function to inspect item when clicked
+    void OnClickInspect(UnityEngine.UI.Button button, ItemController itemController, IInteractable interactableItem)
+    {
+        //Close inventory and enable player movement
+        PlayerInputs.instance.OnToggleInventory();
+
+        //Disable button functionality
+        button.onClick.RemoveAllListeners();
+
+        //pass the pressed inventory item to the interactable item in the scene 
+        if (itemController != null)
+        {
             interactableItem.InteractWithInventory(itemController);
         }
     }
