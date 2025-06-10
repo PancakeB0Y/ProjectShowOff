@@ -5205,6 +5205,116 @@ MonoBehaviour:
   rotationInfluence: 0.1
   damping: 1
   maxSwingAngle: 60
+--- !u!1 &2165692781602457165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4350608167876259543}
+  - component: {fileID: 7889504285772197140}
+  - component: {fileID: 5240145135023106090}
+  - component: {fileID: 2648280982292904708}
+  - component: {fileID: 2569773883558858140}
+  m_Layer: 2
+  m_Name: LanternCollTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4350608167876259543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165692781602457165}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.8190004, y: 1.017, z: 0.55400074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8201669633873617018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &7889504285772197140
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165692781602457165}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!135 &5240145135023106090
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165692781602457165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.31
+  m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!114 &2648280982292904708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165692781602457165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3ceb87516915b46bfd4f7ca07f86bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5398418852012934799}
+  shouldRotateWithPlayer: 0
+--- !u!114 &2569773883558858140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165692781602457165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9190b763bd22624c9bb53e8a2b43c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushVector: {x: 0, y: 0, z: 0}
 --- !u!1 &2168101628473835960
 GameObject:
   m_ObjectHideFlags: 0
@@ -5218,7 +5328,6 @@ GameObject:
   - component: {fileID: 2028671570894050238}
   - component: {fileID: 7435386794948836795}
   - component: {fileID: 7953165300056973541}
-  - component: {fileID: 8938044780585212288}
   - component: {fileID: 5879108810327512143}
   - component: {fileID: 5032484333408597045}
   - component: {fileID: 7037484640488478760}
@@ -5345,33 +5454,12 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &8938044780585212288
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2168101628473835960}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.6, y: 2, z: 1.4}
-  m_Center: {x: 0.25, y: 0, z: 0.08}
 --- !u!114 &5879108810327512143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5444,6 +5532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
+  MatchstickPrefab: {fileID: 0}
+  startInventoryContent: 
   inventorySize: 20
   isInventoryOpenForInteraction: 0
 --- !u!114 &2673964722487650788
@@ -6434,6 +6524,7 @@ Transform:
   m_Children:
   - {fileID: 5398418852012934799}
   - {fileID: 4675946352711504659}
+  - {fileID: 4350608167876259543}
   - {fileID: 6011912049276241149}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6532,7 +6623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6011912049276241149}
-  - component: {fileID: 7178480149398706569}
+  - component: {fileID: 8815470779588179490}
   - component: {fileID: 252809576978691033}
   m_Layer: 2
   m_Name: LanternParent
@@ -6557,7 +6648,7 @@ Transform:
   - {fileID: 8718731957225812792}
   m_Father: {fileID: 8201669633873617018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7178480149398706569
+--- !u!114 &8815470779588179490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6566,11 +6657,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9179271996684405329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3ceb87516915b46bfd4f7ca07f86bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 23e33f121009bfb48851bd82d6c2ab02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5398418852012934799}
-  shouldRotateWithPlayer: 1
+  collDetector: {fileID: 2569773883558858140}
 --- !u!114 &252809576978691033
 MonoBehaviour:
   m_ObjectHideFlags: 0
