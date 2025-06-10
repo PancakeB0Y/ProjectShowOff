@@ -1,9 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AltarController : MonoBehaviour, IInteractable
 {
     public string interactText { get; } = "Press [E] to interact";
+
+    [SerializeField] private float secondsWaitBeforeLightsBackOn = 1.0f;
+    [SerializeField] private float secondsWaitBeforeStatueDestroy = 1.0f;
 
     [SerializeField] Transform[] itemSlots = new Transform[3]; //positions where the items will be placed
     Dictionary<ItemType, bool> isItemTypePlaced = new Dictionary<ItemType, bool>()
@@ -85,6 +89,9 @@ public class AltarController : MonoBehaviour, IInteractable
     {
         Debug.Log("Perform Ritual");
 
+        NavMeshMoveBehaviour statue = FindFirstObjectByType<NavMeshMoveBehaviour>(FindObjectsInactive.Include);
+        statue.UpdateSpawnRanges();
+
         //TURN ALL LIGHTS OFF
         LightSourceController[] lights = FindObjectsByType<LightSourceController>(FindObjectsSortMode.None);
 
@@ -92,6 +99,25 @@ public class AltarController : MonoBehaviour, IInteractable
             light.TurnLightOff();
         }
 
+        StartCoroutine(TurnLightsBackOn(lights, statue));
+    }
 
+    IEnumerator TurnLightsBackOn(LightSourceController[] lights, NavMeshMoveBehaviour statue)
+    {
+        yield return new WaitForSeconds(secondsWaitBeforeLightsBackOn);
+
+        foreach (LightSourceController light in lights)
+        {
+            light.TurnLightOn();
+        }
+
+        StartCoroutine(DestroyStatue(statue));
+    }
+
+    IEnumerator DestroyStatue(NavMeshMoveBehaviour statue)
+    {
+        yield return new WaitForSeconds(secondsWaitBeforeStatueDestroy);
+
+        statue.GetDestroyed();
     }
 }
