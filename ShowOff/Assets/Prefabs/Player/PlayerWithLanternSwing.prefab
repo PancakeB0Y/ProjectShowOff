@@ -584,7 +584,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7521735381702261685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce311ee88a362943ac83df3f725f8e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f8281c46a82f9143b3f87b854466d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerWalkEvent:
