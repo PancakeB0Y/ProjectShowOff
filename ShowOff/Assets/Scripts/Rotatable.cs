@@ -1,16 +1,59 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rotatable : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private InputAction pressed, axis;
+
+    [SerializeField] private float rotationSpeed = 1;
+
+    public float distanceFromCamera = 1.5f;
+    private Vector2 rotation;
+
+    private bool rotateAllowed = false;
+
+
+    private void OnEnable()
     {
-        
+        pressed.Enable();
+        axis.Enable();
+
+        pressed.performed += _ => { StartCoroutine(Rotate()); };
+        pressed.canceled += _ => { rotateAllowed = false; };
+
+        axis.performed += context => { rotation = context.ReadValue<Vector2>(); };
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        pressed.Disable();
+        axis.Disable();
+
+        pressed.performed -= _ => { StartCoroutine(Rotate()); };
+        pressed.performed -= _ => { rotateAllowed = false; };
+
+        axis.performed -= context => { rotation = context.ReadValue<Vector2>(); };
+
+        StopAllCoroutines();
+        rotateAllowed = false;
+    }
+
+    void RotateCoroutine()
+    {
+        StartCoroutine(Rotate());
+    }
+
+    private IEnumerator Rotate()
+    {
+        rotateAllowed = true;
+
+        while (rotateAllowed) {
+            rotation *= rotationSpeed;
+            transform.Rotate(Vector3.up, rotation.x, Space.World);
+            transform.Rotate(-Camera.main.transform.right, rotation.y, Space.World);
+
+            yield return null;
+        }
     }
 }

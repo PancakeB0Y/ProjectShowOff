@@ -26,7 +26,11 @@ public class InventoryManager : MonoBehaviour
     GameObject inventoryUI; //UI inventory where all the inventory icons will be. Needs a Grid Layout Group component
     string inventoryUITag = "Inventory";
 
+    [HideInInspector] public bool isInventoryOpen = false;
     [HideInInspector] public bool isInventoryOpenForInteraction = false;
+    [HideInInspector] public bool isInspectingItem = false;
+
+    ItemController inspectedItem = null;
 
     //Text for using an item for an inventory interaction
     GameObject useItemTextPopup = null; //text to show interact button
@@ -60,7 +64,7 @@ public class InventoryManager : MonoBehaviour
     //Open / close inventory
     public void ToggleInventory()
     {
-        if (!IsInventoryOpen())
+        if (!isInventoryOpen)
         {
             EnableInventory();
         }
@@ -70,27 +74,28 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public bool IsInventoryOpen()
-    {
-        return inventoryUI.activeInHierarchy;
-    }
-
     //Make inventory visible in the scene
     void EnableInventory()
     {
         inventoryUI.SetActive(true);
+        isInventoryOpen = true;
+
         EnableCursor();
+
+        UpdateInventoryButtons();
 
         isInventoryOpenForInteraction = false;
     }
 
     //Hide inventory in the scene
-    void DisableInventory()
+    public void DisableInventory()
     {
         inventoryUI.SetActive(false);
+        isInventoryOpen = false;
+
         DisableCursor();
 
-        ResetItemButtons();
+        ResetInventoryButtons();
 
         isInventoryOpenForInteraction = false;
 
@@ -103,12 +108,16 @@ public class InventoryManager : MonoBehaviour
     //Open inventory for item interactions
     public void OpenInventoryInteraction(IInteractable interactableItem)
     {
-        if(!IsInventoryOpen())
+        if(!isInventoryOpen)
         {
             EnableInventory();
         }
 
-        AddItemInteractions(interactableItem, OnClickItem);
+        // remove previous button interaction
+        ResetInventoryButtons();
+
+        // add button interaction related to the interactableItem
+        AddItemInteractions(interactableItem);
 
         isInventoryOpenForInteraction = true;
 
@@ -118,25 +127,26 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    //Make items work as buttons for specific interactions
-    void AddItemInteractions(IInteractable interactableItem, UnityEngine.Events.UnityAction<UnityEngine.UI.Button, ItemController, IInteractable> ButtonFunction)
+    //Set an onClick function to the buttons of every inventory item
+    //The function is to used to interact with other objects (locked doors, altar, etc)
+    void AddItemInteractions(IInteractable interactableItem)
     {
         foreach (UIItemController uiItem in uiItems)
         {
-            AddItemInteraction(uiItem, interactableItem, ButtonFunction);
+            AddItemInteraction(uiItem, interactableItem);
         }
     }
 
-    void AddItemInteraction(UIItemController uiItem, IInteractable interactableItem, UnityEngine.Events.UnityAction<UnityEngine.UI.Button, ItemController, IInteractable> ButtonFunction)
+    void AddItemInteraction(UIItemController uiItem, IInteractable interactableItem)
     {
         UnityEngine.UI.Button itemButton = uiItem.GetComponent<UnityEngine.UI.Button> ();
 
         if (itemButton != null) {
-            itemButton.onClick.AddListener(() => ButtonFunction(itemButton, uiItem.itemController, interactableItem));
+            itemButton.onClick.AddListener(() => OnClickItem(itemButton, uiItem.itemController, interactableItem));
         }
     }
 
-    //Button function for the inventory items
+    //The function is to used to interact with other objects (locked doors, altar, etc)
     void OnClickItem(UnityEngine.UI.Button button, ItemController itemController, IInteractable interactableItem)
     {
         //Close inventory and enable player movement
@@ -151,24 +161,73 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //Set an onClick function to the buttons of every inventory item
+    //The function opens the item for inspection
+    void UpdateInventoryButtons()
+    {
+        foreach (UIItemController uiItem in uiItems)
+        {
+            UpdateItemButton(uiItem);
+        }
+    }
+
+    void UpdateItemButton(UIItemController uiItem)
+    {
+        UnityEngine.UI.Button itemButton = uiItem.GetComponent<UnityEngine.UI.Button>();
+
+        if (itemButton != null)
+        {
+            itemButton.onClick.AddListener(() => OnClickInspect(itemButton, uiItem.itemController));
+        }
+    }
+
     //Button function to inspect item when clicked
-    void OnClickInspect(UnityEngine.UI.Button button, ItemController itemController, IInteractable interactableItem)
+    void OnClickInspect(UnityEngine.UI.Button button, ItemController itemController)
     {
         //Close inventory and enable player movement
-        PlayerInputs.instance.OnToggleInventory();
+        //PlayerInputs.instance.OnToggleInventory();
 
         //Disable button functionality
-        button.onClick.RemoveAllListeners();
+        //button.onClick.RemoveAllListeners();
+
+        isInspectingItem = true;
 
         //pass the pressed inventory item to the interactable item in the scene 
         if (itemController != null)
         {
-            interactableItem.InteractWithInventory(itemController);
+            inspectedItem = itemController;
+
+            if(itemController.gameObject.TryGetComponent<Rotatable>(out Rotatable rotatable))
+            {
+                rotatable.enabled = true;
+            }
+
+            //Show item and place it in front of the player
+            itemController.gameObject.transform.position = Camera.main.transform.position + (Camera.main.transform.forward * rotatable.distanceFromCamera);
+            itemController.gameObject.SetActive(true);
+            inventoryUI.SetActive(false);
+
         }
     }
 
+    public void StopInspectingItem()
+    {
+        if(inspectedItem != null)
+        {
+            inspectedItem.gameObject.SetActive(false);
+
+            if (inspectedItem.TryGetComponent<Rotatable>(out Rotatable rotatable))
+            {
+                rotatable.enabled = false;
+            }
+        }
+
+        inventoryUI.SetActive(true);
+        isInspectingItem = false;
+    }
+
     //Clear button function from all buttons
-    void ResetItemButtons()
+    void ResetInventoryButtons()
     {
         foreach (UIItemController uiItem in uiItems)
         {
@@ -206,14 +265,14 @@ public class InventoryManager : MonoBehaviour
         UpdateItems();
     }
 
-    public void PickupItem(ItemController itemController)
+    public void PickupItem(ItemController itemController, bool playSound = true)
     {
         if (!IsInventoryFull())
         {
             //Add item to inventory
             AddItem(itemController);
 
-            if (SoundManager.instance != null)
+            if (SoundManager.instance != null && playSound)
             {
                 SoundManager.instance.PlayItemPickupSound(gameObject);
             }
@@ -439,7 +498,7 @@ public class InventoryManager : MonoBehaviour
 
                 newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController);
 
-                PickupItem(newMatchstickController);
+                PickupItem(newMatchstickController, false);
             }
         }
         
