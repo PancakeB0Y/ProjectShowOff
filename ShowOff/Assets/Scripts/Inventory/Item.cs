@@ -10,4 +10,4 @@ public class Item : ScriptableObject
     public bool stackable = false;
 }
 
-public enum ItemType { Chalice, Rosary, HolyOil, Matchstick, Key}
+public enum ItemType { Chalice, Rosary, HolyOil, Matchstick, Key, Page1, Page2, Page3, Page4, Page5}

@@ -11,8 +11,13 @@ public class NavMeshMoveBehaviour : MonoBehaviour
     NavMeshAgent agent;
 
     [Header("Player follow")]
-    [SerializeField] private float maxSpawnRangeFromPlayerPos = 15.0f;
-    [SerializeField] private float minSpawnRangeFromPlayerPos = 10.0f;
+    [SerializeField] private float maxSpawnRangeFromPlayerPosInitial = 15.0f;
+    [SerializeField] private float minSpawnRangeFromPlayerPosInitial = 10.0f;
+    [SerializeField] private float maxSpawnRangeFromPlayerPosForRitual = 10.0f;
+    [SerializeField] private float minSpawnRangeFromPlayerPosForRitual = 5.0f;
+
+    private float maxSpawnRangeFromPlayerPos;
+    private float minSpawnRangeFromPlayerPos;
 
     private MoveState statueState;
 
@@ -32,6 +37,9 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     void Start()
     {
+        maxSpawnRangeFromPlayerPos = maxSpawnRangeFromPlayerPosInitial;
+        minSpawnRangeFromPlayerPos = minSpawnRangeFromPlayerPosInitial;
+
         SetState(MoveState.Disabled);
     }
 
@@ -120,6 +128,12 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         }
     }
 
+    public void UpdateSpawnRanges()
+    {
+        maxSpawnRangeFromPlayerPos = maxSpawnRangeFromPlayerPosForRitual;
+        minSpawnRangeFromPlayerPos = minSpawnRangeFromPlayerPosForRitual;
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == player.gameObject
@@ -147,6 +161,11 @@ public class NavMeshMoveBehaviour : MonoBehaviour
             StopMovement();
             SetState(MoveState.Disabled);
         }
+    }
+
+    public void GetDestroyed()
+    {
+        Destroy(gameObject);
     }
 
     void OnDestroy()

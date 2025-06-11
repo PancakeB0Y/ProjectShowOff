@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 714277963485670033}
   - component: {fileID: 889245627784377430}
   - component: {fileID: 2846042568132066545}
+  - component: {fileID: -4959739819591412208}
   m_Layer: 6
   m_Name: Chalice
   m_TagString: Untagged
@@ -144,6 +145,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4959739819591412208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609985820602323195}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fc2bb5f5c2960418d3159900899007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressed:
+    m_Name: Pressed
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 62474618-04a6-4c76-ade3-4e7acd0409e1
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 37a75ad7-38c1-44ea-a455-14ce9acce260
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pressed
+      m_Flags: 0
+    m_Flags: 0
+  axis:
+    m_Name: Axis
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: e42dac79-a2d2-41bc-ab7f-8ce6f9dd8b27
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ed9d7a1a-7283-411f-baa3-8000d440b84f
+      m_Path: <Mouse>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Axis
+      m_Flags: 0
+    m_Flags: 0
+  rotationSpeed: 0.3
+  distanceFromCamera: 1.5
 --- !u!1001 &2859528590066626840
 PrefabInstance:
   m_ObjectHideFlags: 0

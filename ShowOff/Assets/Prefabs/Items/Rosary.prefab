@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3403044078393865300}
   - component: {fileID: 157518227133036025}
   - component: {fileID: -6607984234072361412}
+  - component: {fileID: 6364830715917144880}
   m_Layer: 6
   m_Name: Rosary
   m_TagString: Untagged
@@ -144,6 +145,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6364830715917144880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959294114454786379}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fc2bb5f5c2960418d3159900899007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressed:
+    m_Name: Pressed
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 0ea00dad-3bf0-43f1-a75c-c6d85d41ef59
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 37a75ad7-38c1-44ea-a455-14ce9acce260
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pressed
+      m_Flags: 0
+    m_Flags: 0
+  axis:
+    m_Name: Axis
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: c8bb9d97-c949-43b0-876e-4419855166ee
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ed9d7a1a-7283-411f-baa3-8000d440b84f
+      m_Path: <Mouse>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Axis
+      m_Flags: 0
+    m_Flags: 0
+  rotationSpeed: 0.3
+  distanceFromCamera: 1.5
 --- !u!1001 &1230311351766789836
 PrefabInstance:
   m_ObjectHideFlags: 0

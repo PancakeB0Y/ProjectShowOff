@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5044338139800235627}
   - component: {fileID: 2732409066565728081}
   - component: {fileID: -9215616633312007564}
+  - component: {fileID: -1261943110137026000}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -144,6 +145,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1261943110137026000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376537825858740018}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fc2bb5f5c2960418d3159900899007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressed:
+    m_Name: Pressed
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: f0f9a940-3a50-4dad-a214-3249cff4b262
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 37a75ad7-38c1-44ea-a455-14ce9acce260
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pressed
+      m_Flags: 0
+    m_Flags: 0
+  axis:
+    m_Name: Axis
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: c70b5ea1-e9b8-42a7-8fb5-1eadad51111d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ed9d7a1a-7283-411f-baa3-8000d440b84f
+      m_Path: <Mouse>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Axis
+      m_Flags: 0
+    m_Flags: 0
+  rotationSpeed: 0.3
+  distanceFromCamera: 1.5
 --- !u!1001 &1777531920575762521
 PrefabInstance:
   m_ObjectHideFlags: 0
