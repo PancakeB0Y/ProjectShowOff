@@ -154,19 +154,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4609985820602323195}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2fd6c75338be24cb9d830d9e0d7d92, type: 3}
+  m_Script: {fileID: 11500000, guid: d6fc2bb5f5c2960418d3159900899007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pressed:
     m_Name: Pressed
     m_Type: 1
     m_ExpectedControlType: Button
-    m_Id: 01ad02c0-6b2a-4331-b090-24bb36a848e9
+    m_Id: 62474618-04a6-4c76-ade3-4e7acd0409e1
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: cf1f7e49-1070-44f3-af02-5fd6926f32e8
+      m_Id: 37a75ad7-38c1-44ea-a455-14ce9acce260
       m_Path: <Mouse>/leftButton
       m_Interactions: 
       m_Processors: 
@@ -177,13 +177,13 @@ MonoBehaviour:
   axis:
     m_Name: Axis
     m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 89c9b194-d5f9-47eb-a000-dea39ed70c82
+    m_ExpectedControlType: Vector2
+    m_Id: e42dac79-a2d2-41bc-ab7f-8ce6f9dd8b27
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 7cb0d88c-8864-4561-9960-4bef785a045e
+      m_Id: ed9d7a1a-7283-411f-baa3-8000d440b84f
       m_Path: <Mouse>/delta
       m_Interactions: 
       m_Processors: 
