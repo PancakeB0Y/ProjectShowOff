@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Page1
   m_EditorClassIdentifier: 
   itemType: 5
-  itemIcon: {fileID: 21300000, guid: fe142631271335f488255f82dd0d7362, type: 3}
+  itemIcon: {fileID: 21300000, guid: 1422f97c041994448ba016f0456c7533, type: 3}
   stackable: 0
