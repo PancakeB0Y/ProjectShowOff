@@ -197,13 +197,20 @@ public class InventoryManager : MonoBehaviour
         {
             inspectedItem = itemController;
 
-            if(itemController.gameObject.TryGetComponent<Rotatable>(out Rotatable rotatable))
+            Rotatable rotatable = itemController.gameObject.GetComponent<Rotatable>();
+
+            if (rotatable != null)
             {
+                //Show item and place it in front of the player
+                itemController.gameObject.transform.position = Camera.main.transform.position + (Camera.main.transform.forward * rotatable.distanceFromCamera);
+
+                //rotate to face the camera
+                Vector3 lookDirection = itemController.gameObject.transform.position - transform.position;
+                itemController.gameObject.transform.rotation = Quaternion.LookRotation(lookDirection) * Quaternion.Euler(35, 0, 0);
+
                 rotatable.enabled = true;
             }
 
-            //Show item and place it in front of the player
-            itemController.gameObject.transform.position = Camera.main.transform.position + (Camera.main.transform.forward * rotatable.distanceFromCamera);
             itemController.gameObject.SetActive(true);
             inventoryUI.SetActive(false);
 
@@ -496,9 +503,10 @@ public class InventoryManager : MonoBehaviour
             {
                 GameObject newMatchstick = Instantiate(MatchstickPrefab);
 
-                newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController);
-
-                PickupItem(newMatchstickController, false);
+                if(newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController))
+                {
+                    PickupItem(newMatchstickController, false);
+                }
             }
         }
         

@@ -39,11 +39,6 @@ public class Rotatable : MonoBehaviour
         rotateAllowed = false;
     }
 
-    void RotateCoroutine()
-    {
-        StartCoroutine(Rotate());
-    }
-
     private IEnumerator Rotate()
     {
         rotateAllowed = true;
