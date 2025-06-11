@@ -11,6 +11,8 @@ public class LanternPlayerFollow : MonoBehaviour
     [Header("While colliding props")]
     [SerializeField]
     LanternCollDetector collDetector;
+    [SerializeField]
+    float lerpAmount = 10.0f;
 
     private LanternFollowState lanternFollowState = LanternFollowState.Normal;
 
@@ -36,10 +38,11 @@ public class LanternPlayerFollow : MonoBehaviour
         switch (lanternFollowState)
         {
             case LanternFollowState.Normal:
-                transform.position = collDetector.transform.position;
+                transform.position = player.position + player.rotation * offset;
                 break;
             case LanternFollowState.WallColl:
-                transform.position = collDetector.transform.position + collDetector.pushVector;
+                Vector3 targetPos = collDetector.transform.position + collDetector.pushVector;
+                transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * lerpAmount);
                 break;
             default:
                 break;
