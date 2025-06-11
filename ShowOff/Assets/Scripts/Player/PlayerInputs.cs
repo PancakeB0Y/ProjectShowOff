@@ -36,9 +36,14 @@ public class PlayerInputs : MonoBehaviour
             OnToggleInventory();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    OnDropFirstItem();
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OnDropFirstItem();
+            OnCloseMenu();
         }
     }
 
@@ -61,7 +66,12 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
-        if (InventoryManager.instance.isInventoryOpenForInteraction)
+
+        if (InventoryManager.instance.isInspectingItem)
+        {
+            OnStopInspectingItem();
+        }
+        else if (InventoryManager.instance.isInventoryOpenForInteraction)
         {
             OnCloseInventoryInteraction();
         }
@@ -92,6 +102,12 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
+        if (InventoryManager.instance.isInspectingItem)
+        {
+            OnStopInspectingItem();
+            return;
+        }
+
         //Open / Close inventory
         InventoryManager.instance.ToggleInventory();
 
@@ -103,7 +119,7 @@ public class PlayerInputs : MonoBehaviour
         if (cameraController != null)
         {
             //Enable / disable mouse
-            if (InventoryManager.instance.IsInventoryOpen())
+            if (InventoryManager.instance.isInventoryOpen)
             {
                 cameraController.DisableCameraMovement();
                 Time.timeScale = 0f;
@@ -113,6 +129,28 @@ public class PlayerInputs : MonoBehaviour
                 cameraController.EnableCameraMovement();
                 Time.timeScale = 1f;
             }
+        }
+    }
+
+    public void OnCloseInventory()
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        //Close inventory
+        InventoryManager.instance.DisableInventory();
+
+        if (cameraController == null)
+        {
+            cameraController = GetComponent<PlayerCameraController>();
+        }
+
+        if (cameraController != null)
+        {
+            cameraController.EnableCameraMovement();
+            Time.timeScale = 1f;
         }
     }
 
@@ -149,6 +187,40 @@ public class PlayerInputs : MonoBehaviour
         if (InventoryManager.instance.isInventoryOpenForInteraction)
         {
             OnToggleInventory();
+        }
+    }
+
+    public void OnStopInspectingItem()
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (InventoryManager.instance.isInspectingItem)
+        {
+            InventoryManager.instance.StopInspectingItem();
+        }
+    }
+
+    public void OnCloseMenu()
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (InventoryManager.instance.isInspectingItem)
+        {
+            OnStopInspectingItem();
+        }
+        else if (InventoryManager.instance.isInventoryOpenForInteraction)
+        {
+            OnCloseInventoryInteraction();
+        }
+        else if(InventoryManager.instance.isInventoryOpen)
+        {
+            OnCloseInventory();
         }
     }
 
