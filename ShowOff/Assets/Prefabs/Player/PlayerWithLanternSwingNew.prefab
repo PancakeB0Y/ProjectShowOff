@@ -5311,7 +5311,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2165692781602457165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9190b763bd22624c9bb53e8a2b43c24, type: 3}
+  m_Script: {fileID: 11500000, guid: 473e50b3bf1c4874a80606c8c79861f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pushVector: {x: 0, y: 0, z: 0}
@@ -6660,7 +6660,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9179271996684405329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23e33f121009bfb48851bd82d6c2ab02, type: 3}
+  m_Script: {fileID: 11500000, guid: ae00fefbbd1ac6d43b3ac0c415aa9900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5398418852012934799}
@@ -6678,7 +6678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightTime: 0.5
-  useMatchsticks: 1
+  useMatchsticks: 0
 --- !u!82 &4787783304872370967
 AudioSource:
   m_ObjectHideFlags: 0

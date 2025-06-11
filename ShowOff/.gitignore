@@ -29,7 +29,6 @@
 /[Aa]ssets/Iknow/.user
 /[Aa]ssets/Iknow/*.meta
 /[Aa]ssets/Iknow/**/*.meta
-/[Aa]ssets/**/*.meta
 /[Aa]ssets/Iknow/Metadata
 
 # Visual Studio cache directory
