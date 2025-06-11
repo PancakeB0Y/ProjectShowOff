@@ -249,7 +249,7 @@ public class InventoryManager : MonoBehaviour
 
     void EnableCursor()
     {
-        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
     }
 
