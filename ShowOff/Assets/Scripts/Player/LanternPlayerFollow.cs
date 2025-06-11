@@ -12,20 +12,30 @@ public class LanternPlayerFollow : MonoBehaviour
     [SerializeField]
     LanternCollDetector collDetector;
     [SerializeField]
-    float lerpAmount = 10.0f;
+    float lerpAmountNormal = 0.5f;
+    [SerializeField]
+    float lerpAmountClipping = 10.0f;
+
+    float lerpAmount;
+
+    //bool isAlreadyWaiting = false;
 
     private LanternFollowState lanternFollowState = LanternFollowState.Normal;
 
     void Start()
     {
         offset = transform.localPosition;
+
+        lerpAmount = lerpAmountNormal;
     }
 
     void Update()
     {
-        if (!collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.WallColl)
+        if (!collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.WallColl
+            /*&& !isAlreadyWaiting*/)
         {
-            lanternFollowState = LanternFollowState.Normal;
+            Debug.Log("In");
+            StartCoroutine(WaitBeforeSwitchingToNormal());
         }
         else if (collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.Normal)
         {
@@ -33,21 +43,38 @@ public class LanternPlayerFollow : MonoBehaviour
         }
     }
 
+    IEnumerator WaitBeforeSwitchingToNormal()
+    {
+        //isAlreadyWaiting = true;
+
+        yield return new WaitForSeconds(0.4f);
+
+        Debug.Log("In2");
+        lanternFollowState = LanternFollowState.Normal;
+        //isAlreadyWaiting = false;
+    }
+
     void LateUpdate()
     {
+        Vector3 targetPos = transform.position;
+
         switch (lanternFollowState)
         {
             case LanternFollowState.Normal:
-                transform.position = player.position + player.rotation * offset;
+                targetPos = player.position + player.rotation * offset;
+                lerpAmount = lerpAmountNormal;
+                transform.position = targetPos;
                 break;
             case LanternFollowState.WallColl:
-                Vector3 targetPos = collDetector.transform.position + collDetector.pushVector;
+                targetPos = collDetector.transform.position + collDetector.pushVector;
+                lerpAmount = lerpAmountClipping;
                 transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * lerpAmount);
                 break;
             default:
                 break;
         }
 
+        //transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * lerpAmount);
         transform.rotation = player.rotation;
     }
 }
