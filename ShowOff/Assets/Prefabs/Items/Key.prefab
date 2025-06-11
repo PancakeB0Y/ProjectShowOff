@@ -163,7 +163,7 @@ MonoBehaviour:
     m_ExpectedControlType: Button
     m_Id: f0f9a940-3a50-4dad-a214-3249cff4b262
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Press
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 37a75ad7-38c1-44ea-a455-14ce9acce260
