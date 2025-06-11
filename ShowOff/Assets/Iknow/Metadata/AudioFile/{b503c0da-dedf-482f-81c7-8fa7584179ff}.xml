@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{b503c0da-dedf-482f-81c7-8fa7584179ff}">
+		<property name="assetPath">
+			<value>Steps 13 new again.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.47020408163265304</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7380523e-e017-428a-a40c-704ea9710c56}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 7702302192926420108}
   - component: {fileID: 3655624418934406633}
   - component: {fileID: 2333453812764277869}
+  - component: {fileID: 5833076030407830669}
   - component: {fileID: 8631874611976985180}
   m_Layer: 2
   m_Name: Camera
@@ -251,6 +252,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5811177106060749228}
   shouldRotateWithPlayer: 0
+--- !u!114 &5833076030407830669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540257942554391417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!114 &8631874611976985180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +339,7 @@ GameObject:
   - component: {fileID: 478098442940370866}
   - component: {fileID: 5590912157866466143}
   - component: {fileID: 7754539413462239560}
+  - component: {fileID: 5688130351534404398}
   - component: {fileID: 2420344819087947165}
   m_Layer: 2
   m_Name: Player
@@ -559,6 +575,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772b2166183253e4499767ccaa95d0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5688130351534404398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521735381702261685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59765993a982455409c999f16b246717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWalkEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!82 &2420344819087947165
 AudioSource:
   m_ObjectHideFlags: 0
