@@ -5335,6 +5335,7 @@ GameObject:
   - component: {fileID: 383107598026755790}
   - component: {fileID: 2673964722487650788}
   - component: {fileID: 8936010531612881483}
+  - component: {fileID: 8128710787072039064}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -5647,6 +5648,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8128710787072039064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2168101628473835960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59765993a982455409c999f16b246717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWalkEvent:
+    Guid:
+      Data1: -452254251
+      Data2: 1212449469
+      Data3: -711354971
+      Data4: 1605890313
+    Path: event:/steps
+  footstepOffset: {x: 0, y: -1, z: 0}
 --- !u!1 &2739132250423192827
 GameObject:
   m_ObjectHideFlags: 0

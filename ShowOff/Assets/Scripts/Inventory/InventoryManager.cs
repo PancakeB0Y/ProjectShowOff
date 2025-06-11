@@ -17,6 +17,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] GameObject MatchstickPrefab;
     [SerializeField] ItemType[] startInventoryContent;
 
+    
+
     [Header("Properties")]
     [SerializeField] int inventorySize = 20;
     List<ItemController> items = new List<ItemController>(); //list of gameObjects for the items in the inventory
@@ -25,6 +27,9 @@ public class InventoryManager : MonoBehaviour
 
     GameObject inventoryUI; //UI inventory where all the inventory icons will be. Needs a Grid Layout Group component
     string inventoryUITag = "Inventory";
+
+    GameObject UICrosshair; //On screen crosshair
+    string crosshairTag = "Crosshair";
 
     [HideInInspector] public bool isInventoryOpen = false;
     [HideInInspector] public bool isInventoryOpenForInteraction = false;
@@ -48,6 +53,8 @@ public class InventoryManager : MonoBehaviour
         if (inventoryUI != null) {
             inventoryUI.SetActive(false);
         }
+
+        UICrosshair = GameObject.FindWithTag(crosshairTag);
 
         useItemTextPopup = GameObject.FindWithTag(useItemTextTag);
 
@@ -82,6 +89,8 @@ public class InventoryManager : MonoBehaviour
 
         EnableCursor();
 
+        HideCrosshair();
+
         UpdateInventoryButtons();
 
         isInventoryOpenForInteraction = false;
@@ -94,6 +103,8 @@ public class InventoryManager : MonoBehaviour
         isInventoryOpen = false;
 
         DisableCursor();
+
+        ShowCrosshair();
 
         ResetInventoryButtons();
 
@@ -209,6 +220,8 @@ public class InventoryManager : MonoBehaviour
                 itemController.gameObject.transform.rotation = Quaternion.LookRotation(lookDirection) * Quaternion.Euler(35, 0, 0);
 
                 rotatable.enabled = true;
+
+                HideCrosshair();
             }
 
             itemController.gameObject.SetActive(true);
@@ -258,6 +271,22 @@ public class InventoryManager : MonoBehaviour
     {
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+    }
+
+    void ShowCrosshair()
+    {
+        if (UICrosshair != null)
+        {
+            UICrosshair.SetActive(true);
+        }
+    }
+
+    void HideCrosshair()
+    {
+        if (UICrosshair != null)
+        {
+            UICrosshair.SetActive(false);
+        }
     }
 
     //Add item to inventory

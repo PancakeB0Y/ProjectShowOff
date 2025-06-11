@@ -10,6 +10,7 @@ TagManager:
   - Inventory
   - UseItemText
   - MatchstickCount
+  - Crosshair
   layers:
   - Default
   - TransparentFX
