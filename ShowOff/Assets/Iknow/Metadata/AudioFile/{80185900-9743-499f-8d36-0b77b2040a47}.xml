@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{80185900-9743-499f-8d36-0b77b2040a47}">
+		<property name="assetPath">
+			<value>sstone scratching 3.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.3779591836734699</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7380523e-e017-428a-a40c-704ea9710c56}</destination>
+		</relationship>
+	</object>
+</objects>
