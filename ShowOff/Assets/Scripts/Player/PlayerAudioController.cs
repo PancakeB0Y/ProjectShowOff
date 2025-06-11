@@ -1,8 +1,6 @@
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
-using Mono.Cecil;
-using EventReference = FMODUnity.EventReference;
 
 public class PlayerAudioController : MonoBehaviour
 {
@@ -11,27 +9,35 @@ public class PlayerAudioController : MonoBehaviour
 
     private EventInstance currentInstance;
 
+    // Offset to place the footstep sound below the player
+    [SerializeField] private Vector3 footstepOffset = new Vector3(0f, -1f, 0f);
+
     public void PlayWalkSound()
     {
-        // check if there is an existing event instance
+        // Check if there is an existing event instance
         if (!currentInstance.isValid())
         {
-            // create new event instance
+            // Create new event instance
             currentInstance = RuntimeManager.CreateInstance(playerWalkEvent);
+
+            // Attach the instance to the GameObject (new method)
             RuntimeManager.AttachInstanceToGameObject(currentInstance, gameObject);
 
-            currentInstance.start();
+            // Set the initial position (below player)
+            currentInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position + footstepOffset));
 
+            currentInstance.start();
             return;
         }
 
-        // check if the previous sound has ended
-        PLAYBACK_STATE playbackState;
-        currentInstance.getPlaybackState(out playbackState);
+        // Check if the previous sound has ended
+        currentInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
 
         if (playbackState == PLAYBACK_STATE.STOPPED)
         {
+            // Update position before replaying
+            currentInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position + footstepOffset));
             currentInstance.start();
-        }   
+        }
     }
 }
