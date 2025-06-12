@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NavMeshMoveBehaviour : MonoBehaviour
@@ -33,6 +34,9 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         player.OnStatueFollow += SetupPlayerFollow;
 
         statueAudioController = GetComponent<StatueAudioController>();
+
+        // Connect player transform to audio controller for distance/occlusion checks
+        statueAudioController.playerTransform = player.transform;
     }
 
     void Start()
@@ -62,7 +66,6 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         statueState = newState;
     }
 
-
     void Update()
     {
         if (statueState == MoveState.Chasing)
@@ -83,10 +86,8 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         Debug.Log("Setting up player follow.");
         SetState(MoveState.Chasing);
         agent.Warp(NavMeshSamplePoint(playerPos));
-        statueAudioController.SetupPlayerFollowAudio(minSpawnRangeFromPlayerPos);
+        statueAudioController.SetupPlayerFollowAudio();
     }
-
-
 
     Vector3 NavMeshSamplePoint(Vector3 center)
     {
@@ -117,10 +118,9 @@ public class NavMeshMoveBehaviour : MonoBehaviour
     public void SetTargetPosition(Vector3 targetPos)
     {
         agent.SetDestination(targetPos);
-        statueAudioController.AdjustAudioDistanceParameter(transform.position, player.transform.position);
+        // No longer needed here because audio updates itself in StatueAudioController.Update()
+        // statueAudioController.AdjustAudioDistanceParameter(transform.position, player.transform.position);
     }
-
-
 
     public void StopMovement()
     {
