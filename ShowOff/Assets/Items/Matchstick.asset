@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Matchstick
   m_EditorClassIdentifier: 
   itemType: 3
-  itemIcon: {fileID: 21300000, guid: 607a74c133f83fc4991e12887d414cd1, type: 3}
+  itemIcon: {fileID: 21300000, guid: 39827b67f81fe9845bc7dfe351d4e744, type: 3}
   stackable: 1
