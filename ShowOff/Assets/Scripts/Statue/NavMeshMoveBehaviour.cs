@@ -45,6 +45,8 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     void SetState(MoveState newState)
     {
+        Debug.Log($"SetState called. Changing from {statueState} to {newState}");
+
         switch (newState)
         {
             case MoveState.Disabled:
@@ -55,39 +57,42 @@ public class NavMeshMoveBehaviour : MonoBehaviour
                 break;
             case MoveState.Freezed:
                 break;
-            default:
-                break;
         }
 
         statueState = newState;
     }
 
+
     void Update()
     {
-        switch (statueState)
+        if (statueState == MoveState.Chasing)
         {
-            case MoveState.Chasing:
-                SetTargetPosition(player.transform.position);
-                break;
-            default:
-                break;
+            SetTargetPosition(player.transform.position);
         }
     }
 
     public void SetupPlayerFollow(Vector3 playerPos)
     {
+        Debug.Log($"SetupPlayerFollow called. Current State: {statueState}");
+        if (statueState == MoveState.Chasing)
+        {
+            Debug.Log("SetupPlayerFollow ignored because statue is already chasing.");
+            return;
+        }
+
+        Debug.Log("Setting up player follow.");
         SetState(MoveState.Chasing);
-
         agent.Warp(NavMeshSamplePoint(playerPos));
-
         statueAudioController.SetupPlayerFollowAudio(minSpawnRangeFromPlayerPos);
     }
+
+
 
     Vector3 NavMeshSamplePoint(Vector3 center)
     {
         int countOut = 0;
-
         Vector3 randomPoint;
+
         while (true)
         {
             randomPoint = center + UnityEngine.Random.insideUnitSphere * maxSpawnRangeFromPlayerPos;
@@ -98,15 +103,12 @@ public class NavMeshMoveBehaviour : MonoBehaviour
                 throw new System.Exception("Error: infinite while loop. Cannot find point on nav mesh");
             }
 
-            // If sample point is closer than the minimum range
             if (Vector3.Distance(randomPoint, center) < minSpawnRangeFromPlayerPos)
                 continue;
 
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
-                //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
-                //or add a for loop like in the documentation
                 return hit.position;
             }
         }
@@ -115,9 +117,10 @@ public class NavMeshMoveBehaviour : MonoBehaviour
     public void SetTargetPosition(Vector3 targetPos)
     {
         agent.SetDestination(targetPos);
-
-        statueAudioController.AdjustAudioSourceVolume(agent.remainingDistance);
+        statueAudioController.AdjustAudioDistanceParameter(transform.position, player.transform.position);
     }
+
+
 
     public void StopMovement()
     {
@@ -136,8 +139,7 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player.gameObject
-            && statueState != MoveState.Freezed)
+        if (collision.gameObject == player.gameObject && statueState != MoveState.Freezed)
         {
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
@@ -147,8 +149,9 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
+        if (other.TryGetComponent<LightSourceCollisionDetection>(out _))
         {
+            Debug.Log("Entered light, stopping statue.");
             StopMovement();
             SetState(MoveState.Freezed);
         }
@@ -156,8 +159,9 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<LightSourceCollisionDetection>(out LightSourceCollisionDetection light))
+        if (other.TryGetComponent<LightSourceCollisionDetection>(out _))
         {
+            Debug.Log("Exited light, disabling statue.");
             StopMovement();
             SetState(MoveState.Disabled);
         }
