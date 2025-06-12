@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: HolyOil
   m_EditorClassIdentifier: 
   itemType: 2
-  itemIcon: {fileID: 21300000, guid: 10c6d0dba789f7d49aba4a1005be55a3, type: 3}
+  itemIcon: {fileID: 21300000, guid: 2618b18188f0c2f44990a71a2980d495, type: 3}
+  stackable: 0
