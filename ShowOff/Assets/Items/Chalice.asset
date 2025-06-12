@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Chalice
   m_EditorClassIdentifier: 
   itemType: 0
-  itemIcon: {fileID: 21300000, guid: e68f730c96beeb24798d340a09cb883f, type: 3}
+  itemIcon: {fileID: 21300000, guid: f2f179c94fb778b48bb447458b453eb0, type: 3}
+  stackable: 0
