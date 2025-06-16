@@ -223,9 +223,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054545812}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: CloseOptions
+      - m_Target: {fileID: 854362750}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ClosePauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1428,8 +1428,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054545812}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 854362750}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -2247,7 +2247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: Close
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2326,6 +2326,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824972470}
   m_CullTransparentMesh: 1
+--- !u!1001 &854362749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 24389165836093015, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_Name
+      value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.86697
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.049325
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 70.35503
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923591822660967008, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799342448963818124, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: mainMenu
+      value: 
+      objectReference: {fileID: 1636069352}
+    - target: {fileID: 7799342448963818124, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 501115932}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+--- !u!114 &854362750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7799342448963818124, guid: a849f93e726ebfc478186d08a105111b, type: 3}
+  m_PrefabInstance: {fileID: 854362749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee926d3ece104164685a7eae5a742b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870860050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2609,52 +2685,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1054545811
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1054545813}
-  - component: {fileID: 1054545812}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1054545812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054545811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08165e7c88e9ac4bb8b7094bb3ccfdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenuUI: {fileID: 1636069352}
-  optionsUI: {fileID: 501115932}
---- !u!4 &1054545813
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054545811}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.768579, y: 3.8810432, z: -7.050127}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127110414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,7 +3223,7 @@ GameObject:
   - component: {fileID: 1349856141}
   - component: {fileID: 1349856140}
   m_Layer: 5
-  m_Name: ButtonContainer (1)
+  m_Name: CloseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3399,9 +3429,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054545812}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OpenOptions
+      - m_Target: {fileID: 854362750}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OpenPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4105,8 +4135,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054545812}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 854362750}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -5037,7 +5067,7 @@ SceneRoots:
   - {fileID: 1636069356}
   - {fileID: 501115936}
   - {fileID: 688466131}
-  - {fileID: 1054545813}
   - {fileID: 1998581766}
   - {fileID: 1743990192}
   - {fileID: 1652940379}
+  - {fileID: 854362749}

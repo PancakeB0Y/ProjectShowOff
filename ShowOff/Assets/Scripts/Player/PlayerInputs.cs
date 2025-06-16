@@ -11,7 +11,14 @@ public class PlayerInputs : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
 
         cameraController = GetComponent<PlayerCameraController>();
 
@@ -43,12 +50,18 @@ public class PlayerInputs : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OnCloseMenu();
+            OnCloseMenus();
+            OnPause();
         }
     }
 
     public void OnLightLantern()
     {
+        if(Time.timeScale == 0f)
+        {
+            return;
+        }
+
         if(lanternController == null)
         {
             lanternController = transform.parent.GetComponentInChildren<LanternController>();
@@ -224,11 +237,83 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
+    public void OnCloseMenus()
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (InventoryManager.instance.isInspectingItem)
+        {
+            OnStopInspectingItem();
+        }
+
+        if (InventoryManager.instance.isInventoryOpenForInteraction)
+        {
+            OnCloseInventoryInteraction();
+        }
+
+        if (InventoryManager.instance.isInventoryOpen)
+        {
+            OnCloseInventory();
+        }
+    }
+
     public void OnDropFirstItem()
     {
         if (InventoryManager.instance != null)
         {
             InventoryManager.instance.DropFirstItem();
         }
+    }
+
+    public void OnPause()
+    {
+        if(UIManager.instance == null)
+        {
+            return;
+        }
+
+        if (UIManager.instance.IsPauseMenuOpen())
+        {
+            OnClosePauseMenu();
+        }
+        else
+        {
+            OnOpenPauseMenu();
+        }
+    }
+
+    void OnOpenPauseMenu()
+    {
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.OpenPauseMenu();
+            EnableCursor();
+        }
+    }
+
+    public void OnClosePauseMenu()
+    {
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.ClosePauseMenu();
+            DisableCursor();
+        }
+    }
+
+    
+
+    public void EnableCursor()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+    }
+
+    public void DisableCursor()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 }
