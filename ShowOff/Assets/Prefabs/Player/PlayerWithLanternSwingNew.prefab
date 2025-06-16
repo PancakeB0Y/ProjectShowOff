@@ -5662,11 +5662,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerWalkEvent:
     Guid:
-      Data1: -452254251
-      Data2: 1212449469
-      Data3: -711354971
-      Data4: 1605890313
-    Path: event:/steps
+      Data1: 745614270
+      Data2: 1120456412
+      Data3: -661660769
+      Data4: 494682326
+    Path: event:/Good step 3
   footstepOffset: {x: 0, y: -1, z: 0}
 --- !u!1 &2739132250423192827
 GameObject:
@@ -5944,6 +5944,7 @@ GameObject:
   - component: {fileID: 3222980589075680708}
   - component: {fileID: 7199115420203696411}
   - component: {fileID: 8691136310997505879}
+  - component: {fileID: 6090512157279031124}
   m_Layer: 2
   m_Name: Camera
   m_TagString: MainCamera
@@ -6102,6 +6103,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactRange: 3
+--- !u!114 &6090512157279031124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515694689674998813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &4874705821085000698
 GameObject:
   m_ObjectHideFlags: 0
@@ -6396,8 +6411,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.6627451, b: 0.3019608, a: 1}
-  m_Intensity: 2
-  m_Range: 5
+  m_Intensity: 4.5
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -6513,8 +6528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c26ce7f423b674abbd6ebe0bf6a4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseIntensity: 1
-  flickerAmount: 1
+  baseIntensity: 4.5
+  flickerAmount: 3
   flickerSpeed: 3
 --- !u!1 &7476997234789078446
 GameObject:
@@ -6527,7 +6542,7 @@ GameObject:
   - component: {fileID: 8201669633873617018}
   m_Layer: 2
   m_Name: PlayerWithLanternSwingNew
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
