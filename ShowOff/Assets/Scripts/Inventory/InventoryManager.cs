@@ -17,8 +17,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] GameObject MatchstickPrefab;
     [SerializeField] ItemType[] startInventoryContent;
 
-    
-
     [Header("Properties")]
     [SerializeField] int inventorySize = 20;
     List<ItemController> items = new List<ItemController>(); //list of gameObjects for the items in the inventory
@@ -46,7 +44,14 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
 
         inventoryUI = GameObject.FindWithTag(inventoryUITag);
 
@@ -263,7 +268,6 @@ public class InventoryManager : MonoBehaviour
     void EnableCursor()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        //UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         UnityEngine.Cursor.visible = true;
     }
 

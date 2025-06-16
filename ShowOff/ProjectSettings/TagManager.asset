@@ -11,6 +11,7 @@ TagManager:
   - UseItemText
   - MatchstickCount
   - Crosshair
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
