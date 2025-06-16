@@ -1230,6 +1230,7 @@ GameObject:
   - component: {fileID: 322694017}
   - component: {fileID: 322694019}
   - component: {fileID: 322694018}
+  - component: {fileID: 322694020}
   m_Layer: 5
   m_Name: Master
   m_TagString: Untagged
@@ -1342,6 +1343,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &322694020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322694016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62c3c19d1eb8034f8aab0df43b92a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeType: 0
 --- !u!1 &384819213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2142,7 @@ GameObject:
   - component: {fileID: 692057186}
   - component: {fileID: 692057188}
   - component: {fileID: 692057187}
+  - component: {fileID: 692057189}
   m_Layer: 5
   m_Name: SFX
   m_TagString: Untagged
@@ -2240,6 +2255,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &692057189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692057185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62c3c19d1eb8034f8aab0df43b92a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeType: 2
 --- !u!1 &714296442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,7 +2702,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee926d3ece104164685a7eae5a742b32, type: 3}
+  m_Script: {fileID: 11500000, guid: 268df98b6b8345048b045aed7bc768b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &870860050
@@ -3157,6 +3185,7 @@ GameObject:
   - component: {fileID: 1191135534}
   - component: {fileID: 1191135536}
   - component: {fileID: 1191135535}
+  - component: {fileID: 1191135537}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -3269,6 +3298,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1191135537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191135533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62c3c19d1eb8034f8aab0df43b92a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeType: 1
 --- !u!1 &1295907441
 GameObject:
   m_ObjectHideFlags: 0
