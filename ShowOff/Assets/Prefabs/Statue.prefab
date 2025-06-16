@@ -373,6 +373,12 @@ MonoBehaviour:
       Data3: -701528448
       Data4: 2139165329
     Path: event:/statue_Sound
+  maxAudioDistance: 15
+  minAudioDistance: 2
+  occlusionLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  playerTransform: {fileID: 0}
 --- !u!114 &1328045109819305541
 MonoBehaviour:
   m_ObjectHideFlags: 0
