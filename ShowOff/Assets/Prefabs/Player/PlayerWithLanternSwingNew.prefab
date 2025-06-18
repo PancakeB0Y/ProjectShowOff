@@ -5336,6 +5336,7 @@ GameObject:
   - component: {fileID: 2673964722487650788}
   - component: {fileID: 8936010531612881483}
   - component: {fileID: 8128710787072039064}
+  - component: {fileID: 3332723577052571698}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -5534,6 +5535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
   MatchstickPrefab: {fileID: 7567259067091355523, guid: e4c4eda37bfad464296611be18a00e4e, type: 3}
+  ItemInspectionUI: {fileID: 0}
+  InventoryText: {fileID: 0}
   startInventoryContent: 030000000300000003000000
   inventorySize: 20
   isInventoryOpen: 0
@@ -5668,6 +5671,21 @@ MonoBehaviour:
       Data4: 494682326
     Path: event:/Good step 3
   footstepOffset: {x: 0, y: -1, z: 0}
+--- !u!114 &3332723577052571698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2168101628473835960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef10a3147940ed942a091067367295e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitSecondsBeforeDeath: 2
+  playerCamera: {fileID: 4675946352711504659}
+  lightSourceController: {fileID: 9156649850470840482}
 --- !u!1 &2739132250423192827
 GameObject:
   m_ObjectHideFlags: 0

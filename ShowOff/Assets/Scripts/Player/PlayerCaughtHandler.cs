@@ -10,7 +10,7 @@ public class PlayerCaughtHandler : MonoBehaviour
     PlayerCameraController playerCameraController;
 
     [SerializeField]
-    Transform camera;
+    Transform playerCamera;
     [SerializeField]
     LightSourceController lightSourceController;
 
@@ -28,7 +28,7 @@ public class PlayerCaughtHandler : MonoBehaviour
         playerCameraController.enabled = false;
 
         transform.LookAt(statue);
-        camera.LookAt(statue.position + Vector3.up);
+        playerCamera.LookAt(statue.position + Vector3.up);
 
         lightSourceController.TurnLightOn(false);
 

@@ -34,7 +34,6 @@ public class LanternPlayerFollow : MonoBehaviour
         if (!collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.WallColl
             /*&& !isAlreadyWaiting*/)
         {
-            //Debug.Log("In");
             StartCoroutine(WaitBeforeSwitchingToNormal());
         }
         else if (collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.Normal)
@@ -49,7 +48,6 @@ public class LanternPlayerFollow : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        //Debug.Log("In2");
         lanternFollowState = LanternFollowState.Normal;
         //isAlreadyWaiting = false;
     }
