@@ -15,6 +15,11 @@ public class InventoryManager : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
     [SerializeField] GameObject MatchstickPrefab;
+
+    [Header("UI")]
+    [SerializeField] GameObject ItemInspectionUI; //On screen text when inspecting item
+    [SerializeField] GameObject InventoryText; //On screen text when the inventory is open
+
     [SerializeField] ItemType[] startInventoryContent;
 
     [Header("Properties")]
@@ -28,6 +33,7 @@ public class InventoryManager : MonoBehaviour
 
     GameObject UICrosshair; //On screen crosshair
     string crosshairTag = "Crosshair";
+
 
     [HideInInspector] public bool isInventoryOpen = false;
     [HideInInspector] public bool isInventoryOpenForInteraction = false;
@@ -65,7 +71,7 @@ public class InventoryManager : MonoBehaviour
 
         if (useItemTextPopup != null) {
             useItemTextPopup.SetActive(false);
-        } 
+        }
     }
 
     private void Start()
@@ -98,6 +104,10 @@ public class InventoryManager : MonoBehaviour
 
         UpdateInventoryButtons();
 
+        if (InventoryText != null) {
+            InventoryText.SetActive(true);
+        }
+
         isInventoryOpenForInteraction = false;
     }
 
@@ -118,6 +128,11 @@ public class InventoryManager : MonoBehaviour
         if (useItemTextPopup != null)
         {
             useItemTextPopup.SetActive(false);
+        }
+
+        if (InventoryText != null)
+        {
+            InventoryText.SetActive(false);
         }
     }
 
@@ -227,6 +242,16 @@ public class InventoryManager : MonoBehaviour
                 rotatable.enabled = true;
 
                 HideCrosshair();
+
+                if (ItemInspectionUI != null)
+                {
+                    ItemInspectionUI.SetActive(true);
+                }
+
+                if (InventoryText != null)
+                {
+                    InventoryText.SetActive(false);
+                }
             }
 
             itemController.gameObject.SetActive(true);
@@ -247,8 +272,24 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        inventoryUI.SetActive(true);
+        if(inventoryUI != null)
+        {
+            inventoryUI.SetActive(true);
+        }
+
+        if (InventoryText != null)
+        {
+            InventoryText.SetActive(true);
+        }
+
+        if (ItemInspectionUI != null)
+        {
+            ItemInspectionUI.SetActive(false);
+        }
+
         isInspectingItem = false;
+
+        
     }
 
     //Clear button function from all buttons
