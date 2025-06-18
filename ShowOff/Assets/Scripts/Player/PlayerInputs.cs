@@ -79,7 +79,6 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
-
         if (InventoryManager.instance.isInspectingItem)
         {
             OnStopInspectingItem();

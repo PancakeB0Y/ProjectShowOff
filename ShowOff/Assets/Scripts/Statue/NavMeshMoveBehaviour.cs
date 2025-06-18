@@ -141,9 +141,10 @@ public class NavMeshMoveBehaviour : MonoBehaviour
     {
         if (collision.gameObject == player.gameObject && statueState != MoveState.Freezed)
         {
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#endif
+            SetState(MoveState.Freezed);
+
+            PlayerCaughtHandler playerCaughtHandler = player.GetComponent<PlayerCaughtHandler>();
+            playerCaughtHandler.Die(transform);
         }
     }
 
