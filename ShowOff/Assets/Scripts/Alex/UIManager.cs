@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance { get; private set; }
+    public static UIManager Instance { get; private set; }
 
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject pauseMenu;
@@ -12,13 +12,13 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
 
         if(pauseMenu == null)
