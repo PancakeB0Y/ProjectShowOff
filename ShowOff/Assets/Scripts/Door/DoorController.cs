@@ -1,7 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    [SerializeField] float interactCooldown = 0.5f;
+    bool isCooldownOver = true;
+
     public string interactText { get; } = "Press [E] to interact";
 
     protected Animator doorAnimator;
@@ -9,6 +13,7 @@ public class DoorController : MonoBehaviour, IInteractable
     public bool isDoorOpen { get; protected set; } = false; //is the door open or closed
 
     protected DoorAudioController doorAudioController;
+
 
     protected void Awake()
     {
@@ -27,6 +32,11 @@ public class DoorController : MonoBehaviour, IInteractable
 
     protected void HandleDoor()
     {
+        if (!isCooldownOver)
+        {
+            return;
+        }
+
         if (!isDoorOpen)
         {
             OpenDoor();
@@ -37,6 +47,8 @@ public class DoorController : MonoBehaviour, IInteractable
             CloseDoor();
             isDoorOpen = false;
         }
+
+        StartCoroutine(InteractCooldownCoroutine());
     }
 
     //Play the opening animation and sound
@@ -89,5 +101,14 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         return doorAnimator.GetCurrentAnimatorStateInfo(0).length >
                doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+    IEnumerator InteractCooldownCoroutine()
+    {
+        isCooldownOver = false;
+
+        yield return new WaitForSeconds(interactCooldown);
+
+        isCooldownOver = true;
     }
 }
