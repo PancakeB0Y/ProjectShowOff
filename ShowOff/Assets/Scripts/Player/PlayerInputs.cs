@@ -269,12 +269,12 @@ public class PlayerInputs : MonoBehaviour
 
     public void OnPause()
     {
-        if(UIManager.instance == null)
+        if(UIManager.Instance == null)
         {
             return;
         }
 
-        if (UIManager.instance.IsPauseMenuOpen())
+        if (UIManager.Instance.IsPauseMenuOpen())
         {
             OnClosePauseMenu();
         }
@@ -286,18 +286,18 @@ public class PlayerInputs : MonoBehaviour
 
     void OnOpenPauseMenu()
     {
-        if (UIManager.instance != null)
+        if (UIManager.Instance != null)
         {
-            UIManager.instance.OpenPauseMenu();
+            UIManager.Instance.OpenPauseMenu();
             EnableCursor();
         }
     }
 
     public void OnClosePauseMenu()
     {
-        if (UIManager.instance != null)
+        if (UIManager.Instance != null)
         {
-            UIManager.instance.ClosePauseMenu();
+            UIManager.Instance.ClosePauseMenu();
             DisableCursor();
         }
     }

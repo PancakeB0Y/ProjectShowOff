@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ebaa709a92071c47962fbe8354b8707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactCooldown: 0.5
 --- !u!65 &8463581182329824155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -556,8 +557,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0192394, y: 1, z: 1}
-  m_Center: {x: 1.167058, y: 0, z: 0}
+  m_Size: {x: 2.0192394, y: 1, z: 1.5483851}
+  m_Center: {x: 1.167058, y: 0, z: -0.027981043}
 --- !u!82 &8408923536907717075
 AudioSource:
   m_ObjectHideFlags: 0
