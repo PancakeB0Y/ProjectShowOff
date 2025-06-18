@@ -9,9 +9,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject mainMenuCanvas;
 
     [Header("Game Scene")]
-    [SerializeField] GameObject pauseMenu;      
-    [SerializeField] GameObject pausePanel;     
-    [SerializeField] GameObject optionsPanel;   
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject optionsPanel;
+
+    [Header("Help Panels")]
+    [SerializeField] GameObject helpPanelMainMenu;
+    [SerializeField] GameObject helpPanelGame;
 
     string pauseMenuTag = "PauseMenu";
 
@@ -44,6 +48,16 @@ public class UIManager : MonoBehaviour
         if (optionsPanel != null)
         {
             optionsPanel.SetActive(false);
+        }
+
+        if (helpPanelMainMenu != null)
+        {
+            helpPanelMainMenu.SetActive(false);
+        }
+
+        if (helpPanelGame != null)
+        {
+            helpPanelGame.SetActive(false);
         }
     }
 
@@ -98,7 +112,7 @@ public class UIManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Main menu");
     }
 
@@ -107,7 +121,6 @@ public class UIManager : MonoBehaviour
         Debug.Log("Game Quit");
         Application.Quit();
     }
-
 
     // MAIN MENU - OPTIONS METHODS
 
@@ -163,5 +176,48 @@ public class UIManager : MonoBehaviour
         {
             optionsPanel.SetActive(false);
         }
+    }
+
+    // MAIN MENU - HELP METHODS
+
+    public void OpenHelpFromMainMenu()
+    {
+        if (helpPanelMainMenu != null)
+            helpPanelMainMenu.SetActive(true);
+
+        if (mainMenuCanvas != null)
+            mainMenuCanvas.SetActive(false);
+    }
+
+    public void CloseHelpToMainMenu()
+    {
+        if (helpPanelMainMenu != null)
+            helpPanelMainMenu.SetActive(false);
+
+        if (mainMenuCanvas != null)
+            mainMenuCanvas.SetActive(true);
+    }
+
+    // GAME SCENE - HELP METHODS
+
+    public void OpenHelpFromPauseMenu()
+    {
+        if (helpPanelGame != null)
+            helpPanelGame.SetActive(true);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+
+        if (optionsPanel != null)
+            optionsPanel.SetActive(false);
+    }
+
+    public void CloseHelpToPauseMenu()
+    {
+        if (helpPanelGame != null)
+            helpPanelGame.SetActive(false);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
     }
 }
