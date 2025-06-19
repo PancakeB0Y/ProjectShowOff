@@ -28,6 +28,26 @@ public class PlayerInputs : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnCloseMenus();
+            OnPause();
+        }
+
+        if (IsGamePaused()) {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OnToggleInventory();
+        }
+
+        if (IsInventoryOpen())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             OnLightLantern();
@@ -38,21 +58,10 @@ public class PlayerInputs : MonoBehaviour
             OnInteract();
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            OnToggleInventory();
-        }
-
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
         //    OnDropFirstItem();
         //}
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnCloseMenus();
-            OnPause();
-        }
     }
 
     public void OnLightLantern()
@@ -314,5 +323,25 @@ public class PlayerInputs : MonoBehaviour
     {
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+    }
+
+    bool IsGamePaused()
+    {
+        if (UIManager.Instance == null)
+        {
+            return false;
+        }
+
+        return UIManager.Instance.IsPauseMenuOpen();
+    }
+
+    bool IsInventoryOpen()
+    {
+        if(InventoryManager.instance == null)
+        {
+            return false;
+        }
+
+        return InventoryManager.instance.isInventoryOpen;
     }
 }
