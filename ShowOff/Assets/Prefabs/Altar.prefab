@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc12230d85669343a34874a7bf17115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsWaitBeforeLightsBackOn: 1
+  secondsWaitBeforeStatueDestroy: 10
   itemSlots:
   - {fileID: 1454333447707752630}
   - {fileID: 1446196832320495445}
