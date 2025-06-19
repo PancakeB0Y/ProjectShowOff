@@ -6407,7 +6407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156649850470840482, guid: 3fc01511481a79547b9477896f6c617c, type: 3}
       propertyPath: turnLightOffSeconds
-      value: 2
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
