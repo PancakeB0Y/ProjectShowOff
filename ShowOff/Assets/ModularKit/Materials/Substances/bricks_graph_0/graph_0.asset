@@ -129,10 +129,10 @@ MonoBehaviour:
   EnablePhysicalSize: 0
   Thumbnail: 
   CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Trim_test\" label=\"\" >\n  <presetinput
-    identifier=\"$outputsize\" uid=\"652648270\" type=\"8\" value=\"10,10\" />\n 
+    identifier=\"$outputsize\" uid=\"652648270\" type=\"8\" value=\"11,11\" />\n 
     <presetinput identifier=\"x_amount\" uid=\"1206808108\" type=\"4\" value=\"12\"
     />\n  <presetinput identifier=\"y_amount\" uid=\"1206807466\" type=\"4\" value=\"24\"
-    />\n  <presetinput identifier=\"balance\" uid=\"1206805165\" type=\"0\" value=\"0.709\"
+    />\n  <presetinput identifier=\"balance\" uid=\"1206805165\" type=\"0\" value=\"0.842\"
     />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 5
           WidgetType: 0
-        Data: {x: 10, y: 10}
+        Data: {x: 11, y: 11}
         NumericalDescription:
           DefaultValue: {x: 8, y: 8}
           MinValue: {x: 0, y: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 0.709
+        Data: 0.842
         NumericalDescription:
           DefaultValue: 0.68
           MinValue: 0

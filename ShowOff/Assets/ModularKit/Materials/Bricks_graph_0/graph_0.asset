@@ -20,11 +20,11 @@ MonoBehaviour:
   GUID: 70b55a01-7283-464a-8a4b-333eb078a3ce
   Index: 0
   Input:
-  - rid: 5853882742535094272
-  - rid: 5853882742535094273
-  - rid: 5853882742535094274
-  - rid: 5853882742535094275
-  - rid: 5853882742535094276
+  - rid: 5853882787841179662
+  - rid: 5853882787841179663
+  - rid: 5853882787841179664
+  - rid: 5853882787841179665
+  - rid: 5853882787841179666
   Output:
   - Index: 0
     VirtualOutputIndex: 6
@@ -135,8 +135,7 @@ MonoBehaviour:
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
   OutputMaterial: {fileID: 2100000, guid: 16425e30285086248ab87cd32be898f8, type: 2}
-  DefaultPreset: " <sbspreset pkgurl=\"pkg://Bricks\" label=\"\" >\n  <presetinput
-    identifier=\"$outputsize\" uid=\"84067390\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://Bricks\" label=\"\" >\n </sbspreset>\n"
   MaterialShader: Universal Render Pipeline/Lit
   RenderTextures: 0
   OutputRemaped: 0
@@ -144,7 +143,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5853882742535094272
+    - rid: 5853882787841179662
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -163,7 +162,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 5853882742535094273
+    - rid: 5853882787841179663
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -185,7 +184,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 5853882742535094274
+    - rid: 5853882787841179664
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -205,7 +204,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 5853882742535094275
+    - rid: 5853882787841179665
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -227,7 +226,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 5853882742535094276
+    - rid: 5853882787841179666
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
