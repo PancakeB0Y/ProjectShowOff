@@ -15,7 +15,7 @@ public class StatueFaceSwap : MonoBehaviour
             {
                 statueFaces[faceIndex].SetActive(true);
             }
-            else if (statueFaces[i].activeInHierarchy)
+            else if (i != faceIndex && statueFaces[i].activeInHierarchy)
             {
                 statueFaces[i].SetActive(false);
             }
