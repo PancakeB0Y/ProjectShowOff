@@ -38,6 +38,12 @@ public class TutorialManager : MonoBehaviour
         switch (tutorialIndex)
         {
             case 1:
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    tutorialIndex++;
+                }
+                break;
+            case 3:
                 if (mainDoor != null && mainDoor.isDoorOpen)
                 {
                     mainDoor.CloseDoor(0.7f);
@@ -47,10 +53,7 @@ public class TutorialManager : MonoBehaviour
                     tutorialIndex++;
                 }
                 break;
-            case 2:
-                
-                break;
-            case 3:
+            case 5:
                 if (mainDoor != null && !mainDoor.isDoorOpen)
                 {
                     mainDoor.OpenDoor();
