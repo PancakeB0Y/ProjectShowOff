@@ -26,6 +26,11 @@ public class PlayerCaughtHandler : MonoBehaviour
     {
         Debug.Log("In");
 
+        statue.TryGetComponent<StatueFaceSwap>(out StatueFaceSwap statueFaceSwap);
+        if (statueFaceSwap != null) {
+            statueFaceSwap.SetFace(3);
+        }
+
         player.enabled = false;
         playerCameraController.enabled = false;
         rb.constraints = RigidbodyConstraints.FreezePosition;
