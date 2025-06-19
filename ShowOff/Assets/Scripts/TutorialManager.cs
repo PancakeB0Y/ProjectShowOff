@@ -50,6 +50,12 @@ public class TutorialManager : MonoBehaviour
             case 2:
                 
                 break;
+            case 3:
+                if (mainDoor != null && !mainDoor.isDoorOpen)
+                {
+                    mainDoor.OpenDoor();
+                }
+                break;
             default:
                 break;
         }

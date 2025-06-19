@@ -131,5 +131,9 @@ public class AltarController : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(secondsWaitBeforeStatueDestroy);
 
         statue.GetDestroyed();
+
+        if (TutorialManager.Instance != null) {
+            TutorialManager.Instance.SetTutorialIndex(3);
+        }
     }
 }
