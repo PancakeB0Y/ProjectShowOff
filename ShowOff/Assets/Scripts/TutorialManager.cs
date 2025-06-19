@@ -54,7 +54,7 @@ public class TutorialManager : MonoBehaviour
 
             GetComponent<Collider>().enabled = false;
 
-            StartTutorial();
+            StartTutorial(); 
         }
     }
 
