@@ -8,4 +8,4 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
-  _fileAsset: {instanceID: 0}
+  _fileAsset: {fileID: 6013892654665635331, guid: d5b1c20a46b4d164989e8e132b0bc4c8, type: 3}

@@ -127,8 +127,8 @@ MonoBehaviour:
   Thumbnail: 
   CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Limestone_Block\" label=\"\" >\n 
     <presetinput identifier=\"$outputsize\" uid=\"1435645997\" type=\"8\" value=\"10,10\"
-    />\n  <presetinput identifier=\"x_amount\" uid=\"883827935\" type=\"4\" value=\"13\"
-    />\n  <presetinput identifier=\"y_amount\" uid=\"883830054\" type=\"4\" value=\"18\"
+    />\n  <presetinput identifier=\"x_amount\" uid=\"883827935\" type=\"4\" value=\"7\"
+    />\n  <presetinput identifier=\"y_amount\" uid=\"883830054\" type=\"4\" value=\"13\"
     />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
           GuiDescription: Amount of patterns on the X axis.
           Type: 4
           WidgetType: 1
-        Data: 13
+        Data: 7
         NumericalDescription:
           DefaultValue: 4
           MinValue: 1
@@ -218,7 +218,7 @@ MonoBehaviour:
           GuiDescription: Amount of patterns on the Y axis.
           Type: 4
           WidgetType: 1
-        Data: 18
+        Data: 13
         NumericalDescription:
           DefaultValue: 7
           MinValue: 1
