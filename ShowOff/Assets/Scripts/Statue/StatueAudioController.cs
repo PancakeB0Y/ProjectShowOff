@@ -4,26 +4,43 @@ using FMOD.Studio;
 
 public class StatueAudioController : MonoBehaviour
 {
+    [Header("Statue Audio Settings")]
     [SerializeField] private EventReference statueFollowEvent;
     [SerializeField] private float maxAudioDistance = 15f;
     [SerializeField] private float minAudioDistance = 2f;
     [SerializeField] private LayerMask occlusionLayers;
 
+    [Header("Violin Audio Settings")]
+    [SerializeField] private EventReference violinIntenseEvent;
+    [SerializeField] private EventReference violinCalmEvent;
+    [SerializeField] private float violinMaxAudioDistance = 20f;
+    [SerializeField] private float violinMinAudioDistance = 3f;
+
     private EventInstance statueAudioInstance;
+    private EventInstance violinIntenseInstance;
+    private EventInstance violinCalmInstance;
+
     private bool isAudioPlaying = false;
+    private bool isViolinPlaying = false;
 
     [HideInInspector] public Transform playerTransform;
 
     void Awake()
     {
-        CreateAudioInstance();
+        CreateAudioInstances();
     }
 
     void Update()
     {
-        if (!isAudioPlaying || playerTransform == null)
-            return;
+        if (isAudioPlaying && playerTransform != null)
+        {
+            HandleStatueAudio();
+            HandleViolinAudio();
+        }
+    }
 
+    private void HandleStatueAudio()
+    {
         float distance = Vector3.Distance(transform.position, playerTransform.position);
         float t = Mathf.InverseLerp(maxAudioDistance, minAudioDistance, distance);
         t = Mathf.Clamp01(t);
@@ -36,14 +53,37 @@ public class StatueAudioController : MonoBehaviour
         statueAudioInstance.setParameterByName("Distance", t);
         statueAudioInstance.setParameterByName("Occlusion", occlusionParam);
 
-        Debug.Log($"FMOD 'Distance' param: {t}, Occlusion: {occlusionParam}, Distance: {distance}, Occluded: {occluded}");
+        Debug.Log($"Statue FMOD 'Distance' param: {t}, Occlusion: {occlusionParam}, Distance: {distance}, Occluded: {occluded}");
     }
 
-    private void CreateAudioInstance()
+    private void HandleViolinAudio()
+    {
+        float distance = Vector3.Distance(transform.position, playerTransform.position);
+        float t = Mathf.InverseLerp(violinMaxAudioDistance, violinMinAudioDistance, distance);
+        t = Mathf.Clamp01(t);
+
+        // Invert the t value
+        float invertedT = 1f - t;
+
+        // Send the inverted parameter to both events
+        violinIntenseInstance.setParameterByName("Distance New", invertedT);
+        violinCalmInstance.setParameterByName("Distance New", invertedT);
+
+        Debug.Log($"Violin Distance New Param (Inverted): {invertedT}, Distance: {distance}");
+    }
+
+    private void CreateAudioInstances()
     {
         statueAudioInstance = RuntimeManager.CreateInstance(statueFollowEvent);
-        RuntimeManager.AttachInstanceToGameObject(statueAudioInstance, gameObject);  // <-- fixed here
-        Debug.Log("FMOD audio instance created and attached.");
+        RuntimeManager.AttachInstanceToGameObject(statueAudioInstance, gameObject);
+
+        violinIntenseInstance = RuntimeManager.CreateInstance(violinIntenseEvent);
+        RuntimeManager.AttachInstanceToGameObject(violinIntenseInstance, gameObject);
+
+        violinCalmInstance = RuntimeManager.CreateInstance(violinCalmEvent);
+        RuntimeManager.AttachInstanceToGameObject(violinCalmInstance, gameObject);
+
+        Debug.Log("FMOD audio instances created and attached.");
     }
 
     public void SetupPlayerFollowAudio()
@@ -52,11 +92,23 @@ public class StatueAudioController : MonoBehaviour
         {
             statueAudioInstance.start();
             isAudioPlaying = true;
-            Debug.Log("FMOD audio started.");
+            Debug.Log("FMOD statue audio started.");
         }
         else
         {
-            Debug.LogWarning("Audio already playing.");
+            Debug.LogWarning("Statue audio already playing.");
+        }
+
+        if (!isViolinPlaying)
+        {
+            violinIntenseInstance.start();
+            violinCalmInstance.start();
+            isViolinPlaying = true;
+            Debug.Log("FMOD violin audio started.");
+        }
+        else
+        {
+            Debug.LogWarning("Violin audio already playing.");
         }
     }
 
@@ -64,15 +116,24 @@ public class StatueAudioController : MonoBehaviour
     {
         if (isAudioPlaying)
         {
-            statueAudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);  // <-- fully qualified STOP_MODE here
+            statueAudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             statueAudioInstance.release();
             isAudioPlaying = false;
-            CreateAudioInstance();
-            Debug.Log("FMOD audio stopped and released.");
+            Debug.Log("FMOD statue audio stopped and released.");
         }
-        else
+
+        if (isViolinPlaying)
         {
-            Debug.LogWarning("Audio was not playing.");
+            violinIntenseInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            violinIntenseInstance.release();
+
+            violinCalmInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            violinCalmInstance.release();
+
+            isViolinPlaying = false;
+            Debug.Log("FMOD violin audio stopped and released.");
         }
+
+        CreateAudioInstances();
     }
 }

@@ -5,8 +5,17 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [SerializeField] GameObject mainMenu;
+    [Header("Main Menu Scene")]
+    [SerializeField] GameObject mainMenuCanvas;
+
+    [Header("Game Scene")]
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject optionsPanel;
+
+    [Header("Help Panels")]
+    [SerializeField] GameObject helpPanelMainMenu;
+    [SerializeField] GameObject helpPanelGame;
 
     string pauseMenuTag = "PauseMenu";
 
@@ -21,20 +30,40 @@ public class UIManager : MonoBehaviour
             Instance = this;
         }
 
-        if(pauseMenu == null)
+        if (pauseMenu == null)
         {
             pauseMenu = GameObject.FindWithTag(pauseMenuTag);
         }
-        
+
         if (pauseMenu != null)
         {
             pauseMenu.SetActive(false);
+        }
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(false);
+        }
+
+        if (helpPanelMainMenu != null)
+        {
+            helpPanelMainMenu.SetActive(false);
+        }
+
+        if (helpPanelGame != null)
+        {
+            helpPanelGame.SetActive(false);
         }
     }
 
     public bool IsPauseMenuOpen()
     {
-        if(pauseMenu != null)
+        if (pauseMenu != null)
         {
             return pauseMenu.activeSelf;
         }
@@ -48,11 +77,17 @@ public class UIManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
+
+            if (pausePanel != null)
+                pausePanel.SetActive(true);
+
+            if (optionsPanel != null)
+                optionsPanel.SetActive(false);
         }
 
-        if (mainMenu != null) 
+        if (mainMenuCanvas != null)
         {
-            mainMenu.SetActive(false);
+            mainMenuCanvas.SetActive(false);
         }
     }
 
@@ -64,9 +99,9 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        if (mainMenu != null)
+        if (mainMenuCanvas != null)
         {
-            mainMenu.SetActive(true);
+            mainMenuCanvas.SetActive(true);
         }
     }
 
@@ -74,9 +109,115 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Level test");
     }
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main menu");
+    }
+
     public void QuitGame()
     {
         Debug.Log("Game Quit");
         Application.Quit();
+    }
+
+    // MAIN MENU - OPTIONS METHODS
+
+    public void OpenOptionsFromMainMenu()
+    {
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(true);
+        }
+
+        if (mainMenuCanvas != null)
+        {
+            mainMenuCanvas.SetActive(false);
+        }
+    }
+
+    public void CloseOptionsToMainMenu()
+    {
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(false);
+        }
+
+        if (mainMenuCanvas != null)
+        {
+            mainMenuCanvas.SetActive(true);
+        }
+    }
+
+    // GAME SCENE - OPTIONS METHODS
+
+    public void OpenOptionsFromPauseMenu()
+    {
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(true);
+        }
+    }
+
+    public void CloseOptionsToPauseMenu()
+    {
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(true);
+        }
+
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(false);
+        }
+    }
+
+    // MAIN MENU - HELP METHODS
+
+    public void OpenHelpFromMainMenu()
+    {
+        if (helpPanelMainMenu != null)
+            helpPanelMainMenu.SetActive(true);
+
+        if (mainMenuCanvas != null)
+            mainMenuCanvas.SetActive(false);
+    }
+
+    public void CloseHelpToMainMenu()
+    {
+        if (helpPanelMainMenu != null)
+            helpPanelMainMenu.SetActive(false);
+
+        if (mainMenuCanvas != null)
+            mainMenuCanvas.SetActive(true);
+    }
+
+    // GAME SCENE - HELP METHODS
+
+    public void OpenHelpFromPauseMenu()
+    {
+        if (helpPanelGame != null)
+            helpPanelGame.SetActive(true);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+
+        if (optionsPanel != null)
+            optionsPanel.SetActive(false);
+    }
+
+    public void CloseHelpToPauseMenu()
+    {
+        if (helpPanelGame != null)
+            helpPanelGame.SetActive(false);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
     }
 }
