@@ -31,13 +31,16 @@ public class InteractRaycast : MonoBehaviour
     {
         textPopup = GameObject.FindWithTag(interactTextTag);
 
-        if (textPopup != null) {
+        interactLayerIndex = LayerMaskToIndex(interactLayer);
+    }
 
+    private void Start()
+    {
+        if (textPopup != null)
+        {
             textPopupMesh = textPopup.GetComponent<TextMeshProUGUI>();
             textPopup.SetActive(false);
         }
-
-        interactLayerIndex = LayerMaskToIndex(interactLayer);
     }
 
     void Update()
@@ -80,7 +83,7 @@ public class InteractRaycast : MonoBehaviour
                 SetPopupText(interactableObject.interactText);
 
                 //Display popup text
-                DisplayPopupText(true);
+                TogglePopupText(true);
             }
         }
         else //when the player is not looking at the object
@@ -92,7 +95,7 @@ public class InteractRaycast : MonoBehaviour
     void ResetInteractionState()
     {
         //hide the text
-        DisplayPopupText(false);
+        TogglePopupText(false);
 
         //remove the saved object
         interactableObject = null;
@@ -116,16 +119,16 @@ public class InteractRaycast : MonoBehaviour
         interactableObject = null;
     }
 
-    //Display text to show button input for interactions
-    void DisplayPopupText(bool displayText)
+    // display text to show button input for interactions
+    void TogglePopupText(bool displayText)
     {
         if(textPopup == null)
         {
             return;
         }
 
-        //Check if the text is already on
-        if(displayText && !isTextOn)
+        // check if the text is already on
+        if(displayText)
         {
             textPopup.SetActive(true);
             isTextOn = true;

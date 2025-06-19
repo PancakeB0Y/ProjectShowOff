@@ -10,7 +10,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     protected Animator doorAnimator;
 
-    public bool isDoorOpen { get; protected set; } = false; //is the door open or closed
+    public bool isDoorOpen = false; //is the door open or closed
 
     protected DoorAudioController doorAudioController;
 
@@ -40,12 +40,10 @@ public class DoorController : MonoBehaviour, IInteractable
         if (!isDoorOpen)
         {
             OpenDoor();
-            isDoorOpen = true;
         }
         else
         {
             CloseDoor();
-            isDoorOpen = false;
         }
 
         StartCoroutine(InteractCooldownCoroutine());
@@ -54,6 +52,7 @@ public class DoorController : MonoBehaviour, IInteractable
     //Play the opening animation and sound
     public void OpenDoor()
     {
+
         //Play sound
         doorAudioController.PlayDoorOpenSound();
 
@@ -72,10 +71,13 @@ public class DoorController : MonoBehaviour, IInteractable
         }
 
         doorAnimator.Play("DoorOpen", 0, startTime);
+
+        isDoorOpen = true;
     }
 
     //Play the closing animation and sound
     public void CloseDoor(float animStartTime = 0f) {
+
         //Play sound
         doorAudioController.PlayDoorCloseSound();
 
@@ -94,6 +96,8 @@ public class DoorController : MonoBehaviour, IInteractable
         }
 
         doorAnimator.Play("DoorClose", 0, startTime);  
+
+        isDoorOpen = false;
     }
 
     //Check if an animation is being played

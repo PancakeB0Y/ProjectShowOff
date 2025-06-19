@@ -38,6 +38,16 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OnToggleInventory();
+        }
+
+        if (IsInventoryOpen())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             OnLightLantern();
@@ -46,11 +56,6 @@ public class PlayerInputs : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             OnInteract();
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            OnToggleInventory();
         }
 
         //if (Input.GetKeyDown(KeyCode.Q))
@@ -328,5 +333,15 @@ public class PlayerInputs : MonoBehaviour
         }
 
         return UIManager.Instance.IsPauseMenuOpen();
+    }
+
+    bool IsInventoryOpen()
+    {
+        if(InventoryManager.instance == null)
+        {
+            return false;
+        }
+
+        return InventoryManager.instance.isInventoryOpen;
     }
 }
