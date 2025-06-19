@@ -7,6 +7,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] GameObject[] popUps;
     [SerializeField] DoorController mainDoor;
+    [SerializeField] Collider popUp1Collider;
     int popUpIndex = -1;
 
     private void Awake()
@@ -33,6 +34,8 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
+
+        // all tutorial
         if(popUpIndex == 0)
         {
             if (Input.GetKeyDown(KeyCode.F)) {
@@ -64,5 +67,9 @@ public class TutorialManager : MonoBehaviour
         {
             mainDoor.CloseDoor(0.7f);
         }
+
+        
     }
+
+    
 }

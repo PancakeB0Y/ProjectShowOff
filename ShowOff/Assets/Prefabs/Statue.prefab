@@ -1171,6 +1171,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5516349223945942666}
     m_Modifications:
+    - target: {fileID: 789924260522967497, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038255883635145469, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5704706863983872292, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
       propertyPath: m_Name
       value: StatueModel 1
