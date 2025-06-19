@@ -6719,8 +6719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5398418852012934799}
   collDetector: {fileID: 2569773883558858140}
-  lerpAmountNormal: 50
-  lerpAmountClipping: 20
+  lerpAmountClipping: 5
 --- !u!114 &252809576978691033
 MonoBehaviour:
   m_ObjectHideFlags: 0

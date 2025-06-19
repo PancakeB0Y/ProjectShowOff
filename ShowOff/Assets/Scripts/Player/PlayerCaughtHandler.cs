@@ -8,6 +8,7 @@ public class PlayerCaughtHandler : MonoBehaviour
 
     PlayerController player;
     PlayerCameraController playerCameraController;
+    Rigidbody rb;
 
     [SerializeField]
     Transform playerCamera;
@@ -18,14 +19,21 @@ public class PlayerCaughtHandler : MonoBehaviour
     {   
         player = GetComponent<PlayerController>();
         playerCameraController = GetComponent<PlayerCameraController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Die(Transform statue)
     {
         Debug.Log("In");
 
+        statue.TryGetComponent<StatueFaceSwap>(out StatueFaceSwap statueFaceSwap);
+        if (statueFaceSwap != null) {
+            statueFaceSwap.SetFace(3);
+        }
+
         player.enabled = false;
         playerCameraController.enabled = false;
+        rb.constraints = RigidbodyConstraints.FreezePosition;
 
         transform.LookAt(statue);
         playerCamera.LookAt(statue.position + Vector3.up);

@@ -19,6 +19,8 @@ public class InventoryManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject ItemInspectionUI; //On screen text when inspecting item
     [SerializeField] GameObject InventoryText; //On screen text when the inventory is open
+    [SerializeField] GameObject InteractText; //On screen text player can interact with object
+    string interactTextTag = "InteractText"; //tag of the textPopup object
 
     [SerializeField] ItemType[] startInventoryContent;
 
@@ -72,6 +74,8 @@ public class InventoryManager : MonoBehaviour
         if (useItemTextPopup != null) {
             useItemTextPopup.SetActive(false);
         }
+
+        InteractText = GameObject.FindWithTag(interactTextTag);
     }
 
     private void Start()
@@ -106,6 +110,11 @@ public class InventoryManager : MonoBehaviour
 
         if (InventoryText != null) {
             InventoryText.SetActive(true);
+        }
+
+        if(InteractText != null)
+        {
+            InteractText.SetActive(false);
         }
 
         isInventoryOpenForInteraction = false;

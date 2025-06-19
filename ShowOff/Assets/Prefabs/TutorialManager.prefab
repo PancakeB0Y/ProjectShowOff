@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3054801007636901553}
   - component: {fileID: 1590979294550371945}
-  - component: {fileID: 9176628697520900737}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -47,24 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUps: []
   mainDoor: {fileID: 0}
---- !u!65 &9176628697520900737
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264116146776868974}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 15.758501, y: 7.1519094, z: 1}
-  m_Center: {x: -2.7889814, y: 0.49761224, z: 0}
+  popUp1Collider: {fileID: 0}

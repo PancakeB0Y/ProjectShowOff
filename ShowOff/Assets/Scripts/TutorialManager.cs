@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] GameObject[] popUps;
     [SerializeField] DoorController mainDoor;
-    int popUpIndex = -1;
+    int tutorialIndex = 0;
 
     private void Awake()
     {
@@ -23,9 +23,10 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
+        // enable the current tutorial stage
         for (int i = 0; i < popUps.Length; i++) {
-            if (i == popUpIndex) {
-                popUps[popUpIndex].SetActive(true);
+            if (i == tutorialIndex) {
+                popUps[tutorialIndex].SetActive(true);
             }
             else
             {
@@ -33,36 +34,48 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if(popUpIndex == 0)
+        // all tutorial checks
+        switch (tutorialIndex)
         {
-            if (Input.GetKeyDown(KeyCode.F)) {
-                popUpIndex = -1;
-            }
+            case 1:
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    tutorialIndex++;
+                }
+                break;
+            case 3:
+                if (mainDoor != null && mainDoor.isDoorOpen)
+                {
+                    mainDoor.CloseDoor(0.7f);
+                }
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    tutorialIndex++;
+                }
+                break;
+            case 5:
+                if (mainDoor != null && !mainDoor.isDoorOpen)
+                {
+                    mainDoor.OpenDoor();
+                }
+                break;
+            default:
+                break;
         }
     }
 
-    public void StartTutorial()
+    public void SetTutorialIndex(int index)
     {
-        popUpIndex = 0;
-
+        if (index > tutorialIndex) {
+            tutorialIndex = index;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<PlayerController>(out PlayerController player)){
-            CloseDoor();
-
-            GetComponent<Collider>().enabled = false;
-
-            StartTutorial();
-        }
-    }
-
-    void CloseDoor()
-    {
-        if (mainDoor != null)
+        if (other.TryGetComponent<PlayerController>(out PlayerController player))
         {
-            mainDoor.CloseDoor(0.7f);
+            
         }
-    }
+    } 
 }
