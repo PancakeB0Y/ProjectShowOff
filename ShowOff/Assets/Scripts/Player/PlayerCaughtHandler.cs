@@ -33,7 +33,7 @@ public class PlayerCaughtHandler : MonoBehaviour
 
         player.enabled = false;
         playerCameraController.enabled = false;
-        rb.constraints = RigidbodyConstraints.FreezePosition;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
 
         transform.LookAt(statue);
         playerCamera.LookAt(statue.position + Vector3.up);

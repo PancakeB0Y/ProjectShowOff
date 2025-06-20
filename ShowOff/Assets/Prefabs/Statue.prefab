@@ -234,8 +234,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.94597304, y: 2.0218399, z: 1.0415314}
-  m_Center: {x: -0.007987558, y: 0.059458613, z: -0.009568989}
+  m_Size: {x: 0.86822355, y: 2.0218399, z: 1.0245795}
+  m_Center: {x: 0.005977656, y: 0.059458613, z: 0.053342223}
 --- !u!195 &6014152522728046749
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -379,6 +379,22 @@ MonoBehaviour:
   occlusionLayers:
     serializedVersion: 2
     m_Bits: 0
+  violinIntenseEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  violinCalmEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  violinMaxAudioDistance: 20
+  violinMinAudioDistance: 3
   playerTransform: {fileID: 0}
 --- !u!114 &1328045109819305541
 MonoBehaviour:
