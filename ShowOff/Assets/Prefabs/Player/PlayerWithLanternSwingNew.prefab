@@ -5535,9 +5535,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
   MatchstickPrefab: {fileID: 7567259067091355523, guid: e4c4eda37bfad464296611be18a00e4e, type: 3}
+  PagePrefab: {fileID: 2677611112021056617, guid: 3f93dc8130efcc14aaffc03784206130, type: 3}
   ItemInspectionUI: {fileID: 0}
   InventoryText: {fileID: 0}
-  startInventoryContent: 030000000300000003000000
+  InteractText: {fileID: 0}
+  startInventoryContent: 03000000030000000300000009000000
   inventorySize: 20
   isInventoryOpen: 0
   isInventoryOpenForInteraction: 0

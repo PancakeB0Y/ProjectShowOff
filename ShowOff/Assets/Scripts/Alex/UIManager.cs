@@ -231,6 +231,11 @@ public class UIManager : MonoBehaviour
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
             deathMenu.SetActive(true);
+
+            if(deathMenu.TryGetComponent<DeathMenu>(out DeathMenu controller))
+            {
+                controller.FadeBackground();
+            }
         }
     }
 
