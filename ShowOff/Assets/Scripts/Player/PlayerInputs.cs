@@ -311,8 +311,6 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
-    
-
     public void EnableCursor()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
