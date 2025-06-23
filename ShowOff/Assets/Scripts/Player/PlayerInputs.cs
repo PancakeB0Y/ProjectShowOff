@@ -6,8 +6,9 @@ public class PlayerInputs : MonoBehaviour
     public static PlayerInputs instance { get; private set; }
 
     InteractRaycast interactRaycast; //interacting with items inputs
-    LanternController lanternController; //Lantern inputs
     PlayerCameraController cameraController;
+
+    ArmAnimatorController lightMatchAnimatorController;
 
     private void Awake()
     {
@@ -23,7 +24,8 @@ public class PlayerInputs : MonoBehaviour
         cameraController = GetComponent<PlayerCameraController>();
 
         interactRaycast = transform.parent.GetComponentInChildren<InteractRaycast>();
-        lanternController = transform.parent.GetComponentInChildren<LanternController>();
+
+        lightMatchAnimatorController = transform.parent.GetComponentInChildren<ArmAnimatorController>();
     }
 
     private void Update()
@@ -71,13 +73,13 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
-        if(lanternController == null)
+        if (lightMatchAnimatorController == null)
         {
-            lanternController = transform.parent.GetComponentInChildren<LanternController>();
+            lightMatchAnimatorController = transform.parent.GetComponentInChildren<ArmAnimatorController>();
         }
 
-        if (lanternController != null) {
-            lanternController.LightLantern();
+        if (lightMatchAnimatorController != null) {
+            lightMatchAnimatorController.StartAnimation();
         }
     }
 
