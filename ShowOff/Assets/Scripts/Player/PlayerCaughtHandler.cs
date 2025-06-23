@@ -47,8 +47,12 @@ public class PlayerCaughtHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(waitSecondsBeforeDeath);
 
+        if (UIManager.Instance != null) {
+            UIManager.Instance.OpenDeathMenu();
+        }
+
 #if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
+        //EditorApplication.isPlaying = false;
 #endif
     }
 }
