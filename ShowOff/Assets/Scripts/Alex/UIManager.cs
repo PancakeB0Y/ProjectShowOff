@@ -105,6 +105,10 @@ public class UIManager : MonoBehaviour
         {
             mainMenuCanvas.SetActive(true);
         }
+
+        // disable cursor
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 
     public void StartGame()

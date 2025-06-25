@@ -18,9 +18,9 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] GameObject PagePrefab;
 
     [Header("UI")]
-    [SerializeField] GameObject ItemInspectionUI; //On screen text when inspecting item
+    [SerializeField] GameObject ItemInspection; //On screen text when inspecting item
     [SerializeField] GameObject InventoryText; //On screen text when the inventory is open
-    [SerializeField] GameObject InteractText; //On screen text player can interact with object
+    GameObject InteractText; //On screen text player can interact with object
     string interactTextTag = "InteractText"; //tag of the textPopup object
 
     [SerializeField] ItemType[] startInventoryContent;
@@ -253,9 +253,9 @@ public class InventoryManager : MonoBehaviour
 
                 HideCrosshair();
 
-                if (ItemInspectionUI != null)
+                if (ItemInspection != null)
                 {
-                    ItemInspectionUI.SetActive(true);
+                    ItemInspection.SetActive(true);
                 }
 
                 if (InventoryText != null)
@@ -266,7 +266,6 @@ public class InventoryManager : MonoBehaviour
 
             itemController.gameObject.SetActive(true);
             inventoryUI.SetActive(false);
-
         }
     }
 
@@ -292,14 +291,12 @@ public class InventoryManager : MonoBehaviour
             InventoryText.SetActive(true);
         }
 
-        if (ItemInspectionUI != null)
+        if (ItemInspection != null)
         {
-            ItemInspectionUI.SetActive(false);
+            ItemInspection.SetActive(false);
         }
 
         isInspectingItem = false;
-
-        
     }
 
     //Clear button function from all buttons
