@@ -539,6 +539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829966a282a9d7e48b6e772483c836f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactCooldown: 0.5
+  isDoorOpen: 0
   isDoorLocked: 1
   canBeUnlocked: 1
   unlockItem: 4
@@ -667,11 +669,11 @@ MonoBehaviour:
     Path: event:/DoorCloseSound
   doorNotOpeningEvent:
     Guid:
-      Data1: -1520463546
-      Data2: 1291442340
-      Data3: 1659695543
-      Data4: 1593518721
-    Path: event:/DoorLocked
+      Data1: -1884475893
+      Data2: 1282750212
+      Data3: -401149028
+      Data4: 1150910138
+    Path: event:/Unlocking with key
 --- !u!1 &4438850983475398329
 GameObject:
   m_ObjectHideFlags: 0
