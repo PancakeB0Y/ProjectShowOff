@@ -138,6 +138,9 @@
 		<property name="length">
 			<value>13.400816326530613</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{e874c533-595c-4497-9847-32378bf309dd}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{781fe1dc-2c06-42dd-bc95-1ddd0b5eaa83}</destination>
 		</relationship>
@@ -164,6 +167,10 @@
 		</property>
 		<relationship name="automators">
 			<destination>{2f90dcef-e655-43f0-b108-d28fecc4c05c}</destination>
+		</relationship>
+		<relationship name="modulators">
+			<destination>{15243878-9508-457d-890b-90882ca0b91e}</destination>
+			<destination>{0cb830ac-f2b8-4cad-8e23-1dca35c33f12}</destination>
 		</relationship>
 		<relationship name="effectChain">
 			<destination>{799b78b3-84bf-4b82-869e-97ebcd167633}</destination>
@@ -200,6 +207,17 @@
 	</object>
 	<object class="MixerBusPanner" id="{726a24bb-15cb-451a-9c13-43c4221ccaa2}" />
 	<object class="MixerBusFader" id="{c9d6e79f-ebef-4d1d-af71-b650c4940333}" />
+	<object class="LFOModulator" id="{e874c533-595c-4497-9847-32378bf309dd}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="rate">
+			<value>0.0549999997</value>
+		</property>
+		<property name="depth">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="TransitionSourceFadeOutCurve" id="{7ce7b13b-8c59-4fcc-b92a-95e7d0d93dba}">
 		<relationship name="startPoint">
 			<destination>{ef161e32-61c2-4955-b5a9-e9abc26af4cc}</destination>
@@ -229,6 +247,28 @@
 		<relationship name="automationCurves">
 			<destination>{b171b701-7620-4b7f-ac68-60cd5083296d}</destination>
 		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{15243878-9508-457d-890b-90882ca0b91e}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="amount">
+			<value>40</value>
+		</property>
+	</object>
+	<object class="LFOModulator" id="{0cb830ac-f2b8-4cad-8e23-1dca35c33f12}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="rate">
+			<value>0.200000003</value>
+		</property>
+		<property name="depth">
+			<value>2</value>
+		</property>
+		<property name="direction">
+			<value>-100</value>
+		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{799b78b3-84bf-4b82-869e-97ebcd167633}">
 		<relationship name="effects">
@@ -320,7 +360,7 @@
 			<value>-80</value>
 		</property>
 		<property name="curveShape">
-			<value>-0.225956663</value>
+			<value>-0.732714236</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{fa973ac4-8a4d-41fc-a3d6-8dc3494bc73d}">
@@ -328,7 +368,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>10</value>
+			<value>2</value>
 		</property>
 	</object>
 	<object class="AutomationCurve" id="{24f14656-9285-4526-b7e8-48cf67f183e5}">

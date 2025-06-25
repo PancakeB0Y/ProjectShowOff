@@ -5688,6 +5688,13 @@ MonoBehaviour:
   waitSecondsBeforeDeath: 2
   playerCamera: {fileID: 4675946352711504659}
   lightSourceController: {fileID: 9156649850470840482}
+  deathSfx:
+    Guid:
+      Data1: 2036929894
+      Data2: 1274499930
+      Data3: 240324492
+      Data4: 1094648648
+    Path: event:/Player death
 --- !u!1 &2739132250423192827
 GameObject:
   m_ObjectHideFlags: 0
