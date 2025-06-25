@@ -9,6 +9,18 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public Item item;
 
+    [SerializeField]
+    MeshRenderer meshRenderer;
+    Material outlineShaderMaterial;
+
+    void Start()
+    {
+        if (!meshRenderer)
+            meshRenderer = GetComponentInChildren<MeshRenderer>();
+
+        outlineShaderMaterial = meshRenderer.materials[1];
+    }
+
     public void Interact()
     {
         if(InventoryManager.instance == null)
@@ -29,6 +41,16 @@ public class ItemController : MonoBehaviour, IInteractable
     public void DisableInteractions()
     {
         DisableColliders();
+    }
+
+    public void DisableOutlineShader()
+    {
+        meshRenderer.materials[1] = null;
+    }
+
+    public void EnableOutlineShader()
+    {
+        meshRenderer.materials[1] = outlineShaderMaterial;
     }
 
     //Disable colliders so the player cannot pick up the objects again
