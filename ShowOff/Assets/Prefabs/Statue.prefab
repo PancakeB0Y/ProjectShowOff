@@ -369,16 +369,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statueFollowEvent:
     Guid:
-      Data1: 745614270
-      Data2: 1120456412
-      Data3: -661660769
-      Data4: 494682326
-    Path: event:/Good step 3
-  maxAudioDistance: 15
-  minAudioDistance: 2
+      Data1: 1670907354
+      Data2: 1268942848
+      Data3: -701528448
+      Data4: 2139165329
+    Path: event:/statue_Sound
+  maxAudioDistance: 30
+  minAudioDistance: 0
   occlusionLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   violinIntenseEvent:
     Guid:
       Data1: 1849126580
@@ -393,7 +393,7 @@ MonoBehaviour:
       Data3: 1850215825
       Data4: 526646586
     Path: event:/long violin
-  violinMaxAudioDistance: 20
+  violinMaxAudioDistance: 15
   violinMinAudioDistance: 3
   playerTransform: {fileID: 0}
 --- !u!114 &1328045109819305541
