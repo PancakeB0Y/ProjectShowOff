@@ -70,6 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579155aafbb61674c98ce8ab5c92d612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactCooldown: 0.5
+  isDoorOpen: 0
 --- !u!82 &8046531641217516958
 AudioSource:
   m_ObjectHideFlags: 0
@@ -252,34 +254,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5145013567727484594, guid: ee5334b780c89484ba0f32775213e81a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 32889649872689787, guid: ee5334b780c89484ba0f32775213e81a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7361197311202087660}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee5334b780c89484ba0f32775213e81a, type: 3}
 --- !u!4 &1526889536917224183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5113818696649946563, guid: ee5334b780c89484ba0f32775213e81a, type: 3}
   m_PrefabInstance: {fileID: 6036924611573321524}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6031355663984547151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 32889649872689787, guid: ee5334b780c89484ba0f32775213e81a, type: 3}
-  m_PrefabInstance: {fileID: 6036924611573321524}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7361197311202087660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6031355663984547151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b2d674a13e1974c89361f0d48b26c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorController: {fileID: 7643478383431389601}
