@@ -43,6 +43,8 @@ public class InventoryManager : MonoBehaviour
     [HideInInspector] public bool isInspectingItem = false;
 
     ItemController inspectedItem = null;
+    MeshRenderer itemMeshRenderer = null;
+    List<Material> originalMaterials = new List<Material>();
 
     //Text for using an item for an inventory interaction
     GameObject useItemTextPopup = null; //text to show interact button
@@ -236,7 +238,16 @@ public class InventoryManager : MonoBehaviour
         //pass the pressed inventory item to the interactable item in the scene 
         if (itemController != null)
         {
+            // Disable outline
+
             inspectedItem = itemController;
+            itemMeshRenderer = inspectedItem.GetComponentInChildren<MeshRenderer>();
+            originalMaterials = new List<Material>(itemMeshRenderer.materials.ToList());
+
+            List<Material> newMaterials = new List<Material>(originalMaterials);
+            newMaterials.RemoveAt(1);
+
+            itemMeshRenderer.materials = newMaterials.ToArray();
 
             Rotatable rotatable = itemController.gameObject.GetComponent<Rotatable>();
 
@@ -253,7 +264,7 @@ public class InventoryManager : MonoBehaviour
 
                 HideCrosshair();
 
-                if (ItemInspection != null)
+                if (ItemInspectionUI != null)
                 {
                     ItemInspection.SetActive(true);
                 }
@@ -273,6 +284,9 @@ public class InventoryManager : MonoBehaviour
     {
         if(inspectedItem != null)
         {
+            // Enable outline again
+            itemMeshRenderer.materials = originalMaterials.ToArray();
+
             inspectedItem.gameObject.SetActive(false);
 
             if (inspectedItem.TryGetComponent<Rotatable>(out Rotatable rotatable))

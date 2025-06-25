@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour, IInteractable
@@ -9,21 +10,9 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public Item item;
 
-    [SerializeField]
-    MeshRenderer meshRenderer;
-    Material outlineShaderMaterial;
-
-    void Start()
-    {
-        if (!meshRenderer)
-            meshRenderer = GetComponentInChildren<MeshRenderer>();
-
-        outlineShaderMaterial = meshRenderer.materials[1];
-    }
-
     public void Interact()
     {
-        if(InventoryManager.instance == null)
+        if (InventoryManager.instance == null)
         {
             return;
         }
@@ -31,7 +20,7 @@ public class ItemController : MonoBehaviour, IInteractable
         InventoryManager.instance.PickupItem(this);
     }
 
-    public void InteractWithInventory(ItemController inventoryItem){}
+    public void InteractWithInventory(ItemController inventoryItem) { }
 
     public bool IsEqual(ItemController other)
     {
@@ -41,16 +30,6 @@ public class ItemController : MonoBehaviour, IInteractable
     public void DisableInteractions()
     {
         DisableColliders();
-    }
-
-    public void DisableOutlineShader()
-    {
-        meshRenderer.materials[1] = null;
-    }
-
-    public void EnableOutlineShader()
-    {
-        meshRenderer.materials[1] = outlineShaderMaterial;
     }
 
     //Disable colliders so the player cannot pick up the objects again

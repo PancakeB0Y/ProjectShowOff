@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 62526c31ac5502c4498b9880e3a8583c, type: 2}
+  meshRenderer: {fileID: 4946946001123669971}
 --- !u!82 &-6607984234072361412
 AudioSource:
   m_ObjectHideFlags: 0
@@ -287,5 +288,10 @@ PrefabInstance:
 --- !u!4 &1703942518565104499 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122058649106874977, guid: cbc38775cac7f0b4f808391b9ecdfa99, type: 3}
+  m_PrefabInstance: {fileID: 5814335707769628946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4946946001123669971 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1447835437517872833, guid: cbc38775cac7f0b4f808391b9ecdfa99, type: 3}
   m_PrefabInstance: {fileID: 5814335707769628946}
   m_PrefabAsset: {fileID: 0}
