@@ -264,7 +264,7 @@ public class InventoryManager : MonoBehaviour
 
                 HideCrosshair();
 
-                if (ItemInspectionUI != null)
+                if (ItemInspection != null)
                 {
                     ItemInspection.SetActive(true);
                 }
