@@ -234,8 +234,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.94597304, y: 2.0218399, z: 1.0415314}
-  m_Center: {x: -0.007987558, y: 0.059458613, z: -0.009568989}
+  m_Size: {x: 0.86822355, y: 2.0218399, z: 1.0245795}
+  m_Center: {x: 0.005977656, y: 0.059458613, z: 0.053342223}
 --- !u!195 &6014152522728046749
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -369,16 +369,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statueFollowEvent:
     Guid:
-      Data1: 1670907354
-      Data2: 1268942848
-      Data3: -701528448
-      Data4: 2139165329
-    Path: event:/statue_Sound
+      Data1: 745614270
+      Data2: 1120456412
+      Data3: -661660769
+      Data4: 494682326
+    Path: event:/Good step 3
   maxAudioDistance: 15
   minAudioDistance: 2
   occlusionLayers:
     serializedVersion: 2
     m_Bits: 0
+  violinIntenseEvent:
+    Guid:
+      Data1: 1849126580
+      Data2: 1103531021
+      Data3: 1460946611
+      Data4: -1156989431
+    Path: event:/quick violin
+  violinCalmEvent:
+    Guid:
+      Data1: 633015514
+      Data2: 1209163137
+      Data3: 1850215825
+      Data4: 526646586
+    Path: event:/long violin
+  violinMaxAudioDistance: 20
+  violinMinAudioDistance: 3
   playerTransform: {fileID: 0}
 --- !u!114 &1328045109819305541
 MonoBehaviour:

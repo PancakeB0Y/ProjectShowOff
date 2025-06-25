@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
     [SerializeField] GameObject MatchstickPrefab;
+    [SerializeField] GameObject PagePrefab;
 
     [Header("UI")]
     [SerializeField] GameObject ItemInspectionUI; //On screen text when inspecting item
@@ -576,20 +577,28 @@ public class InventoryManager : MonoBehaviour
     //Fill the inventory according to startInventoryContent
     void ParseStartingInventory()
     {
-        if(startInventoryContent == null || startInventoryContent.Length == 0|| MatchstickPrefab == null)
+        if(startInventoryContent == null || startInventoryContent.Length == 0)
         {
             return;
         }
 
         foreach(ItemType itemType in startInventoryContent)
         {
-            if(itemType == ItemType.Matchstick)
+            if(itemType == ItemType.Matchstick && MatchstickPrefab != null)
             {
                 GameObject newMatchstick = Instantiate(MatchstickPrefab);
 
                 if(newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController))
                 {
                     PickupItem(newMatchstickController, false);
+                }
+            }else if(itemType == ItemType.Page5 && PagePrefab != null)
+            {
+                GameObject newPage = Instantiate(PagePrefab);
+
+                if (newPage.TryGetComponent<ItemController>(out ItemController newPageController))
+                {
+                    PickupItem(newPageController, false);
                 }
             }
         }

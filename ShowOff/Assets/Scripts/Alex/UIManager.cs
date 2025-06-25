@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject optionsPanel;
+    [SerializeField] GameObject deathMenu;
+    [SerializeField] GameObject winMenu;
 
     [Header("Help Panels")]
     [SerializeField] GameObject helpPanelMainMenu;
@@ -219,5 +221,56 @@ public class UIManager : MonoBehaviour
 
         if (pausePanel != null)
             pausePanel.SetActive(true);
+    }
+
+
+    public void OpenDeathMenu()
+    {
+        if(deathMenu != null)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+            deathMenu.SetActive(true);
+
+            if(deathMenu.TryGetComponent<DeathMenu>(out DeathMenu controller))
+            {
+                controller.FadeBackground();
+            }
+        }
+    }
+
+    public void CloseDeathMenu()
+    {
+        if (deathMenu != null)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            deathMenu.SetActive(false);
+        }
+    }
+
+    public void OpenWinMenu()
+    {
+        if (winMenu != null)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+            winMenu.SetActive(true);
+        }
+    }
+
+    public void CloseWinMenu()
+    {
+        if (winMenu != null)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            winMenu.SetActive(false);
+        }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
