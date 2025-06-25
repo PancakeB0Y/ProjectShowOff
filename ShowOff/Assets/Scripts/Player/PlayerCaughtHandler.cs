@@ -1,6 +1,8 @@
 using System.Collections;
+using FMODUnity;
 using UnityEditor;
 using UnityEngine;
+using FMOD.Studio; 
 
 public class PlayerCaughtHandler : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class PlayerCaughtHandler : MonoBehaviour
     [SerializeField]
     LightSourceController lightSourceController;
 
+    [SerializeField]
+    EventReference deathSfx; 
     void Start()
     {   
         player = GetComponent<PlayerController>();
@@ -25,6 +29,14 @@ public class PlayerCaughtHandler : MonoBehaviour
     public void Die(Transform statue)
     {
         Debug.Log("In");
+
+        RuntimeManager.PlayOneShot(deathSfx, transform.position);
+
+        StatueAudioController statueAudio = statue.GetComponent<StatueAudioController>();
+        if (statueAudio != null)
+        {
+            statueAudio.StopPlaying(); 
+        }
 
         statue.TryGetComponent<StatueFaceSwap>(out StatueFaceSwap statueFaceSwap);
         if (statueFaceSwap != null) {

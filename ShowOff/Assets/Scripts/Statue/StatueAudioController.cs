@@ -116,7 +116,7 @@ public class StatueAudioController : MonoBehaviour
     {
         if (isAudioPlaying)
         {
-            statueAudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            statueAudioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
             statueAudioInstance.release();
             isAudioPlaying = false;
             Debug.Log("FMOD statue audio stopped and released.");
@@ -124,16 +124,17 @@ public class StatueAudioController : MonoBehaviour
 
         if (isViolinPlaying)
         {
-            violinIntenseInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            violinIntenseInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
             violinIntenseInstance.release();
 
-            violinCalmInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            violinCalmInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             violinCalmInstance.release();
 
             isViolinPlaying = false;
             Debug.Log("FMOD violin audio stopped and released.");
         }
 
-        CreateAudioInstances();
+        CreateAudioInstances(); 
     }
+
 }

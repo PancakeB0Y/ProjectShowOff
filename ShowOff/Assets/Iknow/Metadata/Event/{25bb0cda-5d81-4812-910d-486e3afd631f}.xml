@@ -253,7 +253,7 @@
 			<value>volume</value>
 		</property>
 		<property name="amount">
-			<value>3</value>
+			<value>40</value>
 		</property>
 	</object>
 	<object class="LFOModulator" id="{0cb830ac-f2b8-4cad-8e23-1dca35c33f12}">
