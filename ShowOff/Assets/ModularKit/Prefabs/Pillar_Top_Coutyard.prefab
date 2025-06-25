@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4386772864598999895}
   - component: {fileID: 7961186895158012674}
   - component: {fileID: 3975981077529402800}
+  - component: {fileID: 440384234449938135}
   m_Layer: 0
   m_Name: Pillar_Top_Coutyard
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &440384234449938135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912053971702822365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50.48475, y: 276.58844, z: 49.52684}
+  m_Center: {x: 0.0000038146973, y: 138.29422, z: 0.0000009536743}
