@@ -5311,6 +5311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
   MatchstickPrefab: {fileID: 7567259067091355523, guid: e4c4eda37bfad464296611be18a00e4e, type: 3}
+  PagePrefab: {fileID: 0}
   ItemInspectionUI: {fileID: 0}
   InventoryText: {fileID: 0}
   InteractText: {fileID: 0}
@@ -5462,7 +5463,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSecondsBeforeDeath: 2
   playerCamera: {fileID: 4709546012074284885}
-  lightSourceController: {fileID: 0}
+  lightSourceController: {fileID: 3819144958098171577}
+  deathSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1395723255634650170
 GameObject:
   m_ObjectHideFlags: 0
