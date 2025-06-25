@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] GameObject[] popUps;
     [SerializeField] DoorController mainDoor;
-    int tutorialIndex = 0;
+    public int tutorialIndex = 0;
 
     private void Awake()
     {
@@ -25,12 +25,15 @@ public class TutorialManager : MonoBehaviour
     {
         // enable the current tutorial stage
         for (int i = 0; i < popUps.Length; i++) {
-            if (i == tutorialIndex) {
+            if (i == tutorialIndex && popUps[i] != null) {
                 popUps[tutorialIndex].SetActive(true);
             }
             else
             {
-                popUps[i].SetActive(false);
+                if (popUps[i] != null)
+                {
+                    popUps[i].SetActive(false);
+                }
             }
         }
 
@@ -57,6 +60,10 @@ public class TutorialManager : MonoBehaviour
                 if (mainDoor != null && !mainDoor.isDoorOpen)
                 {
                     mainDoor.OpenDoor();
+                    if(UIManager.Instance != null)
+                    {
+                        UIManager.Instance.OpenWinMenu();
+                    }
                 }
                 break;
             default:
@@ -66,16 +73,9 @@ public class TutorialManager : MonoBehaviour
 
     public void SetTutorialIndex(int index)
     {
-        if (index > tutorialIndex) {
+        if (index > tutorialIndex)
+        {
             tutorialIndex = index;
         }
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<PlayerController>(out PlayerController player))
-        {
-            
-        }
-    } 
 }
