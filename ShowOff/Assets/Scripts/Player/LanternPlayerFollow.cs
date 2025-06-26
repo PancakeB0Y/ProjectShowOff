@@ -12,8 +12,6 @@ public class LanternPlayerFollow : MonoBehaviour
     [SerializeField]
     LanternCollDetector collDetector;
     [SerializeField]
-    float lerpAmountNormal = 0.5f;
-    [SerializeField]
     float lerpAmountClipping = 10.0f;
 
     float lerpAmount;
@@ -25,8 +23,6 @@ public class LanternPlayerFollow : MonoBehaviour
     void Start()
     {
         offset = transform.localPosition;
-
-        lerpAmount = lerpAmountNormal;
     }
 
     void Update()
@@ -34,7 +30,6 @@ public class LanternPlayerFollow : MonoBehaviour
         if (!collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.WallColl
             /*&& !isAlreadyWaiting*/)
         {
-            Debug.Log("In");
             StartCoroutine(WaitBeforeSwitchingToNormal());
         }
         else if (collDetector.IsTouchingWall && lanternFollowState == LanternFollowState.Normal)
@@ -49,7 +44,6 @@ public class LanternPlayerFollow : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        Debug.Log("In2");
         lanternFollowState = LanternFollowState.Normal;
         //isAlreadyWaiting = false;
     }
@@ -62,7 +56,6 @@ public class LanternPlayerFollow : MonoBehaviour
         {
             case LanternFollowState.Normal:
                 targetPos = player.position + player.rotation * offset;
-                lerpAmount = lerpAmountNormal;
                 transform.position = targetPos;
                 break;
             case LanternFollowState.WallColl:

@@ -15,9 +15,15 @@ public class InventoryManager : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] GameObject UIItemPrefab; //prefab for an empty item image in the inventory
     [SerializeField] GameObject MatchstickPrefab;
-    [SerializeField] ItemType[] startInventoryContent;
+    [SerializeField] GameObject PagePrefab;
 
-    
+    [Header("UI")]
+    [SerializeField] GameObject ItemInspection; //On screen text when inspecting item
+    [SerializeField] GameObject InventoryText; //On screen text when the inventory is open
+    GameObject InteractText; //On screen text player can interact with object
+    string interactTextTag = "InteractText"; //tag of the textPopup object
+
+    [SerializeField] ItemType[] startInventoryContent;
 
     [Header("Properties")]
     [SerializeField] int inventorySize = 20;
@@ -31,11 +37,14 @@ public class InventoryManager : MonoBehaviour
     GameObject UICrosshair; //On screen crosshair
     string crosshairTag = "Crosshair";
 
+
     [HideInInspector] public bool isInventoryOpen = false;
     [HideInInspector] public bool isInventoryOpenForInteraction = false;
     [HideInInspector] public bool isInspectingItem = false;
 
     ItemController inspectedItem = null;
+    MeshRenderer itemMeshRenderer = null;
+    List<Material> originalMaterials = new List<Material>();
 
     //Text for using an item for an inventory interaction
     GameObject useItemTextPopup = null; //text to show interact button
@@ -46,7 +55,14 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
 
         inventoryUI = GameObject.FindWithTag(inventoryUITag);
 
@@ -60,7 +76,9 @@ public class InventoryManager : MonoBehaviour
 
         if (useItemTextPopup != null) {
             useItemTextPopup.SetActive(false);
-        } 
+        }
+
+        InteractText = GameObject.FindWithTag(interactTextTag);
     }
 
     private void Start()
@@ -93,6 +111,15 @@ public class InventoryManager : MonoBehaviour
 
         UpdateInventoryButtons();
 
+        if (InventoryText != null) {
+            InventoryText.SetActive(true);
+        }
+
+        if(InteractText != null)
+        {
+            InteractText.SetActive(false);
+        }
+
         isInventoryOpenForInteraction = false;
     }
 
@@ -113,6 +140,11 @@ public class InventoryManager : MonoBehaviour
         if (useItemTextPopup != null)
         {
             useItemTextPopup.SetActive(false);
+        }
+
+        if (InventoryText != null)
+        {
+            InventoryText.SetActive(false);
         }
     }
 
@@ -206,7 +238,16 @@ public class InventoryManager : MonoBehaviour
         //pass the pressed inventory item to the interactable item in the scene 
         if (itemController != null)
         {
+            // Disable outline
+
             inspectedItem = itemController;
+            itemMeshRenderer = inspectedItem.GetComponentInChildren<MeshRenderer>();
+            originalMaterials = new List<Material>(itemMeshRenderer.materials.ToList());
+
+            List<Material> newMaterials = new List<Material>(originalMaterials);
+            newMaterials.RemoveAt(1);
+
+            itemMeshRenderer.materials = newMaterials.ToArray();
 
             Rotatable rotatable = itemController.gameObject.GetComponent<Rotatable>();
 
@@ -222,11 +263,20 @@ public class InventoryManager : MonoBehaviour
                 rotatable.enabled = true;
 
                 HideCrosshair();
+
+                if (ItemInspection != null)
+                {
+                    ItemInspection.SetActive(true);
+                }
+
+                if (InventoryText != null)
+                {
+                    InventoryText.SetActive(false);
+                }
             }
 
             itemController.gameObject.SetActive(true);
             inventoryUI.SetActive(false);
-
         }
     }
 
@@ -234,6 +284,9 @@ public class InventoryManager : MonoBehaviour
     {
         if(inspectedItem != null)
         {
+            // Enable outline again
+            itemMeshRenderer.materials = originalMaterials.ToArray();
+
             inspectedItem.gameObject.SetActive(false);
 
             if (inspectedItem.TryGetComponent<Rotatable>(out Rotatable rotatable))
@@ -242,7 +295,21 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        inventoryUI.SetActive(true);
+        if(inventoryUI != null)
+        {
+            inventoryUI.SetActive(true);
+        }
+
+        if (InventoryText != null)
+        {
+            InventoryText.SetActive(true);
+        }
+
+        if (ItemInspection != null)
+        {
+            ItemInspection.SetActive(false);
+        }
+
         isInspectingItem = false;
     }
 
@@ -263,7 +330,6 @@ public class InventoryManager : MonoBehaviour
     void EnableCursor()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        //UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         UnityEngine.Cursor.visible = true;
     }
 
@@ -522,20 +588,28 @@ public class InventoryManager : MonoBehaviour
     //Fill the inventory according to startInventoryContent
     void ParseStartingInventory()
     {
-        if(startInventoryContent == null || startInventoryContent.Length == 0|| MatchstickPrefab == null)
+        if(startInventoryContent == null || startInventoryContent.Length == 0)
         {
             return;
         }
 
         foreach(ItemType itemType in startInventoryContent)
         {
-            if(itemType == ItemType.Matchstick)
+            if(itemType == ItemType.Matchstick && MatchstickPrefab != null)
             {
                 GameObject newMatchstick = Instantiate(MatchstickPrefab);
 
                 if(newMatchstick.TryGetComponent<ItemController>(out ItemController newMatchstickController))
                 {
                     PickupItem(newMatchstickController, false);
+                }
+            }else if(itemType == ItemType.Page5 && PagePrefab != null)
+            {
+                GameObject newPage = Instantiate(PagePrefab);
+
+                if (newPage.TryGetComponent<ItemController>(out ItemController newPageController))
+                {
+                    PickupItem(newPageController, false);
                 }
             }
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 157518227133036025}
   - component: {fileID: -6607984234072361412}
   - component: {fileID: 6364830715917144880}
+  - component: {fileID: 6010890834424732708}
   m_Layer: 6
   m_Name: Rosary
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 62526c31ac5502c4498b9880e3a8583c, type: 2}
+  meshRenderer: {fileID: 4946946001123669971}
 --- !u!82 &-6607984234072361412
 AudioSource:
   m_ObjectHideFlags: 0
@@ -193,6 +195,27 @@ MonoBehaviour:
     m_Flags: 0
   rotationSpeed: 0.3
   distanceFromCamera: 1.2
+--- !u!65 &6010890834424732708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959294114454786379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0700305, y: 0.115593255, z: 1.2190132}
+  m_Center: {x: -0.012736201, y: 0.052856386, z: 0.05029297}
 --- !u!1001 &5814335707769628946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -265,5 +288,10 @@ PrefabInstance:
 --- !u!4 &1703942518565104499 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122058649106874977, guid: cbc38775cac7f0b4f808391b9ecdfa99, type: 3}
+  m_PrefabInstance: {fileID: 5814335707769628946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4946946001123669971 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1447835437517872833, guid: cbc38775cac7f0b4f808391b9ecdfa99, type: 3}
   m_PrefabInstance: {fileID: 5814335707769628946}
   m_PrefabAsset: {fileID: 0}

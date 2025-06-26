@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 523030250460668454}
   - component: {fileID: 1328045109819305541}
   - component: {fileID: 7100990069489627336}
+  - component: {fileID: 5732739087546477410}
   m_Layer: 0
   m_Name: Statue
   m_TagString: Untagged
@@ -233,8 +234,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.94597304, y: 2.0218399, z: 1.0415314}
-  m_Center: {x: -0.007987558, y: 0.059458613, z: -0.009568989}
+  m_Size: {x: 0.86822355, y: 2.0218399, z: 1.0245795}
+  m_Center: {x: 0.005977656, y: 0.059458613, z: 0.053342223}
 --- !u!195 &6014152522728046749
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -368,11 +369,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statueFollowEvent:
     Guid:
-      Data1: 1670907354
-      Data2: 1268942848
-      Data3: -701528448
-      Data4: 2139165329
-    Path: event:/statue_Sound
+      Data1: 745614270
+      Data2: 1120456412
+      Data3: -661660769
+      Data4: 494682326
+    Path: event:/Good step 3
+  maxAudioDistance: 15
+  minAudioDistance: 2
+  occlusionLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  violinIntenseEvent:
+    Guid:
+      Data1: 1849126580
+      Data2: 1103531021
+      Data3: 1460946611
+      Data4: -1156989431
+    Path: event:/quick violin
+  violinCalmEvent:
+    Guid:
+      Data1: 633015514
+      Data2: 1209163137
+      Data3: 1850215825
+      Data4: 526646586
+    Path: event:/long violin
+  violinMaxAudioDistance: 20
+  violinMinAudioDistance: 3
+  playerTransform: {fileID: 0}
 --- !u!114 &1328045109819305541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +424,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23880e6b943dd1468382aeafeac354b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5732739087546477410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2794500807739558895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833b885a215d3c7449e1efe0ba566c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statueFaces:
+  - {fileID: 6524965405040258605}
+  - {fileID: 5490552550105044249}
+  - {fileID: 5684147261420181945}
+  - {fileID: 7342807365507567091}
 --- !u!1 &3127370658514603799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1205,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5516349223945942666}
     m_Modifications:
+    - target: {fileID: 789924260522967497, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038255883635145469, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863506822325281303, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5704706863983872292, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
       propertyPath: m_Name
       value: StatueModel 1
@@ -1233,5 +1285,25 @@ PrefabInstance:
 --- !u!4 &586713496471009921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6367920857932141925, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+  m_PrefabInstance: {fileID: 5799240597697753060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5490552550105044249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2038255883635145469, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+  m_PrefabInstance: {fileID: 5799240597697753060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5684147261420181945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2204845480724788829, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+  m_PrefabInstance: {fileID: 5799240597697753060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6524965405040258605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 789924260522967497, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
+  m_PrefabInstance: {fileID: 5799240597697753060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7342807365507567091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3863506822325281303, guid: 6f2ceeff8f86a7e48959c25ba17384ef, type: 3}
   m_PrefabInstance: {fileID: 5799240597697753060}
   m_PrefabAsset: {fileID: 0}

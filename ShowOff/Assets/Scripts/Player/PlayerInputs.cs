@@ -6,21 +6,50 @@ public class PlayerInputs : MonoBehaviour
     public static PlayerInputs instance { get; private set; }
 
     InteractRaycast interactRaycast; //interacting with items inputs
-    LanternController lanternController; //Lantern inputs
     PlayerCameraController cameraController;
+
+    ArmAnimatorController lightMatchAnimatorController;
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
 
         cameraController = GetComponent<PlayerCameraController>();
 
         interactRaycast = transform.parent.GetComponentInChildren<InteractRaycast>();
-        lanternController = transform.parent.GetComponentInChildren<LanternController>();
+
+        lightMatchAnimatorController = transform.parent.GetComponentInChildren<ArmAnimatorController>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnCloseMenus();
+            OnPause();
+        }
+
+        if (IsGamePaused()) {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OnToggleInventory();
+        }
+
+        if (IsInventoryOpen())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             OnLightLantern();
@@ -31,31 +60,31 @@ public class PlayerInputs : MonoBehaviour
             OnInteract();
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            OnToggleInventory();
-        }
-
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
         //    OnDropFirstItem();
         //}
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnCloseMenu();
-        }
     }
 
     public void OnLightLantern()
     {
-        if(lanternController == null)
+        if(Time.timeScale == 0f)
         {
-            lanternController = transform.parent.GetComponentInChildren<LanternController>();
+            return;
         }
 
-        if (lanternController != null) {
-            lanternController.LightLantern();
+        if(InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (lightMatchAnimatorController == null)
+        {
+            lightMatchAnimatorController = transform.parent.GetComponentInChildren<ArmAnimatorController>();
+        }
+
+        if (lightMatchAnimatorController != null && InventoryManager.instance.UseMatchstick()) {
+            lightMatchAnimatorController.StartAnimation();
         }
     }
 
@@ -65,7 +94,6 @@ public class PlayerInputs : MonoBehaviour
         {
             return;
         }
-
 
         if (InventoryManager.instance.isInspectingItem)
         {
@@ -224,11 +252,101 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
+    public void OnCloseMenus()
+    {
+        if (InventoryManager.instance == null)
+        {
+            return;
+        }
+
+        if (InventoryManager.instance.isInspectingItem)
+        {
+            OnStopInspectingItem();
+        }
+
+        if (InventoryManager.instance.isInventoryOpenForInteraction)
+        {
+            OnCloseInventoryInteraction();
+        }
+
+        if (InventoryManager.instance.isInventoryOpen)
+        {
+            OnCloseInventory();
+        }
+    }
+
     public void OnDropFirstItem()
     {
         if (InventoryManager.instance != null)
         {
             InventoryManager.instance.DropFirstItem();
         }
+    }
+
+    public void OnPause()
+    {
+        if(UIManager.Instance == null)
+        {
+            return;
+        }
+
+        if (UIManager.Instance.IsPauseMenuOpen())
+        {
+            OnClosePauseMenu();
+        }
+        else
+        {
+            OnOpenPauseMenu();
+        }
+    }
+
+    void OnOpenPauseMenu()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.OpenPauseMenu();
+            EnableCursor();
+        }
+    }
+
+    public void OnClosePauseMenu()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ClosePauseMenu();
+            DisableCursor();
+        }
+    }
+
+    public void EnableCursor()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+    }
+
+    public void DisableCursor()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+    }
+
+    bool IsGamePaused()
+    {
+        if (UIManager.Instance == null)
+        {
+            return false;
+        }
+
+        return UIManager.Instance.IsPauseMenuOpen();
+    }
+
+    bool IsInventoryOpen()
+    {
+        if(InventoryManager.instance == null)
+        {
+            return false;
+        }
+
+        return InventoryManager.instance.isInventoryOpen;
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class LightSourceController : MonoBehaviour
@@ -9,15 +9,18 @@ public class LightSourceController : MonoBehaviour
     private float turnLightOffSeconds = 2f;
 
     private GameObject lightSource;
+    private GameObject flameParticle;
 
     void Start()
     {
         lightSource = GetComponentInChildren<Light>(true).gameObject;
+        flameParticle = GetComponentInChildren<ParticleSystem>(true).gameObject;
     }
 
     public void TurnLightOn(bool playSound = true)
     {
         lightSource.SetActive(true);
+        flameParticle.SetActive(true);
 
         StartCoroutine(TurnLanternOffCoroutine());
         IsLightOn = true;
@@ -39,6 +42,7 @@ public class LightSourceController : MonoBehaviour
     public void TurnLightOff()
     {
         lightSource.SetActive(false);
+        flameParticle.SetActive(false);
 
         IsLightOn = false;
     }

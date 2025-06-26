@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2732409066565728081}
   - component: {fileID: -9215616633312007564}
   - component: {fileID: -1261943110137026000}
+  - component: {fileID: 1275189777972259401}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -193,6 +194,27 @@ MonoBehaviour:
     m_Flags: 0
   rotationSpeed: 0.3
   distanceFromCamera: 1.2
+--- !u!65 &1275189777972259401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376537825858740018}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.55168486, y: 0.07212202, z: 1}
+  m_Center: {x: 0.00044047832, y: 0.024646483, z: 0}
 --- !u!1001 &5338008089622251521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,6 +223,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5044338139800235627}
     m_Modifications:
+    - target: {fileID: 44949962671102626, guid: b5dfa647d020c2840b7854ecef0658db, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 44949962671102626, guid: b5dfa647d020c2840b7854ecef0658db, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cbfdf2d0471aaad42942a1e494f1b132, type: 2}
     - target: {fileID: 1252733000641336937, guid: b5dfa647d020c2840b7854ecef0658db, type: 3}
       propertyPath: m_Name
       value: KeyModel (1)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{cbfaaf0c-b9ad-4208-b4bb-2674017d4718}">
+		<property name="assetPath">
+			<value>long violin.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>13.400816326530613</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7380523e-e017-428a-a40c-704ea9710c56}</destination>
+		</relationship>
+	</object>
+</objects>
