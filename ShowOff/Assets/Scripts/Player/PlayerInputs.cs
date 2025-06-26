@@ -73,12 +73,17 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
+        if(InventoryManager.instance == null)
+        {
+            return;
+        }
+
         if (lightMatchAnimatorController == null)
         {
             lightMatchAnimatorController = transform.parent.GetComponentInChildren<ArmAnimatorController>();
         }
 
-        if (lightMatchAnimatorController != null) {
+        if (lightMatchAnimatorController != null && InventoryManager.instance.UseMatchstick()) {
             lightMatchAnimatorController.StartAnimation();
         }
     }
