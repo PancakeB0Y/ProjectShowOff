@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AltarController : MonoBehaviour, IInteractable
@@ -79,8 +80,17 @@ public class AltarController : MonoBehaviour, IInteractable
 
             isItemTypePlaced[currentItemType] = true;
 
-            //Disable the item so the player cannot interact with the object
+            // disable the item so the player cannot interact with the object
             itemController.DisableInteractions();
+
+            // remove the item shader
+            MeshRenderer itemMeshRenderer = itemController.GetComponentInChildren<MeshRenderer>();
+            List<Material> originalMaterials = new List<Material>(itemMeshRenderer.materials.ToList());
+
+            List<Material> newMaterials = new List<Material>(originalMaterials);
+            newMaterials.RemoveAt(1);
+
+            itemMeshRenderer.materials = newMaterials.ToArray();
         }
     }
 
