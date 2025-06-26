@@ -296,7 +296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: " If this message finds you, I may already be gone.\r\nDo not trouble yourself
-    with finding me some paths, once taken, cannot be walked back.\r\n\u2014 Your
+    with finding me. Some paths, once taken, cannot be walked back.\r\n\u2014 Your
     brother, Pierre\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f139ddbb6a27112479051bea4f21ba00, type: 2}
@@ -480,16 +480,13 @@ PrefabInstance:
       value: "To my dearest brother,\r\nThe winds of war have carried me far from
         home. By the order of our General, I have been drafted into the ranks of
         the French army. We are to march north, into Dutch territory, to dismantle
-        their strongholds and seize what they call their sacred relics.\r\nThey are
-        sending us to an old monastery, tucked away beyond empty roads and abandoned
-        farms. The place is said to shelter heretics, protectors of relics the Church
-        has forbidden.\r\nBut brother\u2026 something about it unsettles me.\r\n
-        There\u2019s a weight in my chest I can\u2019t explain\r\n as if whatever\u2019s
-        waiting for us does not wish to be found.rum."
+        an old monastery. The place is said to shelter heretics, protectors of relics
+        the Church has forbidden.\r\nBut brother\u2026 something about it unsettles
+        me.\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8389345479628589379, guid: c9262223109478648a929d5d69966ce8, type: 3}
       propertyPath: m_fontSize
-      value: 0.25
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 8389345479628589379, guid: c9262223109478648a929d5d69966ce8, type: 3}
       propertyPath: m_margin.w
