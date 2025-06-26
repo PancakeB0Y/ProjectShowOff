@@ -246,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactCooldown: 0.5
   isDoorOpen: 0
-  isDoorLocked: 1
+  isDoorLocked: 0
   canBeUnlocked: 1
   unlockItem: 4
 --- !u!82 &4250388877935248127
