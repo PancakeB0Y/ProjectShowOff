@@ -48,7 +48,7 @@ public class PlayerCaughtHandler : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
 
         transform.LookAt(statue);
-        playerCamera.LookAt(statue.position + Vector3.up);
+        playerCamera.LookAt(statue.position + Vector3.up * 2);
 
         lightSourceController.TurnLightOn(false);
 
