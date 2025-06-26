@@ -44,7 +44,8 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         maxSpawnRangeFromPlayerPos = maxSpawnRangeFromPlayerPosInitial;
         minSpawnRangeFromPlayerPos = minSpawnRangeFromPlayerPosInitial;
 
-        SetState(MoveState.Disabled);
+        SetState(MoveState.Freezed);
+        agent.enabled = false;
     }
 
     void SetState(MoveState newState)
@@ -76,6 +77,9 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     public void SetupPlayerFollow(Vector3 playerPos)
     {
+        if (!agent.enabled)
+            agent.enabled = true;
+
         Debug.Log($"SetupPlayerFollow called. Current State: {statueState}");
         if (statueState == MoveState.Chasing)
         {
