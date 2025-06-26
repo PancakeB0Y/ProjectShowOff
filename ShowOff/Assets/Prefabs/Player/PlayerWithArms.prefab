@@ -6292,7 +6292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightTime: 0.5
-  useMatchsticks: 0
+  useMatchsticks: 1
 --- !u!1 &6975151060180881952
 GameObject:
   m_ObjectHideFlags: 0
