@@ -5465,11 +5465,11 @@ MonoBehaviour:
   lightSourceController: {fileID: 3819144958098171577}
   deathSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2036929894
+      Data2: 1274499930
+      Data3: 240324492
+      Data4: 1094648648
+    Path: event:/Player death
 --- !u!1 &1395723255634650170
 GameObject:
   m_ObjectHideFlags: 0

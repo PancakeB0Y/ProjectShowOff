@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,12 @@ public class PlayerCameraController : MonoBehaviour
     private float mouseSens = 500f;
     float startSens;
 
-    float xRotation;
-    float yRotation;
+    float xRotation = 0.0f;
+    float yRotation = 0.0f;
+
+    bool firstMouse = true;
+    float lastMouseX = 0.0f;
+    float lastMouseY = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,18 @@ public class PlayerCameraController : MonoBehaviour
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSens;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSens;
+        if (mouseX == lastMouseX && mouseY == lastMouseY)
+            return;
+
+        if (firstMouse) // initially set to true
+        {
+            mouseX = 0.0f;
+            mouseY = 0.0f;
+            firstMouse = false;
+        }
+
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
 
         yRotation += mouseX;
 
