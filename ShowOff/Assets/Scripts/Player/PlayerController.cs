@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         // Stop sliding when not pressing movement keys
         if (moveInput.magnitude < 0.001f)
         {
-            finalVelocity = Vector3.zero;
+            finalVelocity.x = finalVelocity.z = 0.0f;
         }
 
         rb.linearVelocity = finalVelocity;
