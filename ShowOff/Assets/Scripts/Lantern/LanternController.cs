@@ -81,11 +81,8 @@ public class LanternController : MonoBehaviour
             StartCoroutine(TurnLanternOnCoroutine());
         }
 
-        //Play lantern sound
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlayLightLanternSound(gameObject);
-        }
+ 
+ 
     }
 
     void TurnLanternOff()
