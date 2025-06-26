@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[F] Light Lantern'
+  m_text: Press [I] to open inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f139ddbb6a27112479051bea4f21ba00, type: 2}
   m_sharedMaterial: {fileID: 898336849836002483, guid: f139ddbb6a27112479051bea4f21ba00, type: 2}
