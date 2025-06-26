@@ -6111,7 +6111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsLightOn: 0
-  turnLightOffSeconds: 2
+  turnLightOffSeconds: 20
 --- !u!1 &6437598818763481658
 GameObject:
   m_ObjectHideFlags: 0

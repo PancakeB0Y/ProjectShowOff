@@ -34,10 +34,10 @@ public class LanternController : MonoBehaviour
 
             if (useMatchsticks) {
                 //Check if the player has a matchstick
-                if (InventoryManager.instance.UseMatchstick())
-                {
+                //if (InventoryManager.instance.UseMatchstick())
+                //{
                     TurnLanternOn();
-                }
+                //}
             }
             else
             {
