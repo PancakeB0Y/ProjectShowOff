@@ -105,7 +105,8 @@ public class NavMeshMoveBehaviour : MonoBehaviour
             countOut++;
             if (countOut > 1000)
             {
-                Debug.LogError("Error: infinite while loop. Cannot find point on nav mesh");
+                Debug.Log("Error: infinite while loop. Cannot find point on nav mesh");
+                return Vector3.zero;
             }
 
             if (Vector3.Distance(randomPoint, center) < minSpawnRangeFromPlayerPos)

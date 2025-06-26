@@ -27,7 +27,7 @@ public class LightFlicker : MonoBehaviour
     {
         if (lightMode == LightMode.Brightening)
         {
-            Debug.Log(currentIntensity);
+            //Debug.Log(currentIntensity);
             currentIntensity += intensityIncreaseAmount;
             if (currentIntensity > baseIntensity)
             {
