@@ -80,12 +80,12 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         if (!agent.enabled)
             agent.enabled = true;
 
-        Debug.Log($"SetupPlayerFollow called. Current State: {statueState}");
-        if (statueState == MoveState.Chasing)
-        {
-            Debug.Log("SetupPlayerFollow ignored because statue is already chasing.");
-            return;
-        }
+        //Debug.Log($"SetupPlayerFollow called. Current State: {statueState}");
+        //if (statueState == MoveState.Chasing)
+        //{
+        //    Debug.Log("SetupPlayerFollow ignored because statue is already chasing.");
+        //    return;
+        //}
 
         Debug.Log("Setting up player follow.");
         SetState(MoveState.Chasing);
@@ -122,7 +122,10 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     public void SetTargetPosition(Vector3 targetPos)
     {
-        agent.SetDestination(targetPos);
+        if (agent.enabled) {
+            agent.SetDestination(targetPos);
+        }
+
         // No longer needed here because audio updates itself in StatueAudioController.Update()
         // statueAudioController.AdjustAudioDistanceParameter(transform.position, player.transform.position);
     }

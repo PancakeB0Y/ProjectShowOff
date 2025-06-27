@@ -66,10 +66,13 @@ public class TutorialManager : MonoBehaviour
                 if (mainDoor != null && !mainDoor.isDoorOpen)
                 {
                     mainDoor.OpenDoor();
-                    if(UIManager.Instance != null)
-                    {
-                        UIManager.Instance.OpenWinMenu();
-                    }
+                    tutorialIndex++;
+                }
+                break;
+            case 6:
+                if (UIManager.Instance != null)
+                {
+                    UIManager.Instance.OpenWinMenu();
                 }
                 break;
             default:

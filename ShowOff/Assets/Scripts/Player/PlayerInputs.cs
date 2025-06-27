@@ -85,7 +85,7 @@ public class PlayerInputs : MonoBehaviour
             lightMatchAnimatorController = transform.parent.GetComponentInChildren<ArmAnimatorController>();
         }
 
-        if (lightMatchAnimatorController != null && InventoryManager.instance.UseMatchstick()) {
+        if (lightMatchAnimatorController != null) {
             lightMatchAnimatorController.StartAnimation();
         }
     }

@@ -23,8 +23,11 @@ public class ArmAnimatorController : MonoBehaviour
 
     public void StartAnimation()
     {
-        if (!lanternLightSourceController.IsLightOn)
-            lightMatchAnimator.SetBool("lightmatch", true);
+        if (lanternController.CanLightLantern())
+        {
+            if (!lanternLightSourceController.IsLightOn && InventoryManager.instance.UseMatchstick())
+                lightMatchAnimator.SetBool("lightmatch", true);
+        }
     }
 
     public void matchstickon()

@@ -36,7 +36,7 @@ public class LanternController : MonoBehaviour
                 //Check if the player has a matchstick
                 //if (InventoryManager.instance.UseMatchstick())
                 //{
-                    TurnLanternOn();
+                TurnLanternOn();
                 //}
             }
             else
@@ -44,6 +44,21 @@ public class LanternController : MonoBehaviour
                 TurnLanternOn();
             }
         }
+    }
+
+    public bool CanLightLantern()
+    {
+        if (lightSourceController != null)
+        {
+            if (lightSourceController.IsLightOn)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     //Called when player collides with wind
