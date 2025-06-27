@@ -5213,7 +5213,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!136 &937569627962247307
 CapsuleCollider:
@@ -5312,9 +5312,8 @@ MonoBehaviour:
   UIItemPrefab: {fileID: 4878038537838576291, guid: bfddb015c98520047aac902b825d94e1, type: 3}
   MatchstickPrefab: {fileID: 7567259067091355523, guid: e4c4eda37bfad464296611be18a00e4e, type: 3}
   PagePrefab: {fileID: 2677611112021056617, guid: 3f93dc8130efcc14aaffc03784206130, type: 3}
-  ItemInspectionUI: {fileID: 0}
+  ItemInspection: {fileID: 0}
   InventoryText: {fileID: 0}
-  InteractText: {fileID: 0}
   startInventoryContent: 03000000030000000300000009000000
   inventorySize: 20
   isInventoryOpen: 0
@@ -5466,11 +5465,11 @@ MonoBehaviour:
   lightSourceController: {fileID: 3819144958098171577}
   deathSfx:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2036929894
+      Data2: 1274499930
+      Data3: 240324492
+      Data4: 1094648648
+    Path: event:/Player death
 --- !u!1 &1395723255634650170
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,7 +6111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsLightOn: 0
-  turnLightOffSeconds: 2
+  turnLightOffSeconds: 20
 --- !u!1 &6437598818763481658
 GameObject:
   m_ObjectHideFlags: 0
@@ -6293,7 +6292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightTime: 0.5
-  useMatchsticks: 0
+  useMatchsticks: 1
 --- !u!1 &6975151060180881952
 GameObject:
   m_ObjectHideFlags: 0

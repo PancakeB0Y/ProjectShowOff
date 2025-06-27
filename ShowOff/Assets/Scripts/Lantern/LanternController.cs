@@ -34,10 +34,10 @@ public class LanternController : MonoBehaviour
 
             if (useMatchsticks) {
                 //Check if the player has a matchstick
-                if (InventoryManager.instance.UseMatchstick())
-                {
+                //if (InventoryManager.instance.UseMatchstick())
+                //{
                     TurnLanternOn();
-                }
+                //}
             }
             else
             {
@@ -81,11 +81,8 @@ public class LanternController : MonoBehaviour
             StartCoroutine(TurnLanternOnCoroutine());
         }
 
-        //Play lantern sound
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlayLightLanternSound(gameObject);
-        }
+ 
+ 
     }
 
     void TurnLanternOff()

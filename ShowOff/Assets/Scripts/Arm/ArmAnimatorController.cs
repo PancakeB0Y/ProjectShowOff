@@ -35,6 +35,7 @@ public class ArmAnimatorController : MonoBehaviour
     public void matchlighton()
     {
         matchstickLight.enabled = true;
+        SoundManager.instance.PlayLightLanternSound(gameObject);
     }
 
     public void lanternon()
