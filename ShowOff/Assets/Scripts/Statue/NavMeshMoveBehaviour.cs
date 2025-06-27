@@ -122,7 +122,10 @@ public class NavMeshMoveBehaviour : MonoBehaviour
 
     public void SetTargetPosition(Vector3 targetPos)
     {
-        agent.SetDestination(targetPos);
+        if (agent.enabled) {
+            agent.SetDestination(targetPos);
+        }
+
         // No longer needed here because audio updates itself in StatueAudioController.Update()
         // statueAudioController.AdjustAudioDistanceParameter(transform.position, player.transform.position);
     }

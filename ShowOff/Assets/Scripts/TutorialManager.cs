@@ -51,6 +51,12 @@ public class TutorialManager : MonoBehaviour
                 {
                     mainDoor.CloseDoor(0.7f);
                 }
+
+                if(PlayerInputs.instance != null)
+                {
+                    PlayerInputs.instance.CanLightLantern = true;
+                }
+
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     tutorialIndex++;

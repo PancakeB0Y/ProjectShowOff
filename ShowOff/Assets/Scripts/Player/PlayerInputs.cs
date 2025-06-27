@@ -10,6 +10,8 @@ public class PlayerInputs : MonoBehaviour
 
     ArmAnimatorController lightMatchAnimatorController;
 
+    public bool CanLightLantern = false;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -50,7 +52,7 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && CanLightLantern)
         {
             OnLightLantern();
         }
