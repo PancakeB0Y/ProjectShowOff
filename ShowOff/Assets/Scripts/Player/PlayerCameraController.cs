@@ -21,6 +21,12 @@ public class PlayerCameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         startSens = mouseSens;
+
+        Vector3 initialEuler = cameraToRotate.localRotation.eulerAngles;
+        xRotation = initialEuler.x;
+
+        Vector3 playerEuler = transform.rotation.eulerAngles;
+        yRotation = playerEuler.y;
     }
 
     // Update is called once per frame
