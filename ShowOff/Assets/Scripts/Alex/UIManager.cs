@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Level test");
+        SceneManager.LoadScene("FinalScene");
     }
 
     public void LoadMainMenu()
