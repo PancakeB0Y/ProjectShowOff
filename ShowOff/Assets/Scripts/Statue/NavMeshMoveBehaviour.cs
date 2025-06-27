@@ -80,12 +80,12 @@ public class NavMeshMoveBehaviour : MonoBehaviour
         if (!agent.enabled)
             agent.enabled = true;
 
-        Debug.Log($"SetupPlayerFollow called. Current State: {statueState}");
-        if (statueState == MoveState.Chasing)
-        {
-            Debug.Log("SetupPlayerFollow ignored because statue is already chasing.");
-            return;
-        }
+        //Debug.Log($"SetupPlayerFollow called. Current State: {statueState}");
+        //if (statueState == MoveState.Chasing)
+        //{
+        //    Debug.Log("SetupPlayerFollow ignored because statue is already chasing.");
+        //    return;
+        //}
 
         Debug.Log("Setting up player follow.");
         SetState(MoveState.Chasing);
